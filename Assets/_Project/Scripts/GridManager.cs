@@ -86,7 +86,7 @@ public sealed class GridManager : MonoBehaviour
             {
                 if (closedSet.Contains(neighbor)) continue;
 
-                int tentativeGScore = gScore[current] + 1;
+                int tentativeGScore = gScore[current] + GetMovementCost(current, neighbor);
                 if (!gScore.TryGetValue(neighbor, out int knownGScore) || tentativeGScore < knownGScore)
                 {
                     cameFrom[neighbor] = current;
@@ -146,7 +146,7 @@ public sealed class GridManager : MonoBehaviour
     }
 
     private int GetEstimatedTotalCost(int cellIndex, Dictionary<int, int> gScore, int targetIndex) =>
-        gScore[cellIndex] + GetManhattanDistance(cellIndex, targetIndex);
+        gScore[cellIndex] + GetDiagonalDistance(cellIndex, targetIndex);
 
     private IEnumerable<int> GetWalkableNeighbors(int cellIndex)
     {
@@ -156,6 +156,35 @@ public sealed class GridManager : MonoBehaviour
         if (column < columns - 1 && cells[cellIndex + 1].IsWalkable) yield return cellIndex + 1;
         if (row > 0 && cells[cellIndex - columns].IsWalkable) yield return cellIndex - columns;
         if (row < rows - 1 && cells[cellIndex + columns].IsWalkable) yield return cellIndex + columns;
+
+        // A diagonal is allowed only when both side cells are clear, preventing corner-cutting.
+        if (column > 0 && row > 0 &&
+            cells[cellIndex - 1].IsWalkable && cells[cellIndex - columns].IsWalkable &&
+            cells[cellIndex - columns - 1].IsWalkable)
+        {
+            yield return cellIndex - columns - 1;
+        }
+
+        if (column < columns - 1 && row > 0 &&
+            cells[cellIndex + 1].IsWalkable && cells[cellIndex - columns].IsWalkable &&
+            cells[cellIndex - columns + 1].IsWalkable)
+        {
+            yield return cellIndex - columns + 1;
+        }
+
+        if (column > 0 && row < rows - 1 &&
+            cells[cellIndex - 1].IsWalkable && cells[cellIndex + columns].IsWalkable &&
+            cells[cellIndex + columns - 1].IsWalkable)
+        {
+            yield return cellIndex + columns - 1;
+        }
+
+        if (column < columns - 1 && row < rows - 1 &&
+            cells[cellIndex + 1].IsWalkable && cells[cellIndex + columns].IsWalkable &&
+            cells[cellIndex + columns + 1].IsWalkable)
+        {
+            yield return cellIndex + columns + 1;
+        }
     }
 
     private void RebuildPath(Dictionary<int, int> cameFrom, int current, List<GridCell> path)
@@ -170,13 +199,23 @@ public sealed class GridManager : MonoBehaviour
         path.Reverse();
     }
 
-    private int GetManhattanDistance(int firstIndex, int secondIndex)
+    private int GetDiagonalDistance(int firstIndex, int secondIndex)
     {
         int firstColumn = firstIndex % columns;
         int firstRow = firstIndex / columns;
         int secondColumn = secondIndex % columns;
         int secondRow = secondIndex / columns;
-        return Mathf.Abs(firstColumn - secondColumn) + Mathf.Abs(firstRow - secondRow);
+        int columnDistance = Mathf.Abs(firstColumn - secondColumn);
+        int rowDistance = Mathf.Abs(firstRow - secondRow);
+        int diagonalSteps = Mathf.Min(columnDistance, rowDistance);
+        return diagonalSteps * 14 + (Mathf.Max(columnDistance, rowDistance) - diagonalSteps) * 10;
+    }
+
+    private int GetMovementCost(int fromIndex, int toIndex)
+    {
+        int fromColumn = fromIndex % columns;
+        int toColumn = toIndex % columns;
+        return fromColumn == toColumn ? 10 : (fromIndex / columns == toIndex / columns ? 10 : 14);
     }
 
     private int ToIndex(int column, int row) => row * columns + column;
