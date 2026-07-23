@@ -2520,6 +2520,8 @@ MonoBehaviour:
   positionSmoothTime: 0.01
   rotationSmoothSpeed: 0
   lockVerticalFollow: 1
+  horizontalShakeDistance: 0.15
+  horizontalShakeFrequency: 16
 --- !u!1 &385032717
 GameObject:
   m_ObjectHideFlags: 0
@@ -6106,13 +6108,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b4a70909ea84495b584d0c25e3fb1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CupTimerController
-  timerMode: 0
-  DurationSeconds: 10
+  timerMode: 1
+  DurationSeconds: 3
   playerStartPhrases:
-  - Start phrase!
+  - Start phrase
   playerEndPhrases:
-  - Time is up.
-  - I need to try again.
+  - End phrase
 --- !u!1 &1227788165
 GameObject:
   m_ObjectHideFlags: 0

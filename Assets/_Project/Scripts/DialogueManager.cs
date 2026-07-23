@@ -13,7 +13,7 @@ using UnityEngine.UI;
 public sealed class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance { get; private set; }
-    public static event Action<DialogueState> DialogueStarted;
+    public static event Action<DialogueState> DialogueEnded;
 
     [SerializeField] private TMP_Text speakerNameText;
     [SerializeField] private TMP_Text dialogueText;
@@ -79,7 +79,6 @@ public sealed class DialogueManager : MonoBehaviour
         gameObject.SetActive(true);
         speakerNameText.text = dialogue.npcDisplayName;
         ShowCurrentLine();
-        DialogueStarted?.Invoke(entry.requiredState);
     }
 
     public void ShowPlayerPhrase(string phrase)
@@ -240,12 +239,16 @@ public sealed class DialogueManager : MonoBehaviour
 
     private void CloseDialogue()
     {
+        bool wasNpcDialogue = currentDialogue != null;
+        DialogueState finishedState = currentEntry.requiredState;
         if (typewriter != null) StopCoroutine(typewriter);
         typewriter = null;
         isTyping = false;
         currentDialogue = null;
         currentEntry = null;
         gameObject.SetActive(false);
+
+        if (wasNpcDialogue) DialogueEnded?.Invoke(finishedState);
     }
 
     private static InventoryManager GetInventoryManager()

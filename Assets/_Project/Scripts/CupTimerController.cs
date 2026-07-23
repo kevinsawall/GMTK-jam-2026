@@ -55,13 +55,13 @@ public sealed class CupTimerController : MonoBehaviour
 
         remainingSeconds = DurationSeconds;
         UpdateTimerText();
-        DialogueManager.DialogueStarted += OnDialogueStarted;
+        DialogueManager.DialogueEnded += OnDialogueEnded;
         StartCutsceneController.Finished += ShowNextStartPhrase;
     }
 
     private void OnDestroy()
     {
-        DialogueManager.DialogueStarted -= OnDialogueStarted;
+        DialogueManager.DialogueEnded -= OnDialogueEnded;
         StartCutsceneController.Finished -= ShowNextStartPhrase;
         if (Instance == this) Instance = null;
     }
@@ -77,7 +77,7 @@ public sealed class CupTimerController : MonoBehaviour
         ConsumeCount(Time.deltaTime);
     }
 
-    private void OnDialogueStarted(DialogueState dialogueState)
+    private void OnDialogueEnded(DialogueState dialogueState)
     {
         if (timerMode != CupTimerMode.Natural || dialogueState is DialogueState.Summary or DialogueState.Completed) return;
 
