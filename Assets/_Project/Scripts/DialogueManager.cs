@@ -29,7 +29,7 @@ public sealed class DialogueManager : MonoBehaviour
     private Coroutine typewriter;
     private bool isTyping;
 
-    public bool IsOpen => currentDialogue != null;
+    public bool IsOpen => currentEntry != null;
 
     private void Awake()
     {
@@ -76,6 +76,23 @@ public sealed class DialogueManager : MonoBehaviour
         currentLineIndex = 0;
         gameObject.SetActive(true);
         speakerNameText.text = dialogue.npcDisplayName;
+        ShowCurrentLine();
+    }
+
+    public void ShowPlayerPhrase(string phrase)
+    {
+        if (string.IsNullOrWhiteSpace(phrase)) return;
+
+        currentDialogue = null;
+        currentEntry = new DialogueEntry
+        {
+            lines = new List<DialogueLine>
+            {
+                new() { speaker = DialogueSpeaker.Player, text = phrase }
+            }
+        };
+        currentLineIndex = 0;
+        gameObject.SetActive(true);
         ShowCurrentLine();
     }
 
@@ -159,7 +176,7 @@ public sealed class DialogueManager : MonoBehaviour
         DialogueLine line = currentEntry.lines[currentLineIndex];
         speakerNameText.text = line != null && line.speaker == DialogueSpeaker.Player
             ? playerDisplayName
-            : currentDialogue.npcDisplayName;
+            : currentDialogue != null ? currentDialogue.npcDisplayName : string.Empty;
         typewriter = StartCoroutine(TypeLine(line?.text ?? string.Empty));
     }
 

@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: RedBoxInteract
   m_EditorClassIdentifier: Assembly-CSharp::InspectInteractObject
   prompt: Interact
-  description: Red Box
+  playerPhrases:
+  - It's a red box.
+  - Just borring red box.
+  - Still red box.
