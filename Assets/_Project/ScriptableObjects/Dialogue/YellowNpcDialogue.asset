@@ -24,14 +24,16 @@ MonoBehaviour:
     - speaker: 0
       text: I am a yellow NPC.
     - speaker: 1
-      text: I am a Player
+      text: I am a Player.
+    - speaker: 0
+      text: I have a test item.
     actions:
     - type: 6
       stringValue: Here's the test Item
       item: {fileID: 11400000, guid: a23976eff82f64965bcd30843d1b0d8a, type: 2}
       nextNpcState: 1
     - type: 4
-      stringValue: ''
+      stringValue: 
       item: {fileID: 0}
       nextNpcState: 1
   - entryId: summary
