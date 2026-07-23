@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public enum CupTimerMode
 {
@@ -12,12 +11,18 @@ public enum CupTimerMode
 public sealed class CupTimerController : MonoBehaviour
 {
     private const string TimerObjectName = "Cup timer";
-    
+    private const string CutsceneObjectName = "CutsceneObject";
+    private const float CutsceneDurationSeconds = 5f;
 
     [SerializeField] private CupTimerMode timerMode = CupTimerMode.Sec;
-    [SerializeField] private float DurationSeconds = 60f;
+    [SerializeField, Min(1f)] private float DurationSeconds = 60f;
+
+    public static CupTimerController Instance { get; private set; }
+    public bool IsCutscenePlaying { get; private set; }
+
     private TMP_Text timerText;
     private CanvasGroup canvasGroup;
+    private GameObject cutsceneObject;
     private float remainingSeconds;
     private bool hasExpired;
 
@@ -34,6 +39,7 @@ public sealed class CupTimerController : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         timerText = GetComponentInChildren<TMP_Text>(true);
         canvasGroup = GetComponent<CanvasGroup>();
         if (canvasGroup == null) canvasGroup = gameObject.AddComponent<CanvasGroup>();
@@ -43,12 +49,17 @@ public sealed class CupTimerController : MonoBehaviour
         DialogueManager.DialogueStarted += OnDialogueStarted;
     }
 
-    private void OnDestroy() => DialogueManager.DialogueStarted -= OnDialogueStarted;
+    private void OnDestroy()
+    {
+        DialogueManager.DialogueStarted -= OnDialogueStarted;
+        if (Instance == this) Instance = null;
+    }
 
     private void Update()
     {
-        SetVisibility(!IsModalUiVisible());
-        if (hasExpired || timerMode != CupTimerMode.Sec) return;
+        bool gameplayHasStarted = !StartCutsceneController.IsPlaying;
+        SetVisibility(gameplayHasStarted && !IsModalUiVisible() && !IsCutscenePlaying);
+        if (!gameplayHasStarted || hasExpired || timerMode != CupTimerMode.Sec) return;
 
         ConsumeCount(Time.deltaTime);
     }
@@ -69,7 +80,7 @@ public sealed class CupTimerController : MonoBehaviour
         if (remainingSeconds > 0f) return;
 
         hasExpired = true;
-        SceneLoader.Load(SceneManager.GetActiveScene().name);
+        StartCoroutine(PlayCutsceneAndRestart());
     }
 
     private void SetVisibility(bool isVisible)
@@ -90,5 +101,35 @@ public sealed class CupTimerController : MonoBehaviour
 
         ItemNotification notification = Object.FindFirstObjectByType<ItemNotification>(FindObjectsInactive.Include);
         return notification != null && notification.IsVisible;
+    }
+
+    private System.Collections.IEnumerator PlayCutsceneAndRestart()
+    {
+        IsCutscenePlaying = true;
+        cutsceneObject = FindCutsceneObject();
+        if (cutsceneObject != null) cutsceneObject.SetActive(true);
+
+        yield return new WaitForSecondsRealtime(CutsceneDurationSeconds);
+
+        if (cutsceneObject != null) cutsceneObject.SetActive(false);
+
+        PlayerMovement playerMovement = Object.FindFirstObjectByType<PlayerMovement>();
+        playerMovement?.ResetToStartPosition();
+
+        remainingSeconds = DurationSeconds;
+        hasExpired = false;
+        IsCutscenePlaying = false;
+        UpdateTimerText();
+    }
+
+    private static GameObject FindCutsceneObject()
+    {
+        foreach (Transform transform in Resources.FindObjectsOfTypeAll<Transform>())
+        {
+            if (transform.name == CutsceneObjectName && transform.gameObject.scene.IsValid()) return transform.gameObject;
+        }
+
+        Debug.LogWarning("No CutsceneObject was found in the scene.");
+        return null;
     }
 }

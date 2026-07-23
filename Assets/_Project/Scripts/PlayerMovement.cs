@@ -23,8 +23,24 @@ public sealed class PlayerMovement : MonoBehaviour
     private int nextPathCell;
     private Vector3 lastPointPosition;
     private float blockedPointMovementTime;
+    private Vector3 startPosition;
+    private Quaternion startRotation;
 
-    private void Awake() => body = GetComponent<Rigidbody>();
+    private void Awake()
+    {
+        body = GetComponent<Rigidbody>();
+        startPosition = body.position;
+        startRotation = body.rotation;
+    }
+
+    public void ResetToStartPosition()
+    {
+        moveInput = Vector2.zero;
+        CancelPointMovement();
+        body.position = startPosition;
+        body.rotation = startRotation;
+        body.angularVelocity = Vector3.zero;
+    }
 
     private void Update()
     {
@@ -245,6 +261,8 @@ public sealed class PlayerMovement : MonoBehaviour
     private static bool IsMovementBlocked()
     {
         if (DialogueManager.Instance != null && DialogueManager.Instance.IsOpen) return true;
+        if (StartCutsceneController.IsPlaying) return true;
+        if (CupTimerController.Instance != null && CupTimerController.Instance.IsCutscenePlaying) return true;
         return ItemNotification.Instance != null && ItemNotification.Instance.IsVisible;
     }
 }
