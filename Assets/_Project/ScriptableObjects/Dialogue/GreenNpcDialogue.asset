@@ -30,11 +30,27 @@ MonoBehaviour:
       stringValue: 
       item: {fileID: 0}
       nextNpcState: 2
-  - entryId: waiting for item
+  - entryId: waitingTestItem
     requiredState: 2
     requiredFlag: 
     requiredItem: {fileID: 11400000, guid: a23976eff82f64965bcd30843d1b0d8a, type: 2}
     lines:
     - speaker: 0
-      text: Thank you!
+      text: Thank you
+    actions:
+    - type: 3
+      stringValue: 
+      item: {fileID: 11400000, guid: a23976eff82f64965bcd30843d1b0d8a, type: 2}
+      nextNpcState: 5
+    - type: 4
+      stringValue: ''
+      item: {fileID: 0}
+      nextNpcState: 5
+  - entryId: completed
+    requiredState: 5
+    requiredFlag: 
+    requiredItem: {fileID: 0}
+    lines:
+    - speaker: 0
+      text: Thank you again
     actions: []
