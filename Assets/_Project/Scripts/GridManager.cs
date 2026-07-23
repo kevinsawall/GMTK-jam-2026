@@ -27,8 +27,7 @@ public sealed class GridManager : MonoBehaviour
         RefreshWalkability();
     }
 
-    public bool Raycast(Ray ray, float maxDistance, out RaycastHit hit) =>
-        groundCollider.Raycast(ray, out hit, maxDistance);
+    public bool IsGroundCollider(Collider collider) => collider == groundCollider;
 
     public bool TryGetCell(Vector3 worldPosition, out GridCell cell)
     {
@@ -44,7 +43,11 @@ public sealed class GridManager : MonoBehaviour
         return true;
     }
 
-    public bool TryFindPath(Vector3 startWorldPosition, Vector3 targetWorldPosition, List<GridCell> path)
+    public bool TryFindPath(
+        Vector3 startWorldPosition,
+        Vector3 targetWorldPosition,
+        List<GridCell> path,
+        int interactionDistance = 0)
     {
         path.Clear();
         RefreshWalkability();
@@ -62,6 +65,7 @@ public sealed class GridManager : MonoBehaviour
         var cameFrom = new Dictionary<int, int>();
         var gScore = new Dictionary<int, int> { [startIndex] = 0 };
         int closestReachableIndex = -1;
+        int closestCellDistance = int.MaxValue;
         float closestTargetDistance = float.PositiveInfinity;
 
         while (openSet.Count > 0)
@@ -72,12 +76,17 @@ public sealed class GridManager : MonoBehaviour
 
             if (cells[current].IsWalkable)
             {
+                int cellDistance = GetCellDistance(current, targetIndex);
                 float targetDistance = GetPlanarSquareDistance(cells[current].WorldPosition, target.WorldPosition);
-                if (targetDistance < closestTargetDistance ||
-                    (Mathf.Approximately(targetDistance, closestTargetDistance) &&
-                     (closestReachableIndex < 0 || gScore[current] < gScore[closestReachableIndex])))
+                bool isCloser = cellDistance < closestCellDistance ||
+                    (cellDistance == closestCellDistance &&
+                     (targetDistance < closestTargetDistance ||
+                      (Mathf.Approximately(targetDistance, closestTargetDistance) &&
+                       (closestReachableIndex < 0 || gScore[current] < gScore[closestReachableIndex]))));
+                if (cellDistance >= interactionDistance && isCloser)
                 {
                     closestReachableIndex = current;
+                    closestCellDistance = cellDistance;
                     closestTargetDistance = targetDistance;
                 }
             }
@@ -211,6 +220,13 @@ public sealed class GridManager : MonoBehaviour
         return diagonalSteps * 14 + (Mathf.Max(columnDistance, rowDistance) - diagonalSteps) * 10;
     }
 
+    private int GetCellDistance(int firstIndex, int secondIndex)
+    {
+        int columnDistance = Mathf.Abs(firstIndex % columns - secondIndex % columns);
+        int rowDistance = Mathf.Abs(firstIndex / columns - secondIndex / columns);
+        return Mathf.Max(columnDistance, rowDistance);
+    }
+
     private int GetMovementCost(int fromIndex, int toIndex)
     {
         int fromColumn = fromIndex % columns;
@@ -241,8 +257,9 @@ public sealed class GridManager : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
+            CharacterManager characterManager = collider.GetComponentInParent<CharacterManager>();
             if (collider == groundCollider || collider.transform.IsChildOf(transform) ||
-                collider.GetComponentInParent<PlayerMovement>() != null)
+                (characterManager != null && characterManager.Type == CharacterManager.CharacterType.Player))
             {
                 continue;
             }

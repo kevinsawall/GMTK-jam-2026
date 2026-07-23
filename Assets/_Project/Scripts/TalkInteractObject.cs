@@ -10,5 +10,6 @@ public sealed class TalkInteractObject : InteractObject
 
     public override void Interact(ObjectController controller)
     {
+        Debug.Log(openingLine, controller);
     }
 }

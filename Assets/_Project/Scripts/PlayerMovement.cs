@@ -18,7 +18,7 @@ public sealed class PlayerMovement : MonoBehaviour
     private readonly List<GridCell> pointPath = new();
     private Rigidbody body;
     private Vector2 moveInput;
-    private ObjectController pendingInteraction;
+    private IInteractable pendingInteraction;
     private int nextPathCell;
     private Vector3 lastPointPosition;
     private float blockedPointMovementTime;
@@ -56,26 +56,40 @@ public sealed class PlayerMovement : MonoBehaviour
         if (camera == null || gridManager == null) return;
 
         Ray ray = camera.ScreenPointToRay(mouse.position.ReadValue());
-        if (Physics.Raycast(ray, out RaycastHit objectHit, camera.farClipPlane))
+        if (!Physics.Raycast(ray, out RaycastHit hit, camera.farClipPlane))
         {
-            ObjectController objectController = objectHit.collider.GetComponentInParent<ObjectController>();
-            if (objectController != null && objectController.HasInteraction)
-            {
-                pendingInteraction = SetReachableDestination(objectHit.point) ? objectController : null;
-                return;
-            }
+            return;
         }
 
-        if (!gridManager.Raycast(ray, camera.farClipPlane, out RaycastHit groundHit) ||
-            !gridManager.TryGetCell(groundHit.point, out _)) return;
+        IInteractable interactable = GetInteractable(hit.collider);
+        if (interactable != null)
+        {
+            pendingInteraction = SetReachableDestination(hit.point, interactable.InteractionDistance) ? interactable : null;
+            return;
+        }
+
+        // A non-interactable collider consumes the click; do not move to ground behind it.
+        if (!gridManager.IsGroundCollider(hit.collider) || !gridManager.TryGetCell(hit.point, out _)) return;
 
         pendingInteraction = null;
-        SetReachableDestination(groundHit.point);
+        SetReachableDestination(hit.point);
     }
 
-    private bool SetReachableDestination(Vector3 destination)
+    private static IInteractable GetInteractable(Collider collider)
     {
-        if (!gridManager.TryFindPath(body.position, destination, pointPath))
+        ObjectController objectController = collider.GetComponentInParent<ObjectController>();
+        if (objectController != null && objectController.HasInteraction)
+        {
+            return objectController;
+        }
+
+        CharacterManager characterManager = collider.GetComponentInParent<CharacterManager>();
+        return characterManager != null && characterManager.HasInteraction ? characterManager : null;
+    }
+
+    private bool SetReachableDestination(Vector3 destination, int interactionDistance = 0)
+    {
+        if (!gridManager.TryFindPath(body.position, destination, pointPath, interactionDistance))
         {
             CancelPointMovement();
             return false;
@@ -154,7 +168,7 @@ public sealed class PlayerMovement : MonoBehaviour
 
     private void CompletePointMovement()
     {
-        ObjectController interaction = pendingInteraction;
+        IInteractable interaction = pendingInteraction;
         CancelPointMovement();
         body.angularVelocity = Vector3.zero;
         if (interaction != null) interaction.Interact();
