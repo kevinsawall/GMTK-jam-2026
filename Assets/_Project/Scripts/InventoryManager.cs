@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 /// <summary>Stores the player's unique items and renders one icon per item in the InventoryPanel.</summary>
@@ -12,10 +13,15 @@ public sealed class InventoryManager : MonoBehaviour
     [SerializeField] private Transform itemContainer;
     [SerializeField] private GameObject itemViewPrefab;
     [SerializeField] private ItemNotification itemNotification;
+    [Header("Item Tooltip")]
+    [SerializeField] private TextMeshProUGUI itemTooltipText;
+    [SerializeField] private Vector2 tooltipCursorOffset = new(16f, -16f);
 
     private readonly HashSet<ItemData> items = new();
     private readonly Dictionary<ItemData, GameObject> itemViews = new();
     private readonly Queue<ItemData> pendingNotifications = new();
+    private ItemData hoveredItem;
+    private Canvas tooltipCanvas;
 
     public event Action<ItemData> ItemAdded;
     public event Action<ItemData> ItemRemoved;
@@ -31,6 +37,7 @@ public sealed class InventoryManager : MonoBehaviour
         Instance = this;
         if (itemContainer == null) itemContainer = transform;
         FindItemNotification();
+        HideItemTooltip(null);
     }
 
     private void OnDestroy()
@@ -52,6 +59,8 @@ public sealed class InventoryManager : MonoBehaviour
 
     private void Update()
     {
+        UpdateTooltipPosition();
+
         if (pendingNotifications.Count == 0 || itemNotification == null || itemNotification.IsVisible) return;
         if (DialogueManager.Instance != null && DialogueManager.Instance.IsOpen) return;
 
@@ -88,7 +97,29 @@ public sealed class InventoryManager : MonoBehaviour
         if (drag == null) drag = itemView.AddComponent<InventoryItemDrag>();
         drag.Initialize(item);
 
+        InventoryItemTooltip tooltip = itemView.GetComponent<InventoryItemTooltip>();
+        if (tooltip == null) tooltip = itemView.AddComponent<InventoryItemTooltip>();
+        tooltip.Initialize(this, item);
+
         return itemView;
+    }
+
+    public void ShowItemTooltip(ItemData item)
+    {
+        if (item == null || !EnsureTooltip()) return;
+
+        hoveredItem = item;
+        itemTooltipText.text = item.displayName;
+        itemTooltipText.gameObject.SetActive(true);
+        UpdateTooltipPosition();
+    }
+
+    public void HideItemTooltip(ItemData item)
+    {
+        if (item != null && hoveredItem != item) return;
+
+        hoveredItem = null;
+        if (itemTooltipText != null) itemTooltipText.gameObject.SetActive(false);
     }
 
     private GameObject CreateDefaultItemView(ItemData item)
@@ -137,5 +168,51 @@ public sealed class InventoryManager : MonoBehaviour
         itemNotification = notificationTransform.GetComponent<ItemNotification>();
         if (itemNotification == null) itemNotification = notificationTransform.gameObject.AddComponent<ItemNotification>();
         itemNotification.Hide();
+    }
+
+    private bool EnsureTooltip()
+    {
+        if (itemTooltipText == null)
+        {
+            tooltipCanvas = GetComponentInParent<Canvas>()?.rootCanvas;
+            if (tooltipCanvas == null) return false;
+
+            GameObject tooltipObject = new("Item Tooltip", typeof(RectTransform), typeof(TextMeshProUGUI));
+            tooltipObject.transform.SetParent(tooltipCanvas.rootCanvas.transform, false);
+            tooltipObject.transform.SetAsLastSibling();
+            itemTooltipText = tooltipObject.GetComponent<TextMeshProUGUI>();
+            if (TMP_Settings.defaultFontAsset != null) itemTooltipText.font = TMP_Settings.defaultFontAsset;
+            itemTooltipText.fontSize = 24f;
+            itemTooltipText.color = Color.white;
+            itemTooltipText.alignment = TextAlignmentOptions.Left;
+            itemTooltipText.raycastTarget = false;
+
+            RectTransform rectTransform = itemTooltipText.rectTransform;
+            rectTransform.anchorMin = Vector2.zero;
+            rectTransform.anchorMax = Vector2.zero;
+            rectTransform.pivot = new Vector2(0f, 1f);
+            rectTransform.sizeDelta = new Vector2(300f, 50f);
+        }
+
+        if (tooltipCanvas == null) tooltipCanvas = itemTooltipText.GetComponentInParent<Canvas>()?.rootCanvas;
+        return tooltipCanvas != null;
+    }
+
+    private void UpdateTooltipPosition()
+    {
+        if (hoveredItem == null || itemTooltipText == null || !itemTooltipText.gameObject.activeSelf || !EnsureTooltip()) return;
+
+        Mouse mouse = Mouse.current;
+        if (mouse == null) return;
+
+        Camera eventCamera = tooltipCanvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : tooltipCanvas.worldCamera;
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                (RectTransform)tooltipCanvas.transform,
+                mouse.position.ReadValue(),
+                eventCamera,
+                out Vector2 localPosition))
+        {
+            itemTooltipText.rectTransform.anchoredPosition = localPosition + tooltipCursorOffset;
+        }
     }
 }
