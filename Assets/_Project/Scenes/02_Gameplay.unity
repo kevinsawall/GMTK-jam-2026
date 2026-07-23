@@ -6107,9 +6107,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CupTimerController
   timerMode: 0
-  DurationSeconds: 60
+  DurationSeconds: 10
   playerStartPhrases:
   - Start phrase!
+  playerEndPhrases:
+  - Time is up.
+  - I need to try again.
 --- !u!1 &1227788165
 GameObject:
   m_ObjectHideFlags: 0
@@ -10740,6 +10743,30 @@ PrefabInstance:
       objectReference: {fileID: 867809644}
     - target: {fileID: 7279695530631082702, guid: c8e4a08ffb61746bea5a48d8aa3a71f9, type: 3}
       propertyPath: cornerTurnDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7279695530631082702, guid: c8e4a08ffb61746bea5a48d8aa3a71f9, type: 3}
+      propertyPath: restartPosition.x
+      value: -6.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 7279695530631082702, guid: c8e4a08ffb61746bea5a48d8aa3a71f9, type: 3}
+      propertyPath: restartPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7279695530631082702, guid: c8e4a08ffb61746bea5a48d8aa3a71f9, type: 3}
+      propertyPath: restartPosition.z
+      value: -1.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 7279695530631082702, guid: c8e4a08ffb61746bea5a48d8aa3a71f9, type: 3}
+      propertyPath: restartRotationEuler.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7279695530631082702, guid: c8e4a08ffb61746bea5a48d8aa3a71f9, type: 3}
+      propertyPath: restartRotationEuler.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7279695530631082702, guid: c8e4a08ffb61746bea5a48d8aa3a71f9, type: 3}
+      propertyPath: restartRotationEuler.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

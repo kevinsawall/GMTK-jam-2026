@@ -17,7 +17,7 @@ public sealed class PauseMenuController : MonoBehaviour
 
     public void PauseGame()
     {
-        if (StartCutsceneController.IsPlaying) return;
+        if (StartCutsceneController.IsPlaying || CupTimerController.Instance?.IsRestartSequencePlaying == true) return;
         SetPaused(true);
     }
 
@@ -28,7 +28,7 @@ public sealed class PauseMenuController : MonoBehaviour
 
     public void TogglePause()
     {
-        if (StartCutsceneController.IsPlaying) return;
+        if (StartCutsceneController.IsPlaying || CupTimerController.Instance?.IsRestartSequencePlaying == true) return;
 
         if (optionsPanel.activeSelf)
         {

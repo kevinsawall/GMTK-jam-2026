@@ -14,6 +14,9 @@ public sealed class PlayerMovement : MonoBehaviour
     [SerializeField, Min(0f)] private float cornerTurnDistance = 0.75f;
     [SerializeField] private bool pointMovement = true;
     [SerializeField] private GridManager gridManager;
+    [Header("Pseudo Restart Start Pose")]
+    [SerializeField] private Vector3 restartPosition;
+    [SerializeField] private Vector3 restartRotationEuler;
 
     private readonly List<GridCell> pointPath = new();
     private Rigidbody body;
@@ -23,22 +26,18 @@ public sealed class PlayerMovement : MonoBehaviour
     private int nextPathCell;
     private Vector3 lastPointPosition;
     private float blockedPointMovementTime;
-    private Vector3 startPosition;
-    private Quaternion startRotation;
 
     private void Awake()
     {
         body = GetComponent<Rigidbody>();
-        startPosition = body.position;
-        startRotation = body.rotation;
     }
 
     public void ResetToStartPosition()
     {
         moveInput = Vector2.zero;
         CancelPointMovement();
-        body.position = startPosition;
-        body.rotation = startRotation;
+        body.position = restartPosition;
+        body.rotation = Quaternion.Euler(restartRotationEuler);
         body.angularVelocity = Vector3.zero;
     }
 
@@ -262,6 +261,7 @@ public sealed class PlayerMovement : MonoBehaviour
     {
         if (DialogueManager.Instance != null && DialogueManager.Instance.IsOpen) return true;
         if (StartCutsceneController.IsPlaying) return true;
+        if (CupTimerController.Instance != null && CupTimerController.Instance.IsRestartSequencePlaying) return true;
         if (CupTimerController.Instance != null && CupTimerController.Instance.IsCutscenePlaying) return true;
         return ItemNotification.Instance != null && ItemNotification.Instance.IsVisible;
     }

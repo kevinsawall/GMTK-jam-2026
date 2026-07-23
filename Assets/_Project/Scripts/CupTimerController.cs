@@ -13,21 +13,27 @@ public sealed class CupTimerController : MonoBehaviour
 {
     private const string TimerObjectName = "Cup timer";
     private const string CutsceneObjectName = "CutsceneObject";
-    private const float CutsceneDurationSeconds = 5f;
+    private const float CutsceneDurationSeconds = 4f;
+    private const float PlayerResetTimeSeconds = 2f;
+    private const float CutsceneFadeOutSeconds = 1f;
 
     [SerializeField] private CupTimerMode timerMode = CupTimerMode.Sec;
     [SerializeField, Min(1f)] private float DurationSeconds = 60f;
     [SerializeField, TextArea(2, 5)] private List<string> playerStartPhrases = new();
+    [SerializeField, TextArea(2, 5)] private List<string> playerEndPhrases = new();
 
     public static CupTimerController Instance { get; private set; }
     public bool IsCutscenePlaying { get; private set; }
+    public bool IsRestartSequencePlaying => hasExpired;
 
     private TMP_Text timerText;
     private CanvasGroup canvasGroup;
     private GameObject cutsceneObject;
+    private CanvasGroup cutsceneCanvasGroup;
     private float remainingSeconds;
     private bool hasExpired;
     private int nextStartPhraseIndex;
+    private int nextEndPhraseIndex;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     private static void CreateForCupTimer()
@@ -63,8 +69,10 @@ public sealed class CupTimerController : MonoBehaviour
     private void Update()
     {
         bool gameplayHasStarted = !StartCutsceneController.IsPlaying;
-        SetVisibility(gameplayHasStarted && !IsModalUiVisible() && !IsCutscenePlaying);
-        if (!gameplayHasStarted || hasExpired || timerMode != CupTimerMode.Sec) return;
+        bool isModalUiVisible = IsModalUiVisible();
+        bool canCountDown = gameplayHasStarted && !isModalUiVisible && !IsCutscenePlaying;
+        SetVisibility(canCountDown && !hasExpired);
+        if (!canCountDown || hasExpired || timerMode != CupTimerMode.Sec) return;
 
         ConsumeCount(Time.deltaTime);
     }
@@ -85,7 +93,7 @@ public sealed class CupTimerController : MonoBehaviour
         if (remainingSeconds > 0f) return;
 
         hasExpired = true;
-        StartCoroutine(PlayCutsceneAndRestart());
+        StartCoroutine(RunTimeoutSequence());
     }
 
     private void SetVisibility(bool isVisible)
@@ -112,20 +120,53 @@ public sealed class CupTimerController : MonoBehaviour
     {
         IsCutscenePlaying = true;
         cutsceneObject = FindCutsceneObject();
-        if (cutsceneObject != null) cutsceneObject.SetActive(true);
+        if (cutsceneObject != null)
+        {
+            cutsceneObject.SetActive(true);
+            cutsceneCanvasGroup = cutsceneObject.GetComponent<CanvasGroup>();
+            if (cutsceneCanvasGroup == null) cutsceneCanvasGroup = cutsceneObject.AddComponent<CanvasGroup>();
+            cutsceneCanvasGroup.alpha = 1f;
+        }
 
-        yield return new WaitForSecondsRealtime(CutsceneDurationSeconds);
+        yield return new WaitForSecondsRealtime(PlayerResetTimeSeconds);
+        ResetPlayerToStartPosition();
+
+        yield return new WaitForSecondsRealtime(CutsceneDurationSeconds - PlayerResetTimeSeconds - CutsceneFadeOutSeconds);
+
+        if (cutsceneCanvasGroup != null)
+        {
+            LeanTween.alphaCanvas(cutsceneCanvasGroup, 0f, CutsceneFadeOutSeconds).setIgnoreTimeScale(true);
+        }
+
+        yield return new WaitForSecondsRealtime(CutsceneFadeOutSeconds);
 
         if (cutsceneObject != null) cutsceneObject.SetActive(false);
-
-        PlayerMovement playerMovement = Object.FindFirstObjectByType<PlayerMovement>();
-        playerMovement?.ResetToStartPosition();
 
         remainingSeconds = DurationSeconds;
         hasExpired = false;
         IsCutscenePlaying = false;
         UpdateTimerText();
         ShowNextStartPhrase();
+    }
+
+    private System.Collections.IEnumerator RunTimeoutSequence()
+    {
+        while (DialogueManager.Instance != null && DialogueManager.Instance.IsOpen)
+        {
+            yield return null;
+        }
+
+        yield return new WaitForSecondsRealtime(1.5f);
+
+        if (ShowNextEndPhrase())
+        {
+            while (DialogueManager.Instance != null && DialogueManager.Instance.IsOpen)
+            {
+                yield return null;
+            }
+        }
+
+        yield return PlayCutsceneAndRestart();
     }
 
     private static GameObject FindCutsceneObject()
@@ -137,6 +178,19 @@ public sealed class CupTimerController : MonoBehaviour
 
         Debug.LogWarning("No CutsceneObject was found in the scene.");
         return null;
+    }
+
+    private static void ResetPlayerToStartPosition()
+    {
+        foreach (CharacterManager character in Object.FindObjectsByType<CharacterManager>(FindObjectsInactive.Exclude, FindObjectsSortMode.None))
+        {
+            if (character.Type != CharacterManager.CharacterType.Player) continue;
+
+            character.ResetToStartPosition();
+            return;
+        }
+
+        Debug.LogWarning("No player CharacterManager was found for the pseudo restart.");
     }
 
     private void ShowNextStartPhrase()
@@ -154,5 +208,26 @@ public sealed class CupTimerController : MonoBehaviour
             manager?.ShowPlayerPhrase(phrase);
             return;
         }
+    }
+
+    private bool ShowNextEndPhrase()
+    {
+        if (playerEndPhrases == null || playerEndPhrases.Count == 0) return false;
+
+        for (int attempts = 0; attempts < playerEndPhrases.Count; attempts++)
+        {
+            string phrase = playerEndPhrases[nextEndPhraseIndex];
+            nextEndPhraseIndex = (nextEndPhraseIndex + 1) % playerEndPhrases.Count;
+            if (string.IsNullOrWhiteSpace(phrase)) continue;
+
+            DialogueManager manager = DialogueManager.Instance ??
+                Object.FindFirstObjectByType<DialogueManager>(FindObjectsInactive.Include);
+            if (manager == null) return false;
+
+            manager.ShowPlayerPhrase(phrase);
+            return true;
+        }
+
+        return false;
     }
 }
