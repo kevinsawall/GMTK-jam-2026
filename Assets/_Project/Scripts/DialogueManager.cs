@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,6 +13,7 @@ using UnityEngine.UI;
 public sealed class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance { get; private set; }
+    public static event Action<DialogueState> DialogueStarted;
 
     [SerializeField] private TMP_Text speakerNameText;
     [SerializeField] private TMP_Text dialogueText;
@@ -77,6 +79,7 @@ public sealed class DialogueManager : MonoBehaviour
         gameObject.SetActive(true);
         speakerNameText.text = dialogue.npcDisplayName;
         ShowCurrentLine();
+        DialogueStarted?.Invoke(entry.requiredState);
     }
 
     public void ShowPlayerPhrase(string phrase)
@@ -248,6 +251,6 @@ public sealed class DialogueManager : MonoBehaviour
     private static InventoryManager GetInventoryManager()
     {
         return InventoryManager.Instance ??
-            Object.FindFirstObjectByType<InventoryManager>(FindObjectsInactive.Include);
+            UnityEngine.Object.FindFirstObjectByType<InventoryManager>(FindObjectsInactive.Include);
     }
 }
