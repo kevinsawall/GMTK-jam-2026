@@ -21,6 +21,12 @@ public enum DialogueActionType
     AdvanceStoryStage
 }
 
+public enum DialogueSpeaker
+{
+    Npc,
+    Player
+}
+
 [CreateAssetMenu(menuName = "Game/Dialogue/NPC Dialogue", fileName = "NpcDialogue")]
 public sealed class NpcDialogueSO : ScriptableObject
 {
@@ -41,8 +47,15 @@ public sealed class DialogueEntry
     public ItemData requiredItem;
 
     [Header("Dialogue")]
-    [TextArea(2, 5)] public string[] lines;
+    public List<DialogueLine> lines = new();
     public List<DialogueAction> actions = new();
+}
+
+[System.Serializable]
+public sealed class DialogueLine
+{
+    public DialogueSpeaker speaker;
+    [TextArea(2, 5)] public string text;
 }
 
 [System.Serializable]

@@ -16,6 +16,7 @@ public sealed class DialogueManager : MonoBehaviour
     [SerializeField] private TMP_Text speakerNameText;
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private Button continueButton;
+    [SerializeField] private string playerDisplayName = "Player";
     [SerializeField, Min(1f)] private float charactersPerSecond = 45f;
 
     private readonly Dictionary<string, DialogueState> npcStates = new();
@@ -90,7 +91,7 @@ public sealed class DialogueManager : MonoBehaviour
         }
 
         currentLineIndex++;
-        if (currentEntry.lines != null && currentLineIndex < currentEntry.lines.Length)
+        if (currentEntry.lines != null && currentLineIndex < currentEntry.lines.Count)
         {
             ShowCurrentLine();
             return;
@@ -149,14 +150,18 @@ public sealed class DialogueManager : MonoBehaviour
 
     private void ShowCurrentLine()
     {
-        if (currentEntry.lines == null || currentEntry.lines.Length == 0)
+        if (currentEntry.lines == null || currentEntry.lines.Count == 0)
         {
             Continue();
             return;
         }
 
         if (typewriter != null) StopCoroutine(typewriter);
-        typewriter = StartCoroutine(TypeLine(currentEntry.lines[currentLineIndex] ?? string.Empty));
+        DialogueLine line = currentEntry.lines[currentLineIndex];
+        speakerNameText.text = line != null && line.speaker == DialogueSpeaker.Player
+            ? playerDisplayName
+            : currentDialogue.npcDisplayName;
+        typewriter = StartCoroutine(TypeLine(line?.text ?? string.Empty));
     }
 
     private IEnumerator TypeLine(string line)
@@ -177,7 +182,7 @@ public sealed class DialogueManager : MonoBehaviour
     private void FinishTyping()
     {
         if (typewriter != null) StopCoroutine(typewriter);
-        dialogueText.text = currentEntry.lines[currentLineIndex] ?? string.Empty;
+        dialogueText.text = currentEntry.lines[currentLineIndex]?.text ?? string.Empty;
         isTyping = false;
         typewriter = null;
     }

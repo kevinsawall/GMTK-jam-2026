@@ -21,8 +21,10 @@ MonoBehaviour:
     requiredFlag: 
     requiredItem: {fileID: 0}
     lines:
-    - I am a yellow NPC.
-    - I am a yellow NPC1.
+    - speaker: 0
+      text: I am a yellow NPC.
+    - speaker: 1
+      text: I am a Player
     actions:
     - type: 4
       stringValue: 
@@ -33,5 +35,6 @@ MonoBehaviour:
     requiredFlag: 
     requiredItem: {fileID: 0}
     lines:
-    - Nice to see you again.
+    - speaker: 0
+      text: Nice to see you again.
     actions: []
