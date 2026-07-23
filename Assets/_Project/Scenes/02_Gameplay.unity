@@ -596,9 +596,9 @@ RectTransform:
   - {fileID: 34971463}
   m_Father: {fileID: 970251643}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -125}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &208672888
@@ -695,6 +695,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 208672886}
   m_CullTransparentMesh: 1
+--- !u!1 &260970144 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1289835158196837581, guid: 74458ec4d7474432b914430ee4ff86e9, type: 3}
+  m_PrefabInstance: {fileID: 123563524}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -866,9 +871,9 @@ RectTransform:
   - {fileID: 1189730519}
   m_Father: {fileID: 970251643}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -25}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &387288947
@@ -1380,7 +1385,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &970251643
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2057,8 +2062,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1c79b20fa95404f9a6bde2738c5d169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenuController
-  pauseMenuPanel: {fileID: 0}
-  optionsPanel: {fileID: 0}
+  pauseMenuPanel: {fileID: 414786200}
+  optionsPanel: {fileID: 260970144}
   mainMenuSceneName: 01_MainMenu
   endScreenSceneName: 03_EndScreen
 --- !u!114 &1579033597
@@ -2073,7 +2078,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78d1af604e5b459ebc2e3f971a8d0546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ControlManager
-  pauseMenuController: {fileID: 0}
+  pauseMenuController: {fileID: 1579033596}
 --- !u!1001 &1763831882
 PrefabInstance:
   m_ObjectHideFlags: 0
