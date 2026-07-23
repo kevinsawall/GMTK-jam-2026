@@ -9,6 +9,12 @@ public sealed class InventoryItemDrag : MonoBehaviour, IBeginDragHandler, IDragH
     private Image sourceImage;
     private RawImage sourceRawImage;
     private RectTransform dragVisual;
+    private ItemData item;
+
+    public void Initialize(ItemData itemData)
+    {
+        item = itemData;
+    }
 
     private void Awake()
     {
@@ -61,11 +67,31 @@ public sealed class InventoryItemDrag : MonoBehaviour, IBeginDragHandler, IDragH
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        TryDropOnInteractable(eventData);
+
         if (dragVisual != null)
         {
             Destroy(dragVisual.gameObject);
             dragVisual = null;
         }
+    }
+
+    private void TryDropOnInteractable(PointerEventData eventData)
+    {
+        Camera camera = Camera.main;
+        if (item == null || camera == null)
+        {
+            return;
+        }
+
+        Ray ray = camera.ScreenPointToRay(eventData.position);
+        if (!Physics.Raycast(ray, out RaycastHit hit, camera.farClipPlane))
+        {
+            return;
+        }
+
+        CharacterManager character = hit.collider.GetComponentInParent<CharacterManager>();
+        character?.TryReceiveItem(item);
     }
 
     private void UpdateDragPosition(PointerEventData eventData)

@@ -55,13 +55,13 @@ public sealed class CupTimerController : MonoBehaviour
 
         remainingSeconds = DurationSeconds;
         UpdateTimerText();
-        DialogueManager.DialogueEnded += OnDialogueEnded;
+        DialogueManager.NaturalCounterActionPerformed += OnNaturalCounterActionPerformed;
         StartCutsceneController.Finished += ShowNextStartPhrase;
     }
 
     private void OnDestroy()
     {
-        DialogueManager.DialogueEnded -= OnDialogueEnded;
+        DialogueManager.NaturalCounterActionPerformed -= OnNaturalCounterActionPerformed;
         StartCutsceneController.Finished -= ShowNextStartPhrase;
         if (Instance == this) Instance = null;
     }
@@ -77,9 +77,9 @@ public sealed class CupTimerController : MonoBehaviour
         ConsumeCount(Time.deltaTime);
     }
 
-    private void OnDialogueEnded(DialogueState dialogueState)
+    private void OnNaturalCounterActionPerformed()
     {
-        if (timerMode != CupTimerMode.Natural || dialogueState is DialogueState.Summary or DialogueState.Completed) return;
+        if (timerMode != CupTimerMode.Natural) return;
 
         ConsumeCount(1f);
     }
@@ -211,10 +211,9 @@ public sealed class CupTimerController : MonoBehaviour
     {
         if (playerStartPhrases == null || playerStartPhrases.Count == 0) return;
 
-        for (int attempts = 0; attempts < playerStartPhrases.Count; attempts++)
+        while (nextStartPhraseIndex < playerStartPhrases.Count)
         {
-            string phrase = playerStartPhrases[nextStartPhraseIndex];
-            nextStartPhraseIndex = (nextStartPhraseIndex + 1) % playerStartPhrases.Count;
+            string phrase = playerStartPhrases[nextStartPhraseIndex++];
             if (string.IsNullOrWhiteSpace(phrase)) continue;
 
             DialogueManager manager = DialogueManager.Instance ??
@@ -228,10 +227,9 @@ public sealed class CupTimerController : MonoBehaviour
     {
         if (playerEndPhrases == null || playerEndPhrases.Count == 0) return false;
 
-        for (int attempts = 0; attempts < playerEndPhrases.Count; attempts++)
+        while (nextEndPhraseIndex < playerEndPhrases.Count)
         {
-            string phrase = playerEndPhrases[nextEndPhraseIndex];
-            nextEndPhraseIndex = (nextEndPhraseIndex + 1) % playerEndPhrases.Count;
+            string phrase = playerEndPhrases[nextEndPhraseIndex++];
             if (string.IsNullOrWhiteSpace(phrase)) continue;
 
             DialogueManager manager = DialogueManager.Instance ??

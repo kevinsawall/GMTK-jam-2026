@@ -26,4 +26,16 @@ public sealed class TalkInteractObject : InteractObject
 
         manager.StartDialogue(dialogue);
     }
+
+    public bool TryReceiveItem(ItemData item)
+    {
+        if (dialogue == null || item == null)
+        {
+            return false;
+        }
+
+        DialogueManager manager = DialogueManager.Instance ??
+            Object.FindFirstObjectByType<DialogueManager>(FindObjectsInactive.Include);
+        return manager != null && manager.StartItemDropDialogue(dialogue, item);
+    }
 }

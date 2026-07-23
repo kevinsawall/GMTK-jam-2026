@@ -19,6 +19,8 @@ public sealed class ObjectController : MonoBehaviour, IInteractable
         }
     }
 
+    public bool TryReceiveItem(ItemData item) => false;
+
     /// <summary>Returns this object's next inspect phrase index and advances it, looping at the end.</summary>
     public int GetNextInspectPhraseIndex(int phraseCount)
     {

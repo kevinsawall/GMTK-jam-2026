@@ -64,3 +64,32 @@ MonoBehaviour:
     - speaker: 0
       text: Please bring me a Test Item.
     actions: []
+  expectedDroppedItem: {fileID: 11400000, guid: a23976eff82f64965bcd30843d1b0d8a, type: 2}
+  correctItemDropDialogue:
+    entryId: correct-test-item-drop
+    requiredState: 2
+    requiredFlag: 
+    requiredItem: {fileID: 0}
+    lines:
+    - speaker: 0
+      text: Here's a test item.
+    - speaker: 0
+      text: Thank you!
+    actions:
+    - type: 3
+      stringValue: 
+      item: {fileID: 11400000, guid: a23976eff82f64965bcd30843d1b0d8a, type: 2}
+      nextNpcState: 5
+    - type: 4
+      stringValue: 
+      item: {fileID: 0}
+      nextNpcState: 5
+  incorrectItemDropDialogue:
+    entryId: incorrect-item-drop
+    requiredState: 2
+    requiredFlag: 
+    requiredItem: {fileID: 0}
+    lines:
+    - speaker: 0
+      text: This is not the item I asked for.
+    actions: []

@@ -35,6 +35,11 @@ public sealed class NpcDialogueSO : ScriptableObject
     public string npcDisplayName;
     public Sprite portrait;
     public List<DialogueEntry> entries = new();
+
+    [Header("Item Drag and Drop")]
+    public ItemData expectedDroppedItem;
+    public DialogueEntry correctItemDropDialogue;
+    public DialogueEntry incorrectItemDropDialogue;
 }
 
 [System.Serializable]

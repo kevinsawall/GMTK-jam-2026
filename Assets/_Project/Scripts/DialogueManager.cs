@@ -13,7 +13,7 @@ using UnityEngine.UI;
 public sealed class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance { get; private set; }
-    public static event Action<DialogueState> DialogueEnded;
+    public static event Action NaturalCounterActionPerformed;
 
     [SerializeField] private TMP_Text speakerNameText;
     [SerializeField] private TMP_Text dialogueText;
@@ -73,12 +73,30 @@ public sealed class DialogueManager : MonoBehaviour
             return;
         }
 
-        currentDialogue = dialogue;
-        currentEntry = entry;
-        currentLineIndex = 0;
-        gameObject.SetActive(true);
-        speakerNameText.text = dialogue.npcDisplayName;
-        ShowCurrentLine();
+        StartDialogueEntry(dialogue, entry);
+        if (entry.requiredState == DialogueState.FirstTalk) NaturalCounterActionPerformed?.Invoke();
+    }
+
+    public bool StartItemDropDialogue(NpcDialogueSO dialogue, ItemData droppedItem)
+    {
+        if (dialogue == null || droppedItem == null || IsOpen ||
+            GetNpcState(dialogue.npcId) != DialogueState.WaitingForItem)
+        {
+            return false;
+        }
+
+        bool isCorrectItem = droppedItem == dialogue.expectedDroppedItem;
+        DialogueEntry entry = isCorrectItem
+            ? dialogue.correctItemDropDialogue
+            : dialogue.incorrectItemDropDialogue;
+        if (entry == null)
+        {
+            return false;
+        }
+
+        StartDialogueEntry(dialogue, entry);
+        if (isCorrectItem) NaturalCounterActionPerformed?.Invoke();
+        return true;
     }
 
     public void ShowPlayerPhrase(string phrase)
@@ -157,7 +175,18 @@ public sealed class DialogueManager : MonoBehaviour
 
         foreach (DialogueEntry entry in dialogue.entries)
         {
-            if (entry != null && entry.requiredState == state && HasFlag(entry.requiredFlag) && HasItem(entry.requiredItem))
+            if (entry == null)
+            {
+                continue;
+            }
+
+            if (state == DialogueState.WaitingForItem && entry.requiredItem != null)
+            {
+                continue;
+            }
+
+            if (entry.requiredState == state && HasFlag(entry.requiredFlag) &&
+                HasItem(entry.requiredItem))
             {
                 return entry;
             }
@@ -180,6 +209,16 @@ public sealed class DialogueManager : MonoBehaviour
             ? playerDisplayName
             : currentDialogue != null ? currentDialogue.npcDisplayName : string.Empty;
         typewriter = StartCoroutine(TypeLine(line?.text ?? string.Empty));
+    }
+
+    private void StartDialogueEntry(NpcDialogueSO dialogue, DialogueEntry entry)
+    {
+        currentDialogue = dialogue;
+        currentEntry = entry;
+        currentLineIndex = 0;
+        gameObject.SetActive(true);
+        speakerNameText.text = dialogue.npcDisplayName;
+        ShowCurrentLine();
     }
 
     private IEnumerator TypeLine(string line)
@@ -239,16 +278,12 @@ public sealed class DialogueManager : MonoBehaviour
 
     private void CloseDialogue()
     {
-        bool wasNpcDialogue = currentDialogue != null;
-        DialogueState finishedState = currentEntry.requiredState;
         if (typewriter != null) StopCoroutine(typewriter);
         typewriter = null;
         isTyping = false;
         currentDialogue = null;
         currentEntry = null;
         gameObject.SetActive(false);
-
-        if (wasNpcDialogue) DialogueEnded?.Invoke(finishedState);
     }
 
     private static InventoryManager GetInventoryManager()
