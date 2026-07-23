@@ -28,6 +28,13 @@ public sealed class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (IsMovementBlocked())
+        {
+            moveInput = Vector2.zero;
+            CancelPointMovement();
+            return;
+        }
+
         Keyboard keyboard = Keyboard.current;
         moveInput = keyboard == null ? Vector2.zero : Vector2.ClampMagnitude(new Vector2(
             (keyboard.dKey.isPressed || keyboard.rightArrowKey.isPressed ? 1f : 0f) -
@@ -40,6 +47,12 @@ public sealed class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (IsMovementBlocked())
+        {
+            CancelPointMovement();
+            return;
+        }
+
         if (moveInput.sqrMagnitude > 0f) CancelPointMovement();
         else if (MoveToPoint()) return;
 
@@ -227,5 +240,11 @@ public sealed class PlayerMovement : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
         body.MoveRotation(Quaternion.RotateTowards(body.rotation, targetRotation, turnSpeed * Time.fixedDeltaTime));
         body.MovePosition(body.position + targetDirection * (moveSpeed * Time.fixedDeltaTime));
+    }
+
+    private static bool IsMovementBlocked()
+    {
+        if (DialogueManager.Instance != null && DialogueManager.Instance.IsOpen) return true;
+        return ItemNotification.Instance != null && ItemNotification.Instance.IsVisible;
     }
 }
