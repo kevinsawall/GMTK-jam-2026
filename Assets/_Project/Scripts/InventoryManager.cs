@@ -84,6 +84,11 @@ public sealed class InventoryManager : MonoBehaviour
         RawImage rawImage = itemView.GetComponentInChildren<RawImage>();
         if (rawImage != null) rawImage.texture = item.icon != null ? item.icon.texture : null;
 
+        if (itemView.GetComponent<InventoryItemDrag>() == null)
+        {
+            itemView.AddComponent<InventoryItemDrag>();
+        }
+
         return itemView;
     }
 
