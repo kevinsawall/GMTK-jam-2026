@@ -4186,6 +4186,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellSize: 1
   showGrid: 1
+  fillCells: 0
+  showPath: 1
   obstacleCheckHeight: 1
   obstacleLayers:
     serializedVersion: 2

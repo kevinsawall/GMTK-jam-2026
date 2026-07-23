@@ -19,6 +19,7 @@ public sealed class PlayerMovement : MonoBehaviour
     private Rigidbody body;
     private Vector2 moveInput;
     private IInteractable pendingInteraction;
+    private Transform pendingInteractionTarget;
     private int nextPathCell;
     private Vector3 lastPointPosition;
     private float blockedPointMovementTime;
@@ -64,7 +65,17 @@ public sealed class PlayerMovement : MonoBehaviour
         IInteractable interactable = GetInteractable(hit.collider);
         if (interactable != null)
         {
-            pendingInteraction = SetReachableDestination(hit.point, interactable.InteractionDistance) ? interactable : null;
+            if (SetReachableDestination(hit.point, interactable.InteractionDistance))
+            {
+                pendingInteraction = interactable;
+                pendingInteractionTarget = hit.collider.transform;
+            }
+            else
+            {
+                pendingInteraction = null;
+                pendingInteractionTarget = null;
+            }
+
             return;
         }
 
@@ -72,6 +83,7 @@ public sealed class PlayerMovement : MonoBehaviour
         if (!gridManager.IsGroundCollider(hit.collider) || !gridManager.TryGetCell(hit.point, out _)) return;
 
         pendingInteraction = null;
+        pendingInteractionTarget = null;
         SetReachableDestination(hit.point);
     }
 
@@ -106,6 +118,11 @@ public sealed class PlayerMovement : MonoBehaviour
         if (!pointMovement || pointPath.Count == 0) return false;
         if (nextPathCell >= pointPath.Count)
         {
+            if (!FacePendingInteraction())
+            {
+                return true;
+            }
+
             CompletePointMovement();
             return true;
         }
@@ -158,9 +175,32 @@ public sealed class PlayerMovement : MonoBehaviour
         return Vector3.Slerp(currentDirection, nextDirection, turnProgress).normalized;
     }
 
+    private bool FacePendingInteraction()
+    {
+        if (pendingInteraction == null || pendingInteractionTarget == null)
+        {
+            return true;
+        }
+
+        Vector3 direction = Vector3.ProjectOnPlane(pendingInteractionTarget.position - body.position, Vector3.up);
+        if (direction.sqrMagnitude <= 0.0001f)
+        {
+            return true;
+        }
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction.normalized, Vector3.up);
+        Quaternion nextRotation = Quaternion.RotateTowards(
+            body.rotation,
+            targetRotation,
+            turnSpeed * Time.fixedDeltaTime);
+        body.MoveRotation(nextRotation);
+        return Quaternion.Angle(nextRotation, targetRotation) <= 0.1f;
+    }
+
     private void CancelPointMovement()
     {
         pendingInteraction = null;
+        pendingInteractionTarget = null;
         pointPath.Clear();
         nextPathCell = 0;
         blockedPointMovementTime = 0f;

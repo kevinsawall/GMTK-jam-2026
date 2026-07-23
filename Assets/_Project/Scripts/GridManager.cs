@@ -12,10 +12,13 @@ public sealed class GridManager : MonoBehaviour
 {
     [SerializeField, Min(0.1f)] private float cellSize = 0.5f;
     [SerializeField] private bool showGrid = true;
+    [SerializeField] private bool fillCells;
+    [SerializeField] private bool showPath = true;
     [SerializeField, Min(0.1f)] private float obstacleCheckHeight = 2f;
     [SerializeField] private LayerMask obstacleLayers = ~0;
 
     private readonly List<GridCell> cells = new();
+    private readonly List<GridCell> lastPath = new();
     private Collider groundCollider;
     private Bounds gridBounds;
     private int columns;
@@ -50,6 +53,7 @@ public sealed class GridManager : MonoBehaviour
         int interactionDistance = 0)
     {
         path.Clear();
+        lastPath.Clear();
         RefreshWalkability();
 
         if (!TryGetCell(startWorldPosition, out GridCell start) ||
@@ -111,6 +115,7 @@ public sealed class GridManager : MonoBehaviour
         }
 
         RebuildPath(cameFrom, closestReachableIndex, path);
+        lastPath.AddRange(path);
         return true;
     }
 
@@ -278,7 +283,7 @@ public sealed class GridManager : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (!showGrid)
+        if (!showGrid && !showPath)
         {
             return;
         }
@@ -297,14 +302,46 @@ public sealed class GridManager : MonoBehaviour
         RefreshWalkability();
         Vector3 cellVisualSize = new Vector3(cellSize * 0.9f, 0.02f, cellSize * 0.9f);
 
-        foreach (GridCell cell in cells)
+        if (showGrid)
         {
-            Color color = cell.IsWalkable ? Color.green : Color.red;
-            Vector3 visualPosition = cell.WorldPosition + Vector3.up * 0.01f;
-            Gizmos.color = new Color(color.r, color.g, color.b, 0.2f);
-            Gizmos.DrawCube(visualPosition, cellVisualSize);
-            Gizmos.color = color;
-            Gizmos.DrawWireCube(visualPosition, cellVisualSize);
+            foreach (GridCell cell in cells)
+            {
+                Color color = cell.IsWalkable ? Color.green : Color.red;
+                Vector3 visualPosition = cell.WorldPosition + Vector3.up * 0.01f;
+                if (fillCells)
+                {
+                    Gizmos.color = new Color(color.r, color.g, color.b, 0.2f);
+                    Gizmos.DrawCube(visualPosition, cellVisualSize);
+                }
+
+                Gizmos.color = color;
+                Gizmos.DrawWireCube(visualPosition, cellVisualSize);
+            }
         }
+
+        DrawPathGizmo();
+    }
+
+    private void DrawPathGizmo()
+    {
+        if (!showPath || lastPath.Count == 0)
+        {
+            return;
+        }
+
+        Vector3 pathOffset = Vector3.up * 0.04f;
+        Gizmos.color = Color.yellow;
+        for (int i = 1; i < lastPath.Count; i++)
+        {
+            Gizmos.DrawLine(lastPath[i - 1].WorldPosition + pathOffset, lastPath[i].WorldPosition + pathOffset);
+        }
+
+        float markerSize = cellSize * 0.55f;
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawCube(lastPath[0].WorldPosition + pathOffset, new Vector3(markerSize, 0.04f, markerSize));
+
+        Gizmos.color = new Color(1f, 0.65f, 0f);
+        GridCell destination = lastPath[lastPath.Count - 1];
+        Gizmos.DrawCube(destination.WorldPosition + pathOffset, new Vector3(markerSize, 0.04f, markerSize));
     }
 }
