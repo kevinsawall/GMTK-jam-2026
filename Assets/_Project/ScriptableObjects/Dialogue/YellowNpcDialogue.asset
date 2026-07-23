@@ -30,6 +30,10 @@ MonoBehaviour:
       stringValue: Here's the test Item
       item: {fileID: 11400000, guid: a23976eff82f64965bcd30843d1b0d8a, type: 2}
       nextNpcState: 1
+    - type: 4
+      stringValue: ''
+      item: {fileID: 0}
+      nextNpcState: 1
   - entryId: summary
     requiredState: 1
     requiredFlag: 
