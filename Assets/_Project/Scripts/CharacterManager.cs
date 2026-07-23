@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public sealed class CharacterManager : MonoBehaviour
+public sealed class CharacterManager : MonoBehaviour, IInteractable
 {
     public enum CharacterType
     {
@@ -11,8 +11,12 @@ public sealed class CharacterManager : MonoBehaviour
 
     [SerializeField] private CharacterType characterType = CharacterType.Player;
     [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private InteractObject interactObject;
+    [SerializeField, Min(1)] private int interactionDistance = 1;
 
     public CharacterType Type => characterType;
+    public bool HasInteraction => interactObject != null;
+    public int InteractionDistance => interactionDistance;
 
     private void Awake()
     {
@@ -35,5 +39,32 @@ public sealed class CharacterManager : MonoBehaviour
         {
             playerMovement.enabled = characterType == CharacterType.Player;
         }
+    }
+
+    public void Interact()
+    {
+        if (interactObject != null)
+        {
+            interactObject.Interact(null);
+        }
+    }
+
+    public bool TryReceiveItem(ItemData item)
+    {
+        return interactObject is TalkInteractObject talkInteraction &&
+               talkInteraction.TryReceiveItem(item);
+    }
+
+    /// <summary>Resets this character only when it is the scene player.</summary>
+    public void ResetToStartPosition()
+    {
+        if (characterType != CharacterType.Player) return;
+
+        if (playerMovement == null)
+        {
+            playerMovement = GetComponent<PlayerMovement>();
+        }
+
+        playerMovement?.ResetToStartPosition();
     }
 }

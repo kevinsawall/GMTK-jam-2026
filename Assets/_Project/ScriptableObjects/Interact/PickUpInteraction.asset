@@ -9,11 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f36171b27cc4292b26850b2a4f75647, type: 3}
-  m_Name: RedBoxInteract
-  m_EditorClassIdentifier: Assembly-CSharp::InspectInteractObject
+  m_Script: {fileID: 11500000, guid: c540ccfad4cb4ffeb0cd75df3ed375c9, type: 3}
+  m_Name: PickUpInteraction
+  m_EditorClassIdentifier: Assembly-CSharp::PickUpInteractObject
   prompt: Interact
-  playerPhrases:
-  - It's a red box.
-  - Just borring red box.
-  - Still red box.
+  itemId: GreenBox

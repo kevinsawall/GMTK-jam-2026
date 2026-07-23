@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b39f30a5c9a46f5a147d5c1f2f4d10b, type: 3}
+  m_Name: GreenNpcDialogue
+  m_EditorClassIdentifier: Assembly-CSharp::NpcDialogueSO
+  npcId: green-npc
+  npcDisplayName: Green NPC
+  portrait: {fileID: 0}
+  entries:
+  - entryId: first-talk
+    requiredState: 0
+    requiredFlag: 
+    requiredItem: {fileID: 0}
+    lines:
+    - speaker: 0
+      text: I am a Green NPC.
+    - speaker: 0
+      text: I need a test item
+    actions:
+    - type: 4
+      stringValue: 
+      item: {fileID: 0}
+      nextNpcState: 2
+  - entryId: waitingTestItem
+    requiredState: 2
+    requiredFlag: 
+    requiredItem: {fileID: 11400000, guid: a23976eff82f64965bcd30843d1b0d8a, type: 2}
+    lines:
+    - speaker: 0
+      text: Here's a test item.
+    - speaker: 0
+      text: Thank you!
+    actions:
+    - type: 3
+      stringValue: 
+      item: {fileID: 11400000, guid: a23976eff82f64965bcd30843d1b0d8a, type: 2}
+      nextNpcState: 5
+    - type: 4
+      stringValue: 
+      item: {fileID: 0}
+      nextNpcState: 5
+  - entryId: completed
+    requiredState: 5
+    requiredFlag: 
+    requiredItem: {fileID: 0}
+    lines:
+    - speaker: 0
+      text: Thank you again
+    actions: []
+  - entryId: no-test-item
+    requiredState: 2
+    requiredFlag: 
+    requiredItem: {fileID: 0}
+    lines:
+    - speaker: 0
+      text: Please bring me a Test Item.
+    actions: []
+  expectedDroppedItem: {fileID: 11400000, guid: a23976eff82f64965bcd30843d1b0d8a, type: 2}
+  correctItemDropDialogue:
+    entryId: correct-test-item-drop
+    requiredState: 2
+    requiredFlag: 
+    requiredItem: {fileID: 0}
+    lines:
+    - speaker: 0
+      text: Here's a test item.
+    - speaker: 0
+      text: Thank you!
+    actions:
+    - type: 3
+      stringValue: 
+      item: {fileID: 11400000, guid: a23976eff82f64965bcd30843d1b0d8a, type: 2}
+      nextNpcState: 5
+    - type: 4
+      stringValue: 
+      item: {fileID: 0}
+      nextNpcState: 5
+  incorrectItemDropDialogue:
+    entryId: incorrect-item-drop
+    requiredState: 2
+    requiredFlag: 
+    requiredItem: {fileID: 0}
+    lines:
+    - speaker: 0
+      text: This is not the item I asked for.
+    actions: []

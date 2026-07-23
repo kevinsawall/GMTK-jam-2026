@@ -126,4 +126,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   interactObject: {fileID: 0}
-  interactionDistance: 1.5
+  interactionDistance: 1
