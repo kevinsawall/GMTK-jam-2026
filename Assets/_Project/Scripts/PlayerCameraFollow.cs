@@ -10,9 +10,14 @@ public sealed class PlayerCameraFollow : MonoBehaviour
     [SerializeField, Min(0.01f)] private float positionSmoothTime = 0.2f;
     [SerializeField, Min(0f)] private float rotationSmoothSpeed = 10f;
     [SerializeField] private bool lockVerticalFollow = true;
+    [Header("Timeout Shake")]
+    [SerializeField, Min(0f)] private float horizontalShakeDistance = 0.15f;
+    [SerializeField, Min(0f)] private float horizontalShakeFrequency = 16f;
 
     private Vector3 followVelocity;
     private float targetGroundHeight;
+    private bool isShakingHorizontally;
+    private float shakeStartedAt;
 
     private void Start()
     {
@@ -46,6 +51,29 @@ public sealed class PlayerCameraFollow : MonoBehaviour
             transform.rotation,
             targetRotation,
             rotationSmoothSpeed * Time.deltaTime);
+
+        if (isShakingHorizontally)
+        {
+            float horizontalOffset = Mathf.Sin((Time.unscaledTime - shakeStartedAt) * horizontalShakeFrequency) * horizontalShakeDistance;
+            transform.position += Vector3.right * horizontalOffset;
+        }
+    }
+
+    public void StartHorizontalShake()
+    {
+        isShakingHorizontally = true;
+        shakeStartedAt = Time.unscaledTime;
+    }
+
+    public void StopHorizontalShakeAndResumeFollow()
+    {
+        isShakingHorizontally = false;
+        followVelocity = Vector3.zero;
+        transform.position = Vector3.zero;
+
+        enabled = false;
+        enabled = true;
+        SnapToTarget();
     }
 
     private void SnapToTarget()

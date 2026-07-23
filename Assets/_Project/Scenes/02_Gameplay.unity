@@ -10742,10 +10742,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 867809644}
     - target: {fileID: 7279695530631082702, guid: c8e4a08ffb61746bea5a48d8aa3a71f9, type: 3}
-      propertyPath: cornerTurnDistance
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7279695530631082702, guid: c8e4a08ffb61746bea5a48d8aa3a71f9, type: 3}
       propertyPath: restartPosition.x
       value: -6.48
       objectReference: {fileID: 0}
@@ -10756,6 +10752,10 @@ PrefabInstance:
     - target: {fileID: 7279695530631082702, guid: c8e4a08ffb61746bea5a48d8aa3a71f9, type: 3}
       propertyPath: restartPosition.z
       value: -1.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 7279695530631082702, guid: c8e4a08ffb61746bea5a48d8aa3a71f9, type: 3}
+      propertyPath: cornerTurnDistance
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7279695530631082702, guid: c8e4a08ffb61746bea5a48d8aa3a71f9, type: 3}
       propertyPath: restartRotationEuler.x

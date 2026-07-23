@@ -93,6 +93,7 @@ public sealed class CupTimerController : MonoBehaviour
         if (remainingSeconds > 0f) return;
 
         hasExpired = true;
+        StartCameraShake();
         StartCoroutine(RunTimeoutSequence());
     }
 
@@ -130,6 +131,7 @@ public sealed class CupTimerController : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(PlayerResetTimeSeconds);
         ResetPlayerToStartPosition();
+        StopCameraShake();
 
         yield return new WaitForSecondsRealtime(CutsceneDurationSeconds - PlayerResetTimeSeconds - CutsceneFadeOutSeconds);
 
@@ -191,6 +193,18 @@ public sealed class CupTimerController : MonoBehaviour
         }
 
         Debug.LogWarning("No player CharacterManager was found for the pseudo restart.");
+    }
+
+    private static void StartCameraShake()
+    {
+        PlayerCameraFollow cameraFollow = Object.FindFirstObjectByType<PlayerCameraFollow>(FindObjectsInactive.Exclude);
+        cameraFollow?.StartHorizontalShake();
+    }
+
+    private static void StopCameraShake()
+    {
+        PlayerCameraFollow cameraFollow = Object.FindFirstObjectByType<PlayerCameraFollow>(FindObjectsInactive.Exclude);
+        cameraFollow?.StopHorizontalShakeAndResumeFollow();
     }
 
     private void ShowNextStartPhrase()
