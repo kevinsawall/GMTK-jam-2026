@@ -12,6 +12,8 @@ public sealed class GridManager : MonoBehaviour
 {
     [SerializeField, Min(0.1f)] private float cellSize = 0.5f;
     [SerializeField] private bool showGrid = true;
+    [SerializeField, Min(0.1f)] private float obstacleCheckHeight = 2f;
+    [SerializeField] private LayerMask obstacleLayers = ~0;
 
     private readonly List<GridCell> cells = new();
     private Collider groundCollider;
@@ -19,7 +21,11 @@ public sealed class GridManager : MonoBehaviour
     private int columns;
     private int rows;
 
-    private void Awake() => BuildGrid();
+    private void Awake()
+    {
+        BuildGrid();
+        RefreshWalkability();
+    }
 
     public bool Raycast(Ray ray, float maxDistance, out RaycastHit hit) =>
         groundCollider.Raycast(ray, out hit, maxDistance);
@@ -41,9 +47,10 @@ public sealed class GridManager : MonoBehaviour
     public bool TryFindPath(Vector3 startWorldPosition, Vector3 targetWorldPosition, List<GridCell> path)
     {
         path.Clear();
+        RefreshWalkability();
+
         if (!TryGetCell(startWorldPosition, out GridCell start) ||
-            !TryGetCell(targetWorldPosition, out GridCell target) ||
-            !start.IsWalkable || !target.IsWalkable)
+            !TryGetCell(targetWorldPosition, out GridCell target))
         {
             return false;
         }
@@ -54,18 +61,27 @@ public sealed class GridManager : MonoBehaviour
         var closedSet = new HashSet<int>();
         var cameFrom = new Dictionary<int, int>();
         var gScore = new Dictionary<int, int> { [startIndex] = 0 };
+        int closestReachableIndex = -1;
+        float closestTargetDistance = float.PositiveInfinity;
 
         while (openSet.Count > 0)
         {
             int current = GetLowestCostIndex(openSet, gScore, targetIndex);
-            if (current == targetIndex)
-            {
-                RebuildPath(cameFrom, current, path);
-                return true;
-            }
-
             openSet.Remove(current);
             closedSet.Add(current);
+
+            if (cells[current].IsWalkable)
+            {
+                float targetDistance = GetPlanarSquareDistance(cells[current].WorldPosition, target.WorldPosition);
+                if (targetDistance < closestTargetDistance ||
+                    (Mathf.Approximately(targetDistance, closestTargetDistance) &&
+                     (closestReachableIndex < 0 || gScore[current] < gScore[closestReachableIndex])))
+                {
+                    closestReachableIndex = current;
+                    closestTargetDistance = targetDistance;
+                }
+            }
+
             foreach (int neighbor in GetWalkableNeighbors(current))
             {
                 if (closedSet.Contains(neighbor)) continue;
@@ -80,7 +96,13 @@ public sealed class GridManager : MonoBehaviour
             }
         }
 
-        return false;
+        if (closestReachableIndex < 0)
+        {
+            return false;
+        }
+
+        RebuildPath(cameFrom, closestReachableIndex, path);
+        return true;
     }
 
     private void BuildGrid()
@@ -159,6 +181,45 @@ public sealed class GridManager : MonoBehaviour
 
     private int ToIndex(int column, int row) => row * columns + column;
 
+    private void RefreshWalkability()
+    {
+        foreach (GridCell cell in cells)
+        {
+            cell.IsWalkable = !HasNonPlayerCollider(cell);
+        }
+    }
+
+    private bool HasNonPlayerCollider(GridCell cell)
+    {
+        Vector3 halfExtents = new Vector3(cellSize * 0.49f, obstacleCheckHeight * 0.5f, cellSize * 0.49f);
+        Vector3 checkCenter = cell.WorldPosition + Vector3.up * (obstacleCheckHeight * 0.5f + 0.01f);
+        Collider[] colliders = Physics.OverlapBox(
+            checkCenter,
+            halfExtents,
+            Quaternion.identity,
+            obstacleLayers,
+            QueryTriggerInteraction.Collide);
+
+        foreach (Collider collider in colliders)
+        {
+            if (collider == groundCollider || collider.transform.IsChildOf(transform) ||
+                collider.GetComponentInParent<PlayerMovement>() != null)
+            {
+                continue;
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    private static float GetPlanarSquareDistance(Vector3 first, Vector3 second)
+    {
+        Vector3 difference = first - second;
+        return difference.x * difference.x + difference.z * difference.z;
+    }
+
     private void OnDrawGizmos()
     {
         if (!showGrid)
@@ -177,6 +238,7 @@ public sealed class GridManager : MonoBehaviour
         }
 
         BuildGrid();
+        RefreshWalkability();
         Vector3 cellVisualSize = new Vector3(cellSize * 0.9f, 0.02f, cellSize * 0.9f);
 
         foreach (GridCell cell in cells)
