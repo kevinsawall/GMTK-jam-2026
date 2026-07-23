@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -16,6 +17,7 @@ public sealed class CupTimerController : MonoBehaviour
 
     [SerializeField] private CupTimerMode timerMode = CupTimerMode.Sec;
     [SerializeField, Min(1f)] private float DurationSeconds = 60f;
+    [SerializeField, TextArea(2, 5)] private List<string> playerStartPhrases = new();
 
     public static CupTimerController Instance { get; private set; }
     public bool IsCutscenePlaying { get; private set; }
@@ -25,6 +27,7 @@ public sealed class CupTimerController : MonoBehaviour
     private GameObject cutsceneObject;
     private float remainingSeconds;
     private bool hasExpired;
+    private int nextStartPhraseIndex;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     private static void CreateForCupTimer()
@@ -47,11 +50,13 @@ public sealed class CupTimerController : MonoBehaviour
         remainingSeconds = DurationSeconds;
         UpdateTimerText();
         DialogueManager.DialogueStarted += OnDialogueStarted;
+        StartCutsceneController.Finished += ShowNextStartPhrase;
     }
 
     private void OnDestroy()
     {
         DialogueManager.DialogueStarted -= OnDialogueStarted;
+        StartCutsceneController.Finished -= ShowNextStartPhrase;
         if (Instance == this) Instance = null;
     }
 
@@ -120,6 +125,7 @@ public sealed class CupTimerController : MonoBehaviour
         hasExpired = false;
         IsCutscenePlaying = false;
         UpdateTimerText();
+        ShowNextStartPhrase();
     }
 
     private static GameObject FindCutsceneObject()
@@ -131,5 +137,22 @@ public sealed class CupTimerController : MonoBehaviour
 
         Debug.LogWarning("No CutsceneObject was found in the scene.");
         return null;
+    }
+
+    private void ShowNextStartPhrase()
+    {
+        if (playerStartPhrases == null || playerStartPhrases.Count == 0) return;
+
+        for (int attempts = 0; attempts < playerStartPhrases.Count; attempts++)
+        {
+            string phrase = playerStartPhrases[nextStartPhraseIndex];
+            nextStartPhraseIndex = (nextStartPhraseIndex + 1) % playerStartPhrases.Count;
+            if (string.IsNullOrWhiteSpace(phrase)) continue;
+
+            DialogueManager manager = DialogueManager.Instance ??
+                Object.FindFirstObjectByType<DialogueManager>(FindObjectsInactive.Include);
+            manager?.ShowPlayerPhrase(phrase);
+            return;
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>Plays the opening overlay before gameplay becomes interactive.</summary>
@@ -11,6 +12,7 @@ public sealed class StartCutsceneController : MonoBehaviour
     private bool isPlaying;
 
     public static bool IsPlaying => instance != null && instance.isPlaying;
+    public static event Action Finished;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     private static void PlayForGameplayScene()
@@ -50,6 +52,7 @@ public sealed class StartCutsceneController : MonoBehaviour
     private void Finish()
     {
         isPlaying = false;
+        Finished?.Invoke();
         gameObject.SetActive(false);
     }
 }

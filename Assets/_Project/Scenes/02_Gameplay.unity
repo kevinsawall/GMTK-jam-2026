@@ -1910,7 +1910,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &234558907
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6108,6 +6108,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CupTimerController
   timerMode: 0
   DurationSeconds: 60
+  playerStartPhrases:
+  - Start phrase!
 --- !u!1 &1227788165
 GameObject:
   m_ObjectHideFlags: 0
@@ -10726,11 +10728,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7279695530631082702, guid: c8e4a08ffb61746bea5a48d8aa3a71f9, type: 3}
       propertyPath: moveSpeed
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7279695530631082702, guid: c8e4a08ffb61746bea5a48d8aa3a71f9, type: 3}
       propertyPath: turnSpeed
-      value: 150
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 7279695530631082702, guid: c8e4a08ffb61746bea5a48d8aa3a71f9, type: 3}
       propertyPath: gridManager
