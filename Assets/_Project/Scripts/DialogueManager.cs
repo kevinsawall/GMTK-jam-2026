@@ -22,7 +22,6 @@ public sealed class DialogueManager : MonoBehaviour
     private readonly Dictionary<string, DialogueState> npcStates = new();
     private readonly HashSet<string> flags = new();
     private readonly HashSet<string> clues = new();
-    private readonly HashSet<ItemData> items = new();
 
     private NpcDialogueSO currentDialogue;
     private DialogueEntry currentEntry;
@@ -116,9 +115,9 @@ public sealed class DialogueManager : MonoBehaviour
     public bool HasFlag(string flag) => string.IsNullOrWhiteSpace(flag) || flags.Contains(flag);
     public void SetFlag(string flag) { if (!string.IsNullOrWhiteSpace(flag)) flags.Add(flag); }
     public bool HasClue(string clueId) => !string.IsNullOrWhiteSpace(clueId) && clues.Contains(clueId);
-    public bool HasItem(ItemData item) => item == null || items.Contains(item);
-    public void GiveItem(ItemData item) { if (item != null) items.Add(item); }
-    public void RemoveItem(ItemData item) { if (item != null) items.Remove(item); }
+    public bool HasItem(ItemData item) => item == null || GetInventoryManager()?.HasItem(item) == true;
+    public void GiveItem(ItemData item) => GetInventoryManager()?.AddItem(item);
+    public void RemoveItem(ItemData item) => GetInventoryManager()?.RemoveItem(item);
 
     private void FindPanelReferences()
     {
@@ -206,6 +205,9 @@ public sealed class DialogueManager : MonoBehaviour
                 case DialogueActionType.RemoveItem:
                     RemoveItem(action.item);
                     break;
+                case DialogueActionType.AddItem:
+                    GiveItem(action.item);
+                    break;
                 case DialogueActionType.AdvanceNpcState:
                     SetNpcState(dialogue.npcId, action.nextNpcState);
                     break;
@@ -224,5 +226,11 @@ public sealed class DialogueManager : MonoBehaviour
         currentDialogue = null;
         currentEntry = null;
         gameObject.SetActive(false);
+    }
+
+    private static InventoryManager GetInventoryManager()
+    {
+        return InventoryManager.Instance ??
+            Object.FindFirstObjectByType<InventoryManager>(FindObjectsInactive.Include);
     }
 }

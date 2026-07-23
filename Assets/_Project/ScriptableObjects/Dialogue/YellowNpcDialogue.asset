@@ -26,9 +26,9 @@ MonoBehaviour:
     - speaker: 1
       text: I am a Player
     actions:
-    - type: 4
-      stringValue: 
-      item: {fileID: 0}
+    - type: 6
+      stringValue: Here's the test Item
+      item: {fileID: 11400000, guid: a23976eff82f64965bcd30843d1b0d8a, type: 2}
       nextNpcState: 1
   - entryId: summary
     requiredState: 1

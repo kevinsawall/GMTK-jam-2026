@@ -18,7 +18,8 @@ public enum DialogueActionType
     AddClue,
     RemoveItem,
     AdvanceNpcState,
-    AdvanceStoryStage
+    AdvanceStoryStage,
+    AddItem
 }
 
 public enum DialogueSpeaker
