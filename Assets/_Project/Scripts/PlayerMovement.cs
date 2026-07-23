@@ -22,6 +22,11 @@ public sealed class PlayerMovement : MonoBehaviour
 
     private Rigidbody body;
     private Vector2 moveInput;
+    private ObjectController pendingInteraction;
+    private float pointStoppingDistance;
+    private NavMeshPath navigationPath;
+    private Vector3 lastNavigationPosition;
+    private float blockedNavigationTime;
 
     private void Awake()
     {
@@ -35,6 +40,8 @@ public sealed class PlayerMovement : MonoBehaviour
         navMeshAgent.updatePosition = false;
         navMeshAgent.updateRotation = false;
         navMeshAgent.speed = moveSpeed;
+        pointStoppingDistance = navMeshAgent.stoppingDistance;
+        navigationPath = new NavMeshPath();
     }
 
     private void Update()
@@ -102,18 +109,84 @@ public sealed class PlayerMovement : MonoBehaviour
         }
 
         Ray ray = camera.ScreenPointToRay(mouse.position.ReadValue());
+        if (Physics.Raycast(ray, out RaycastHit objectHit, camera.farClipPlane))
+        {
+            ObjectController objectController = objectHit.collider.GetComponentInParent<ObjectController>();
+            if (objectController != null && objectController.HasInteraction)
+            {
+                BeginInteraction(objectController, objectHit.point);
+                return;
+            }
+        }
+
         if (!movementPlane.Raycast(ray, out RaycastHit hit, camera.farClipPlane) ||
             !NavMesh.SamplePosition(hit.point, out NavMeshHit navMeshHit, 1f, navMeshAgent.areaMask))
         {
             return;
         }
 
-        navMeshAgent.SetDestination(navMeshHit.position);
+        pendingInteraction = null;
+        SetReachableDestination(navMeshHit.position, pointStoppingDistance);
+    }
+
+    private void BeginInteraction(ObjectController objectController, Vector3 clickedPoint)
+    {
+        float sampleDistance = Mathf.Max(1f, objectController.InteractionDistance);
+        if (!NavMesh.SamplePosition(clickedPoint, out NavMeshHit navMeshHit, sampleDistance, navMeshAgent.areaMask))
+        {
+            return;
+        }
+
+        pendingInteraction = SetReachableDestination(navMeshHit.position, objectController.InteractionDistance)
+            ? objectController
+            : null;
+    }
+
+    private bool SetReachableDestination(Vector3 destination, float stoppingDistance)
+    {
+        if (!NavMesh.CalculatePath(navMeshAgent.nextPosition, destination, navMeshAgent.areaMask, navigationPath) ||
+            navigationPath.status != NavMeshPathStatus.PathComplete)
+        {
+            CancelPointMovement();
+            return false;
+        }
+
+        navMeshAgent.stoppingDistance = stoppingDistance;
+        if (!navMeshAgent.SetDestination(destination))
+        {
+            CancelPointMovement();
+            return false;
+        }
+
+        lastNavigationPosition = body.position;
+        blockedNavigationTime = 0f;
+        return true;
     }
 
     private bool MoveToPoint()
     {
-        if (!pointMovement || navMeshAgent == null || !navMeshAgent.isOnNavMesh || !navMeshAgent.hasPath)
+        if (!pointMovement || navMeshAgent == null || !navMeshAgent.isOnNavMesh)
+        {
+            return false;
+        }
+
+        if (!navMeshAgent.pathPending && navMeshAgent.pathStatus != NavMeshPathStatus.PathComplete)
+        {
+            CancelPointMovement();
+            return true;
+        }
+
+        if (pendingInteraction != null && !navMeshAgent.pathPending &&
+            navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance + 0.01f)
+        {
+            ObjectController interaction = pendingInteraction;
+            pendingInteraction = null;
+            navMeshAgent.ResetPath();
+            interaction.Interact();
+            return true;
+        }
+
+        if (!navMeshAgent.hasPath)
         {
             return false;
         }
@@ -122,6 +195,18 @@ public sealed class PlayerMovement : MonoBehaviour
         if (pathVelocity.sqrMagnitude <= 0.0001f)
         {
             return false;
+        }
+
+        Vector3 movementSinceLastFrame = Vector3.ProjectOnPlane(body.position - lastNavigationPosition, Vector3.up);
+        blockedNavigationTime = movementSinceLastFrame.sqrMagnitude <= 0.000001f
+            ? blockedNavigationTime + Time.fixedDeltaTime
+            : 0f;
+        lastNavigationPosition = body.position;
+
+        if (blockedNavigationTime >= 0.75f)
+        {
+            CancelPointMovement();
+            return true;
         }
 
         Quaternion targetRotation = Quaternion.LookRotation(pathVelocity, Vector3.up);
@@ -138,6 +223,7 @@ public sealed class PlayerMovement : MonoBehaviour
 
     private void CancelPointMovement()
     {
+        pendingInteraction = null;
         if (navMeshAgent != null && navMeshAgent.isOnNavMesh && navMeshAgent.hasPath)
         {
             navMeshAgent.ResetPath();

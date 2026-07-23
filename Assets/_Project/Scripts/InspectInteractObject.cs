@@ -10,5 +10,6 @@ public sealed class InspectInteractObject : InteractObject
 
     public override void Interact(ObjectController controller)
     {
+        Debug.Log(description, controller);
     }
 }
