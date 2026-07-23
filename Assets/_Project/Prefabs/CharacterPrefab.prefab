@@ -186,7 +186,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7279695530631082704}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 5
@@ -266,9 +266,9 @@ MonoBehaviour:
   movementStyle: 1
   moveSpeed: 5
   turnSpeed: 540
+  cornerTurnDistance: 0.75
   pointMovement: 1
-  movementPlane: {fileID: 0}
-  navMeshAgent: {fileID: 7279695530631082706}
+  gridManager: {fileID: 0}
 --- !u!54 &7279695530631082703
 Rigidbody:
   m_ObjectHideFlags: 0
