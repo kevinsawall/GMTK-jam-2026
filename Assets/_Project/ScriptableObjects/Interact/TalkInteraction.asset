@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TalkInteraction
   m_EditorClassIdentifier: Assembly-CSharp::TalkInteractObject
   prompt: Interact
-  openingLine: I am a yellow NPC
+  dialogue: {fileID: 11400000, guid: 899a9440de6d4390bfe21e54769c08f9, type: 2}
