@@ -31,7 +31,15 @@ public sealed class InspectInteractObject : InteractObject
             return ShowPlayerPhrase(incorrectItemDropPhrase);
         }
 
-        return ShowNextPlayerPhrase(controller, flagToSetOnCorrectItemDrop);
+        bool wasAccepted = ShowNextPlayerPhrase(controller, flagToSetOnCorrectItemDrop);
+        if (wasAccepted)
+        {
+            DialogueManager manager = DialogueManager.Instance ??
+                Object.FindFirstObjectByType<DialogueManager>(FindObjectsInactive.Include);
+            manager?.RemoveItem(item);
+        }
+
+        return wasAccepted;
     }
 
     private bool ShowNextPlayerPhrase(ObjectController controller, string flagToSet = null)
