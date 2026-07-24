@@ -34,6 +34,7 @@ public sealed class DialogueManager : MonoBehaviour
     private int currentLineIndex;
     private Coroutine typewriter;
     private bool isTyping;
+    private bool advancesNaturalCounter;
 
     public bool IsOpen => currentEntry != null;
 
@@ -77,8 +78,8 @@ public sealed class DialogueManager : MonoBehaviour
             return;
         }
 
+        advancesNaturalCounter = entry.requiredState == DialogueState.FirstTalk;
         StartDialogueEntry(dialogue, entry);
-        if (entry.requiredState == DialogueState.FirstTalk) NaturalCounterActionPerformed?.Invoke();
     }
 
     public bool StartItemDropDialogue(NpcDialogueSO dialogue, ItemData droppedItem)
@@ -93,13 +94,13 @@ public sealed class DialogueManager : MonoBehaviour
         DialogueEntry entry = isCorrectItem
             ? dialogue.correctItemDropDialogue
             : dialogue.incorrectItemDropDialogue;
-        if (entry == null)
+        if (entry == null || !HasFlag(entry.requiredFlag) || !HasItem(entry.requiredItem))
         {
             return false;
         }
 
+        advancesNaturalCounter = isCorrectItem;
         StartDialogueEntry(dialogue, entry);
-        if (isCorrectItem) NaturalCounterActionPerformed?.Invoke();
         return true;
     }
 
@@ -115,6 +116,7 @@ public sealed class DialogueManager : MonoBehaviour
                 new() { speaker = DialogueSpeaker.Player, text = phrase }
             }
         };
+        advancesNaturalCounter = false;
         currentLineIndex = 0;
         gameObject.SetActive(true);
         PlayerDialogueStarted?.Invoke();
@@ -301,6 +303,7 @@ public sealed class DialogueManager : MonoBehaviour
 
         NpcDialogueSO finishedDialogue = currentDialogue;
         bool wasPlayerDialogue = finishedDialogue == null;
+        bool shouldAdvanceNaturalCounter = advancesNaturalCounter;
         DialogueState finishedState = currentEntry != null
             ? currentEntry.requiredState
             : DialogueState.FirstTalk;
@@ -309,6 +312,7 @@ public sealed class DialogueManager : MonoBehaviour
         isTyping = false;
         currentDialogue = null;
         currentEntry = null;
+        advancesNaturalCounter = false;
         gameObject.SetActive(false);
 
         if (finishedDialogue != null)
@@ -319,6 +323,8 @@ public sealed class DialogueManager : MonoBehaviour
         {
             PlayerDialogueClosed?.Invoke();
         }
+
+        if (shouldAdvanceNaturalCounter) NaturalCounterActionPerformed?.Invoke();
     }
 
     private static InventoryManager GetInventoryManager()

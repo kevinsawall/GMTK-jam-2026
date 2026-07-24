@@ -173,6 +173,16 @@ public sealed class CupTimerController : MonoBehaviour
             yield return null;
         }
 
+        // Let the closed dialogue panel finish its frame before the timeout UI starts.
+        yield return null;
+
+        // A dialogue can award an item. Let the player dismiss its notification
+        // before the timeout's end dialogue and cutscene take control.
+        while (isItemNotificationVisible || ItemNotification.IsAnyVisible)
+        {
+            yield return null;
+        }
+
         yield return new WaitForSecondsRealtime(1.5f);
 
         if (ShowNextEndPhrase())

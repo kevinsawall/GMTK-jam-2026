@@ -13,93 +13,99 @@ MonoBehaviour:
   m_Name: NpcDialogueSinger
   m_EditorClassIdentifier: Assembly-CSharp::NpcDialogueSO
   npcId: singer-npc
-  npcDisplayName: "Singer"
+  npcDisplayName: Singer
   portrait: {fileID: 0}
   entries:
-  - entryId: "first-talk"
+  - entryId: first-talk
     requiredState: 0
-    requiredFlag: ""
+    requiredFlag: 
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "You know who I am, verdad?"
+      text: You know who I am, verdad?
     - speaker: 1
-      text: "Nope. But I have a feeling I’m about to get educated."
+      text: "Nope. But I have a feeling I\u2019m about to get educated."
     - speaker: 0
-      text: "No? Ay... what a tragedy. I am a star!"
+      text: No? Ay... what a tragedy. I am a star!
     - speaker: 0
-      text: "There wasn't a dance night without my songs."
+      text: There wasn't a dance night without my songs.
     - speaker: 0
-      text: "The girls screamed. The boys copied my style. The radio couldn't get enough of me."
+      text: The girls screamed. The boys copied my style. The radio couldn't get
+        enough of me.
     - speaker: 0
-      text: "Then... they found somebody younger."
+      text: Then... they found somebody younger.
     - speaker: 0
-      text: "That's show business… I guess."
+      text: "That's show business\u2026 I guess."
     - speaker: 1
-      text: "Yeah, life’s tough. I want to make games. But I’ve found a job that pays, so…"
+      text: "Yeah, life\u2019s tough. I want to make games. But I\u2019ve found a
+        job that pays, so\u2026"
     - speaker: 0
-      text: "Bah! I just need another canción."
+      text: "Bah! I just need another canci\xF3n."
     - speaker: 0
-      text: "Another hit, and I can sing on the main stage again."
+      text: Another hit, and I can sing on the main stage again.
     actions:
     - type: 4
-      stringValue: ""
+      stringValue: 
       item: {fileID: 0}
       nextNpcState: 2
-  - entryId: "waiting-for-item"
+  - entryId: waiting-for-item
     requiredState: 2
-    requiredFlag: ""
+    requiredFlag: 
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "Just need some inspiration."
+      text: Just need some inspiration.
     actions: []
-  - entryId: "completed"
+  - entryId: completed
     requiredState: 5
-    requiredFlag: ""
+    requiredFlag: 
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "La-la-la…"
+      text: "La-la-la\u2026"
     actions: []
   expectedDroppedItem: {fileID: 11400000, guid: 0841c90f2aa8b47d8b7eecfb063cca59, type: 2}
   correctItemDropDialogue:
-    entryId: "correct-item-drop"
+    entryId: correct-item-drop
     requiredState: 2
-    requiredFlag: ""
+    requiredFlag: 
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "Whoah, it’s us! We’re all in it, together."
+      text: "Whoah, it\u2019s us! We\u2019re all in it, together."
     - speaker: 1
-      text: "You can’t even imagine how right you are…"
+      text: "You can\u2019t even imagine how right you are\u2026"
     - speaker: 0
-      text: "This… This is the inspiration I was waiting for."
+      text: "This\u2026 This is the inspiration I was waiting for."
     - speaker: 0
-      text: "Forget the charts. Forget the fame."
+      text: Forget the charts. Forget the fame.
     - speaker: 0
-      text: "If one little song can make someone’s journey a little lighter..."
+      text: "If one little song can make someone\u2019s journey a little lighter..."
     - speaker: 0
-      text: "...that's enough for me."
+      text: ...that's enough for me.
     - speaker: 0
-      text: "Now listen."
+      text: Now listen.
     - speaker: 2
-      text: "[SOUND: Song]"
+      text: '[SOUND: Song]'
     actions:
     - type: 3
-      stringValue: ""
+      stringValue: 
       item: {fileID: 11400000, guid: 0841c90f2aa8b47d8b7eecfb063cca59, type: 2}
       nextNpcState: 0
     - type: 4
-      stringValue: ""
+      stringValue: 
+      item: {fileID: 0}
+      nextNpcState: 5
+    - type: 1
+      stringValue: wake_conductor
       item: {fileID: 0}
       nextNpcState: 5
   incorrectItemDropDialogue:
-    entryId: "incorrect-item-drop"
+    entryId: incorrect-item-drop
     requiredState: 2
-    requiredFlag: ""
+    requiredFlag: 
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "No spark in this."
+      text: No spark in this.
     actions: []

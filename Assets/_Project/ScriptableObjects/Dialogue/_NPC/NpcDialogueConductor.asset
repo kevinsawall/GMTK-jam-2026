@@ -13,109 +13,114 @@ MonoBehaviour:
   m_Name: NpcDialogueConductor
   m_EditorClassIdentifier: Assembly-CSharp::NpcDialogueSO
   npcId: conductor-npc
-  npcDisplayName: "Conductor"
+  npcDisplayName: Conductor
   portrait: {fileID: 0}
   entries:
-  - entryId: "first-talk"
+  - entryId: first-talk
     requiredState: 0
-    requiredFlag: ""
+    requiredFlag: 
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "Got your ticket?"
+      text: Got your ticket?
     - speaker: 1
-      text: "Yes! Sorry, no time for this. I…"
+      text: "Yes! Sorry, no time for this. I\u2026"
     - speaker: 0
-      text: "Time, eh? Spent my whole life making sure trains ran on it. You keep the railway on schedule long enough, and life slips right past the platform."
+      text: Time, eh? Spent my whole life making sure trains ran on it. You keep
+        the railway on schedule long enough, and life slips right past the platform.
     - speaker: 0
-      text: "Trains are always shaking, so I got the shakes, too, in the end. No wonder."
+      text: Trains are always shaking, so I got the shakes, too, in the end. No wonder.
     - speaker: 0
-      text: "And what did my good-for-nothing son do? Told me to stop working! Told me he’s so famous now, he can take care of me!"
+      text: "And what did my good-for-nothing son do? Told me to stop working! Told
+        me he\u2019s so famous now, he can take care of me!"
     - speaker: 1
-      text: "That’s great, actually, isn’t it? Listen…"
+      text: "That\u2019s great, actually, isn\u2019t it? Listen\u2026"
     - speaker: 0
-      text: "Ha! But I knew him for a quitter. Didn’t stick to no rules. Left his steady job on trains, and ‘course he left me, too."
+      text: "Ha! But I knew him for a quitter. Didn\u2019t stick to no rules. Left
+        his steady job on trains, and \u2018course he left me, too."
     - speaker: 0
-      text: "Dead! I’m dead to him, just like he is dead to me!"
+      text: "Dead! I\u2019m dead to him, just like he is dead to me!"
     - speaker: 0
-      text: "Now, I need rest! Let me sleep!"
+      text: Now, I need rest! Let me sleep!
     actions:
     - type: 4
-      stringValue: ""
+      stringValue: 
       item: {fileID: 0}
       nextNpcState: 1
-  - entryId: "sleeping"
+  - entryId: sleeping
     requiredState: 1
-    requiredFlag: ""
+    requiredFlag: 
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "Z-z-z…"
+      text: "Z-z-z\u2026"
     actions: []
-  - entryId: "after-song"
+  - entryId: after-song
     requiredState: 2
-    requiredFlag: ""
+    requiredFlag: 
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "There’s something wrong, isn’t there?"
+      text: "There\u2019s something wrong, isn\u2019t there?"
     - speaker: 1
-      text: "Yes! Finally! I was going crazy here on my own."
+      text: Yes! Finally! I was going crazy here on my own.
     - speaker: 0
-      text: "But… I can’t trust myself."
+      text: "But\u2026 I can\u2019t trust myself."
     - speaker: 1
-      text: "Please. I’ve searched everywhere. Do you know how to open the compartment at the back?"
+      text: "Please. I\u2019ve searched everywhere. Do you know how to open the compartment
+        at the back?"
     - speaker: 0
-      text: "No, no. My mind’s not what it used to be. Best stick to the rules."
+      text: "No, no. My mind\u2019s not what it used to be. Best stick to the rules."
     - speaker: 0
-      text: "Can’t trust myself."
+      text: "Can\u2019t trust myself."
     actions: []
-  - entryId: "completed"
+  - entryId: completed
     requiredState: 5
-    requiredFlag: ""
+    requiredFlag: 
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "What are you waiting for?"
+      text: What are you waiting for?
     actions: []
   expectedDroppedItem: {fileID: 11400000, guid: c9782c6d627d14a0d8375d49f01cb3be, type: 2}
   correctItemDropDialogue:
-    entryId: "correct-item-drop"
+    entryId: correct-item-drop
     requiredState: 2
-    requiredFlag: ""
+    requiredFlag: wake_conductor
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "What’s this? Is that… me?"
+      text: "What\u2019s this? Is that\u2026 me?"
     - speaker: 0
-      text: "I remember… I was so young when they took this, just like my grandson now…"
+      text: "I remember\u2026 I was so young when they took this, just like my grandson
+        now\u2026"
     - speaker: 0
-      text: "What would he do, I wonder?"
+      text: What would he do, I wonder?
     - speaker: 1
-      text: "I’m sure you know."
+      text: "I\u2019m sure you know."
     - speaker: 0
-      text: "..."
+      text: ...
     - speaker: 0
-      text: "Here’s the key."
+      text: "Here\u2019s the key."
     actions:
     - type: 3
-      stringValue: ""
+      stringValue: 
       item: {fileID: 11400000, guid: c9782c6d627d14a0d8375d49f01cb3be, type: 2}
       nextNpcState: 0
     - type: 6
-      stringValue: ""
+      stringValue: 
       item: {fileID: 11400000, guid: 31b8a41c8ff104bf1900deb615d6928f, type: 2}
       nextNpcState: 0
     - type: 4
-      stringValue: ""
+      stringValue: 
       item: {fileID: 0}
       nextNpcState: 5
   incorrectItemDropDialogue:
-    entryId: "incorrect-item-drop"
+    entryId: incorrect-item-drop
     requiredState: 2
-    requiredFlag: ""
+    requiredFlag: 
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "Don’t you know the rules?"
+      text: "Don\u2019t you know the rules?"
     actions: []
