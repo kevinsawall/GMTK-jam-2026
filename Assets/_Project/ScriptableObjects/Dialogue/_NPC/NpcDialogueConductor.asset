@@ -15,8 +15,6 @@ MonoBehaviour:
   npcId: conductor-npc
   npcDisplayName: Conductor
   portrait: {fileID: 0}
-  skipFirstTalkWhenFlagSet: start-singing
-  skippedFirstTalkState: 2
   entries:
   - entryId: first-talk
     requiredState: 0
@@ -49,17 +47,9 @@ MonoBehaviour:
       stringValue: 
       item: {fileID: 0}
       nextNpcState: 1
-  - entryId: sleeping
-    requiredState: 1
-    requiredFlag: 
-    requiredItem: {fileID: 0}
-    lines:
-    - speaker: 0
-      text: "Z-z-z\u2026"
-    actions: []
   - entryId: after-song
-    requiredState: 2
-    requiredFlag: 
+    requiredState: 1
+    requiredFlag: start-singing
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
@@ -75,6 +65,26 @@ MonoBehaviour:
       text: "No, no. My mind\u2019s not what it used to be. Best stick to the rules."
     - speaker: 0
       text: "Can\u2019t trust myself."
+    actions:
+    - type: 4
+      stringValue: 
+      item: {fileID: 0}
+      nextNpcState: 2
+  - entryId: sleeping
+    requiredState: 1
+    requiredFlag: 
+    requiredItem: {fileID: 0}
+    lines:
+    - speaker: 0
+      text: "Z-z-z\u2026"
+    actions: []
+  - entryId: waitin-item
+    requiredState: 2
+    requiredFlag: 
+    requiredItem: {fileID: 11400000, guid: c9782c6d627d14a0d8375d49f01cb3be, type: 2}
+    lines:
+    - speaker: 0
+      text: "Can\u2019t trust myself."
     actions: []
   - entryId: completed
     requiredState: 5
@@ -84,6 +94,8 @@ MonoBehaviour:
     - speaker: 0
       text: What are you waiting for?
     actions: []
+  skipFirstTalkWhenFlagSet: start-singing
+  skippedFirstTalkState: 2
   expectedDroppedItem: {fileID: 11400000, guid: c9782c6d627d14a0d8375d49f01cb3be, type: 2}
   correctItemDropDialogue:
     entryId: correct-item-drop
