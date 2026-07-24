@@ -5842,7 +5842,7 @@ MonoBehaviour:
   speakerNameText: {fileID: 1645469197}
   dialogueText: {fileID: 13873193}
   continueButton: {fileID: 1540327788}
-  playerDisplayName: Player
+  playerDisplayName: You
   charactersPerSecond: 45
 --- !u!1001 &1087650125
 PrefabInstance:

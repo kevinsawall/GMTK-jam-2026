@@ -22,7 +22,7 @@ public sealed class DialogueManager : MonoBehaviour
     [SerializeField] private TMP_Text speakerNameText;
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private Button continueButton;
-    [SerializeField] private string playerDisplayName = "Player";
+    [SerializeField] private string playerDisplayName = "You";
     [SerializeField, Min(1f)] private float charactersPerSecond = 45f;
 
     private readonly Dictionary<string, DialogueState> npcStates = new();
@@ -178,14 +178,24 @@ public sealed class DialogueManager : MonoBehaviour
         DialogueState state = GetNpcState(dialogue.npcId);
         if (dialogue.entries == null) return null;
 
+        // Clicking an NPC who is waiting for an item always plays its waiting line.
+        // Item validation belongs exclusively to StartItemDropDialogue.
+        if (state == DialogueState.WaitingForItem)
+        {
+            foreach (DialogueEntry entry in dialogue.entries)
+            {
+                if (entry != null && entry.requiredState == state && HasFlag(entry.requiredFlag))
+                {
+                    return entry;
+                }
+            }
+
+            return null;
+        }
+
         foreach (DialogueEntry entry in dialogue.entries)
         {
             if (entry == null)
-            {
-                continue;
-            }
-
-            if (state == DialogueState.WaitingForItem && entry.requiredItem != null)
             {
                 continue;
             }

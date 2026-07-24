@@ -22,40 +22,66 @@ MonoBehaviour:
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: I am a yellow NPC.
-    - speaker: 1
-      text: I am a Player.
+      text: "Oh no, oh no, oh no. Something\u2019s wrong. An engine part\u2019s missing."
     - speaker: 0
-      text: I have a test item.
+      text: "I should have listened to my grandda. He used to say the rules are to
+        be followed precisely, but I thought I\u2019d check this later. And now\u2026
+        it\u2019s too late!"
+    - speaker: 0
+      text: "Oh, grandda. Look at this photo, it\u2019s me and my grandda\u2019s
+        holding me\u2026"
+    - speaker: 0
+      text: "My da\u2019s there, too. But he\u2019s never been around much, having
+        his career and all that..."
+    - speaker: 0
+      text: "Listen, I can\u2019t leave this unattended, or we\u2019ll crash. Help
+        me find the engine part, I beg you! It should be somewhere on the train.
+        Hurry!"
     actions:
     - type: 6
-      stringValue: Here's the test Item
-      item: {fileID: 11400000, guid: a23976eff82f64965bcd30843d1b0d8a, type: 2}
-      nextNpcState: 1
+      stringValue: 
+      item: {fileID: 11400000, guid: e5189ca137c624c61899108b68fb2247, type: 2}
+      nextNpcState: 2
     - type: 4
       stringValue: 
       item: {fileID: 0}
-      nextNpcState: 1
-  - entryId: summary
-    requiredState: 1
+      nextNpcState: 2
+  - entryId: waiting-for-item
+    requiredState: 2
     requiredFlag: 
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: Nice to see you again.
+      text: "Oh no\u2026"
     actions: []
-  expectedDroppedItem: {fileID: 0}
+  - entryId: complited
+    requiredState: 5
+    requiredFlag: 
+    requiredItem: {fileID: 0}
+    lines:
+    - speaker: 0
+      text: Thank you!
+    actions: []
+  expectedDroppedItem: {fileID: 11400000, guid: 37658423e2dae4ad79ef6d85c50c7caf, type: 2}
   correctItemDropDialogue:
-    entryId: 
-    requiredState: 0
+    entryId: correct-key-drop
+    requiredState: 2
     requiredFlag: 
     requiredItem: {fileID: 0}
-    lines: []
-    actions: []
+    lines:
+    - speaker: 0
+      text: "That\u2019s it! That\u2019s exactly what I need to repair this!"
+    actions:
+    - type: 3
+      stringValue: 
+      item: {fileID: 11400000, guid: 37658423e2dae4ad79ef6d85c50c7caf, type: 2}
+      nextNpcState: 5
   incorrectItemDropDialogue:
-    entryId: 
-    requiredState: 0
+    entryId: incorrect-key-drop
+    requiredState: 2
     requiredFlag: 
     requiredItem: {fileID: 0}
-    lines: []
+    lines:
+    - speaker: 0
+      text: "That\u2019s not the engine part. Hurry!"
     actions: []
