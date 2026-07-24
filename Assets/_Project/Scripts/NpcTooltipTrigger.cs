@@ -17,13 +17,15 @@ public enum NpcTooltipHideCondition
 /// <summary>
 /// Controls an NPC's world-space tooltip from dialogue lifecycle events.
 /// </summary>
-[RequireComponent(typeof(Canvas))]
+[RequireComponent(typeof(Canvas), typeof(CanvasGroup))]
 public sealed class NpcTooltipTrigger : MonoBehaviour
 {
     [SerializeField] private NpcTooltipDisplayMode displayMode = NpcTooltipDisplayMode.AfterFirstDialogue;
     [SerializeField] private NpcTooltipHideCondition hideCondition = NpcTooltipHideCondition.None;
     [SerializeField, Min(0f)] private float showDelay = 0.5f;
+    [SerializeField, Min(0f)] private float fadeInDuration = 0.25f;
     [SerializeField] private Canvas tooltipCanvas;
+    [SerializeField] private CanvasGroup tooltipCanvasGroup;
     [SerializeField] private CharacterManager characterManager;
 
     private NpcDialogueSO dialogue;
@@ -34,6 +36,7 @@ public sealed class NpcTooltipTrigger : MonoBehaviour
     private void Awake()
     {
         tooltipCanvas ??= GetComponent<Canvas>();
+        tooltipCanvasGroup ??= GetComponent<CanvasGroup>();
         characterManager ??= GetComponentInParent<CharacterManager>();
         dialogue = (characterManager?.InteractObject as TalkInteractObject)?.Dialogue;
 
@@ -96,7 +99,7 @@ public sealed class NpcTooltipTrigger : MonoBehaviour
 
         if (!delayed || showDelay <= 0f)
         {
-            SetVisible(true);
+            ShowImmediately();
             return;
         }
 
@@ -110,7 +113,7 @@ public sealed class NpcTooltipTrigger : MonoBehaviour
     {
         yield return new WaitForSeconds(showDelay);
         delayedShow = null;
-        SetVisible(true);
+        FadeIn();
     }
 
     private void HideImmediately()
@@ -121,7 +124,37 @@ public sealed class NpcTooltipTrigger : MonoBehaviour
             delayedShow = null;
         }
 
+        LeanTween.cancel(gameObject);
+        if (tooltipCanvasGroup != null)
+        {
+            tooltipCanvasGroup.alpha = 0f;
+        }
+
         SetVisible(false);
+    }
+
+    private void ShowImmediately()
+    {
+        LeanTween.cancel(gameObject);
+        if (tooltipCanvasGroup != null)
+        {
+            tooltipCanvasGroup.alpha = 1f;
+        }
+
+        SetVisible(true);
+    }
+
+    private void FadeIn()
+    {
+        SetVisible(true);
+        if (tooltipCanvasGroup == null || fadeInDuration <= 0f)
+        {
+            ShowImmediately();
+            return;
+        }
+
+        tooltipCanvasGroup.alpha = 0f;
+        LeanTween.alphaCanvas(tooltipCanvasGroup, 1f, fadeInDuration).setEaseOutQuad();
     }
 
     private void SetVisible(bool isVisible)

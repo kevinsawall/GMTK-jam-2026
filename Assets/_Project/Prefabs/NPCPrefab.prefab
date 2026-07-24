@@ -374,6 +374,7 @@ GameObject:
   - component: {fileID: 1560559683434513955}
   - component: {fileID: 3575285392076918354}
   - component: {fileID: 3575285392076918355}
+  - component: {fileID: 3575285392076918356}
   m_Layer: 0
   m_Name: WorldTooltipCanvas
   m_TagString: Untagged
@@ -493,8 +494,22 @@ MonoBehaviour:
   displayMode: 3
   hideCondition: 0
   showDelay: 0.5
+  fadeInDuration: 0.25
   tooltipCanvas: {fileID: 5521247504453363120}
+  tooltipCanvasGroup: {fileID: 3575285392076918356}
   characterManager: {fileID: 7279695530631082701}
+--- !u!225 &3575285392076918356
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4945638034328983904}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &7279695530631082704
 GameObject:
   m_ObjectHideFlags: 0
