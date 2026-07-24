@@ -21,6 +21,7 @@ public sealed class CupTimerController : MonoBehaviour
     [SerializeField, Min(1f)] private float DurationSeconds = 60f;
     [SerializeField, TextArea(2, 5)] private List<string> playerStartPhrases = new();
     [SerializeField, TextArea(2, 5)] private List<string> playerEndPhrases = new();
+    [SerializeField] private ItemNotification notification;
 
     public static CupTimerController Instance { get; private set; }
     public bool IsCutscenePlaying { get; private set; }
@@ -32,6 +33,9 @@ public sealed class CupTimerController : MonoBehaviour
     private CanvasGroup cutsceneCanvasGroup;
     private float remainingSeconds;
     private bool hasExpired;
+    private bool isItemNotificationVisible;
+    private bool hasSetTimerVisibility;
+    private bool isTimerVisible;
     private int nextStartPhraseIndex;
     private int nextEndPhraseIndex;
 
@@ -55,12 +59,15 @@ public sealed class CupTimerController : MonoBehaviour
 
         remainingSeconds = DurationSeconds;
         UpdateTimerText();
+        isItemNotificationVisible = notification != null && notification.IsVisible;
+        if (notification != null) notification.VisibilityChanged += OnItemNotificationVisibilityChanged;
         DialogueManager.NaturalCounterActionPerformed += OnNaturalCounterActionPerformed;
         StartCutsceneController.Finished += ShowNextStartPhrase;
     }
 
     private void OnDestroy()
     {
+        if (notification != null) notification.VisibilityChanged -= OnItemNotificationVisibilityChanged;
         DialogueManager.NaturalCounterActionPerformed -= OnNaturalCounterActionPerformed;
         StartCutsceneController.Finished -= ShowNextStartPhrase;
         if (Instance == this) Instance = null;
@@ -84,6 +91,11 @@ public sealed class CupTimerController : MonoBehaviour
         ConsumeCount(1f);
     }
 
+    private void OnItemNotificationVisibilityChanged(bool isVisible)
+    {
+        isItemNotificationVisible = isVisible;
+    }
+
     private void ConsumeCount(float amount)
     {
         if (hasExpired) return;
@@ -99,6 +111,10 @@ public sealed class CupTimerController : MonoBehaviour
 
     private void SetVisibility(bool isVisible)
     {
+        if (hasSetTimerVisibility && isTimerVisible == isVisible) return;
+
+        hasSetTimerVisibility = true;
+        isTimerVisible = isVisible;
         canvasGroup.alpha = isVisible ? 1f : 0f;
         canvasGroup.interactable = isVisible;
         canvasGroup.blocksRaycasts = isVisible;
@@ -109,12 +125,11 @@ public sealed class CupTimerController : MonoBehaviour
         if (timerText != null) timerText.text = Mathf.CeilToInt(remainingSeconds).ToString();
     }
 
-    private static bool IsModalUiVisible()
+    private bool IsModalUiVisible()
     {
         if (DialogueManager.Instance != null && DialogueManager.Instance.IsOpen) return true;
 
-        ItemNotification notification = Object.FindFirstObjectByType<ItemNotification>(FindObjectsInactive.Include);
-        return notification != null && notification.IsVisible;
+        return isItemNotificationVisible;
     }
 
     private System.Collections.IEnumerator PlayCutsceneAndRestart()

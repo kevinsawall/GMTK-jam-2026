@@ -6119,6 +6119,7 @@ MonoBehaviour:
   playerEndPhrases:
   - End phrase
   - End phrase 2
+  notification: {fileID: 1791256112}
 --- !u!1 &1227788165
 GameObject:
   m_ObjectHideFlags: 0
