@@ -16,6 +16,7 @@ public sealed class CharacterManager : MonoBehaviour, IInteractable
 
     public CharacterType Type => characterType;
     public bool HasInteraction => interactObject != null;
+    public InteractObject InteractObject => interactObject;
     public int InteractionDistance => interactionDistance;
 
     private void Awake()

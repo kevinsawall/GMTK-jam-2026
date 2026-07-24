@@ -5834,6 +5834,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1599200699164707640, guid: 1d17a3557d0fa490195d097b51b64451, type: 3}
+      propertyPath: m_text
+      value: Oh no, no, no...
+      objectReference: {fileID: 0}
     - target: {fileID: 2614144292095597823, guid: 1d17a3557d0fa490195d097b51b64451, type: 3}
       propertyPath: m_Height
       value: 1.75
@@ -7930,7 +7934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneController
   cutsceneType: 0
-  totalDurationSeconds: 10
+  totalDurationSeconds: 9
   fadeOutSeconds: 2
   titleText: {fileID: 960342099}
   titleTextOverride: 'Oh, the tea is cold now.
@@ -8629,6 +8633,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974035844520696219, guid: 1d17a3557d0fa490195d097b51b64451, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3575285392076918355, guid: 1d17a3557d0fa490195d097b51b64451, type: 3}
+      propertyPath: displayMode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7073144989406101594, guid: 1d17a3557d0fa490195d097b51b64451, type: 3}

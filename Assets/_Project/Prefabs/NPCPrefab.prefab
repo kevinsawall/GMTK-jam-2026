@@ -139,17 +139,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2440714338430876366}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2527186895907486561}
+  m_Father: {fileID: 5005781101157837282}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: -10, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3395251549785316844
 CanvasRenderer:
@@ -280,7 +280,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8248937183807792218}
   m_Father: {fileID: 2527186895907486561}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -372,6 +373,7 @@ GameObject:
   - component: {fileID: 769956376113463417}
   - component: {fileID: 1560559683434513955}
   - component: {fileID: 3575285392076918354}
+  - component: {fileID: 3575285392076918355}
   m_Layer: 0
   m_Name: WorldTooltipCanvas
   m_TagString: Untagged
@@ -392,7 +394,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5005781101157837282}
-  - {fileID: 8248937183807792218}
   m_Father: {fileID: 2974035844520696219}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -477,6 +478,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetCamera: {fileID: 0}
+--- !u!114 &3575285392076918355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4945638034328983904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8947e17fcd044e78a974b524ad177cf, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  displayMode: 3
+  hideCondition: 0
+  showDelay: 0.5
+  tooltipCanvas: {fileID: 5521247504453363120}
+  characterManager: {fileID: 7279695530631082701}
 --- !u!1 &7279695530631082704
 GameObject:
   m_ObjectHideFlags: 0
