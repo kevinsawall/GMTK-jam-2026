@@ -13,75 +13,81 @@ MonoBehaviour:
   m_Name: NpcDialogueMechanic
   m_EditorClassIdentifier: Assembly-CSharp::NpcDialogueSO
   npcId: mechanic-npc
-  npcDisplayName: "Mechanic"
+  npcDisplayName: Mechanic
   portrait: {fileID: 0}
   entries:
-  - entryId: "first-talk"
+  - entryId: first-talk
     requiredState: 0
-    requiredFlag: ""
+    requiredFlag: 
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "Oh no, oh no, oh no. Something’s wrong. An engine part’s missing."
+      text: "Oh no, oh no, oh no. Something\u2019s wrong. An engine part\u2019s missing."
     - speaker: 0
-      text: "I should have listened to my grandda. He used to say the rules are to be followed precisely, but I thought I’d check this later. And now… it’s too late!"
+      text: "I should have listened to my grandda. He used to say the rules are to
+        be followed precisely, but I thought I\u2019d check this later. And now\u2026
+        it\u2019s too late!"
     - speaker: 0
-      text: "Oh, grandda. Look at this photo, it’s me and my grandda’s holding me…"
+      text: "Oh, grandda. Look at this photo, it\u2019s me and my grandda\u2019s
+        holding me\u2026"
     - speaker: 0
-      text: "My da’s there, too. But he’s never been around much, having his career and all that..."
+      text: "My da\u2019s there, too. But he\u2019s never been around much, having
+        his career and all that..."
     - speaker: 0
-      text: "Listen, I can’t leave this unattended, or we’ll crash. Help me find the engine part, I beg you! It should be somewhere on the train. Hurry!"
+      text: "Listen, I can\u2019t leave this unattended, or we\u2019ll crash. Help
+        me find the engine part, I beg you! It should be somewhere on the train.
+        Hurry!"
     actions:
     - type: 6
-      stringValue: ""
+      stringValue: 
       item: {fileID: 11400000, guid: e5189ca137c624c61899108b68fb2247, type: 2}
       nextNpcState: 0
     - type: 4
-      stringValue: ""
+      stringValue: 
       item: {fileID: 0}
       nextNpcState: 2
-  - entryId: "waiting-for-item"
+  - entryId: waiting-for-item
     requiredState: 2
-    requiredFlag: ""
+    requiredFlag: 
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "Oh no…"
+      text: "Oh no\u2026"
     actions: []
-  - entryId: "completed"
+  - entryId: completed
     requiredState: 5
-    requiredFlag: ""
+    requiredFlag: 
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "That’s it! That’s exactly what I need to repair this!"
+      text: "That\u2019s it! That\u2019s exactly what I need to repair this!"
     actions: []
   expectedDroppedItem: {fileID: 11400000, guid: 37658423e2dae4ad79ef6d85c50c7caf, type: 2}
   correctItemDropDialogue:
-    entryId: "correct-item-drop"
+    entryId: correct-item-drop
     requiredState: 2
-    requiredFlag: ""
+    requiredFlag: 
     requiredItem: {fileID: 0}
     lines:
     - speaker: 1
-      text: "Is this what you’ve been looking for?"
+      text: "Is this what you\u2019ve been looking for?"
     - speaker: 0
-      text: "That’s it! That’s exactly what I need to repair this!"
+      text: "That\u2019s it! That\u2019s exactly what I need to repair this!"
     actions:
     - type: 3
-      stringValue: ""
+      stringValue: 
       item: {fileID: 11400000, guid: 37658423e2dae4ad79ef6d85c50c7caf, type: 2}
       nextNpcState: 0
     - type: 4
-      stringValue: ""
+      stringValue: end-game
       item: {fileID: 0}
       nextNpcState: 5
   incorrectItemDropDialogue:
-    entryId: "incorrect-item-drop"
+    entryId: incorrect-item-drop
     requiredState: 2
-    requiredFlag: ""
+    requiredFlag: 
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "That’s not the engine part. Hurry!"
+      text: "That\u2019s not the engine part. Hurry!"
     actions: []

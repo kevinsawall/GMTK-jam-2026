@@ -16,3 +16,6 @@ MonoBehaviour:
   playerPhrases:
   - "Maybe the part is there, but it\u2019s closed. Someone might know how to open
     it."
+  expectedDroppedItem: {fileID: 11400000, guid: 31b8a41c8ff104bf1900deb615d6928f, type: 2}
+  flagToSetOnCorrectItemDrop: open-door
+  incorrectItemDropPhrase: Incorrect item

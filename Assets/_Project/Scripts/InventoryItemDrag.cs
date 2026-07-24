@@ -91,7 +91,14 @@ public sealed class InventoryItemDrag : MonoBehaviour, IBeginDragHandler, IDragH
         }
 
         CharacterManager character = hit.collider.GetComponentInParent<CharacterManager>();
-        character?.TryReceiveItem(item);
+        if (character != null)
+        {
+            character.TryReceiveItem(item);
+            return;
+        }
+
+        ObjectController sceneObject = hit.collider.GetComponentInParent<ObjectController>();
+        sceneObject?.TryReceiveItem(item);
     }
 
     private void UpdateDragPosition(PointerEventData eventData)
