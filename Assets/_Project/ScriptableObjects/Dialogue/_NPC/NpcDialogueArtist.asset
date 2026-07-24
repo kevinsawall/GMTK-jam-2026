@@ -13,49 +13,87 @@ MonoBehaviour:
   m_Name: NpcDialogueArtist
   m_EditorClassIdentifier: Assembly-CSharp::NpcDialogueSO
   npcId: artist-npc
-  npcDisplayName: Artist
+  npcDisplayName: "Artist"
   portrait: {fileID: 0}
   entries:
-  - entryId: first-talk
+  - entryId: "first-talk"
     requiredState: 0
-    requiredFlag: 
+    requiredFlag: ""
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: I am a yellow NPC.
+      text: "Hey! Don’t look! Those are just sketches!"
     - speaker: 1
-      text: I am a Player.
+      text: "Sorry, I didn’t mean to. They are not so bad, though. Have that weekly manga feel to them…"
     - speaker: 0
-      text: I have a test item.
+      text: "They’re terrible! No use finishing them."
+    - speaker: 0
+      text: "I just need to practice more. That’s how I do those ideas justice."
+    - speaker: 0
+      text: "Someday, when I’m a real artist, I will finally draw something good."
+    - speaker: 0
+      text: "Now leave me alone."
     actions:
-    - type: 6
-      stringValue: Here's the test Item
-      item: {fileID: 11400000, guid: a23976eff82f64965bcd30843d1b0d8a, type: 2}
-      nextNpcState: 1
     - type: 4
-      stringValue: 
+      stringValue: ""
       item: {fileID: 0}
-      nextNpcState: 1
-  - entryId: summary
-    requiredState: 1
-    requiredFlag: 
+      nextNpcState: 2
+  - entryId: "waiting-for-item"
+    requiredState: 2
+    requiredFlag: ""
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: Nice to see you again.
+      text: "I’ll finish it… someday."
     actions: []
-  expectedDroppedItem: {fileID: 0}
+  - entryId: "completed"
+    requiredState: 5
+    requiredFlag: ""
+    requiredItem: {fileID: 0}
+    lines:
+    - speaker: 0
+      text: "This is turning out great!"
+    actions: []
+  expectedDroppedItem: {fileID: 11400000, guid: e98d9d804f61b4e1a93748f563957296, type: 2}
   correctItemDropDialogue:
-    entryId: 
-    requiredState: 0
-    requiredFlag: 
+    entryId: "correct-item-drop"
+    requiredState: 2
+    requiredFlag: ""
     requiredItem: {fileID: 0}
-    lines: []
-    actions: []
+    lines:
+    - speaker: 1
+      text: "Your skills aren’t the problem."
+    - speaker: 0
+      text: "Thank you! That’s exactly what I needed. Look how neatly they fit into the binder. I can colour-code!"
+    - speaker: 1
+      text: "That was quick."
+    - speaker: 0
+      text: "It’s the time pressure. Makes you think fast."
+    - speaker: 1
+      text: "You have no idea."
+    - speaker: 0
+      text: "Hang on. Let me put the finishing touches…"
+    - speaker: 0
+      text: "Ta-da! It’s all of us on this train."
+    actions:
+    - type: 3
+      stringValue: ""
+      item: {fileID: 11400000, guid: e98d9d804f61b4e1a93748f563957296, type: 2}
+      nextNpcState: 0
+    - type: 6
+      stringValue: ""
+      item: {fileID: 11400000, guid: 0841c90f2aa8b47d8b7eecfb063cca59, type: 2}
+      nextNpcState: 0
+    - type: 4
+      stringValue: ""
+      item: {fileID: 0}
+      nextNpcState: 5
   incorrectItemDropDialogue:
-    entryId: 
-    requiredState: 0
-    requiredFlag: 
+    entryId: "incorrect-item-drop"
+    requiredState: 2
+    requiredFlag: ""
     requiredItem: {fileID: 0}
-    lines: []
+    lines:
+    - speaker: 0
+      text: "This doesn’t help."
     actions: []

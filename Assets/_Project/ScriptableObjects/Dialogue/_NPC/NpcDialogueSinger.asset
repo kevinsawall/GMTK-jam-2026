@@ -13,49 +13,93 @@ MonoBehaviour:
   m_Name: NpcDialogueSinger
   m_EditorClassIdentifier: Assembly-CSharp::NpcDialogueSO
   npcId: singer-npc
-  npcDisplayName: Singer
+  npcDisplayName: "Singer"
   portrait: {fileID: 0}
   entries:
-  - entryId: first-talk
+  - entryId: "first-talk"
     requiredState: 0
-    requiredFlag: 
+    requiredFlag: ""
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: I am a yellow NPC.
+      text: "You know who I am, verdad?"
     - speaker: 1
-      text: I am a Player.
+      text: "Nope. But I have a feeling I’m about to get educated."
     - speaker: 0
-      text: I have a test item.
+      text: "No? Ay... what a tragedy. I am a star!"
+    - speaker: 0
+      text: "There wasn't a dance night without my songs."
+    - speaker: 0
+      text: "The girls screamed. The boys copied my style. The radio couldn't get enough of me."
+    - speaker: 0
+      text: "Then... they found somebody younger."
+    - speaker: 0
+      text: "That's show business… I guess."
+    - speaker: 1
+      text: "Yeah, life’s tough. I want to make games. But I’ve found a job that pays, so…"
+    - speaker: 0
+      text: "Bah! I just need another canción."
+    - speaker: 0
+      text: "Another hit, and I can sing on the main stage again."
     actions:
-    - type: 6
-      stringValue: Here's the test Item
-      item: {fileID: 11400000, guid: a23976eff82f64965bcd30843d1b0d8a, type: 2}
-      nextNpcState: 1
     - type: 4
-      stringValue: 
+      stringValue: ""
       item: {fileID: 0}
-      nextNpcState: 1
-  - entryId: summary
-    requiredState: 1
-    requiredFlag: 
+      nextNpcState: 2
+  - entryId: "waiting-for-item"
+    requiredState: 2
+    requiredFlag: ""
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: Nice to see you again.
+      text: "Just need some inspiration."
     actions: []
-  expectedDroppedItem: {fileID: 0}
+  - entryId: "completed"
+    requiredState: 5
+    requiredFlag: ""
+    requiredItem: {fileID: 0}
+    lines:
+    - speaker: 0
+      text: "La-la-la…"
+    actions: []
+  expectedDroppedItem: {fileID: 11400000, guid: 0841c90f2aa8b47d8b7eecfb063cca59, type: 2}
   correctItemDropDialogue:
-    entryId: 
-    requiredState: 0
-    requiredFlag: 
+    entryId: "correct-item-drop"
+    requiredState: 2
+    requiredFlag: ""
     requiredItem: {fileID: 0}
-    lines: []
-    actions: []
+    lines:
+    - speaker: 0
+      text: "Whoah, it’s us! We’re all in it, together."
+    - speaker: 1
+      text: "You can’t even imagine how right you are…"
+    - speaker: 0
+      text: "This… This is the inspiration I was waiting for."
+    - speaker: 0
+      text: "Forget the charts. Forget the fame."
+    - speaker: 0
+      text: "If one little song can make someone’s journey a little lighter..."
+    - speaker: 0
+      text: "...that's enough for me."
+    - speaker: 0
+      text: "Now listen."
+    - speaker: 2
+      text: "[SOUND: Song]"
+    actions:
+    - type: 3
+      stringValue: ""
+      item: {fileID: 11400000, guid: 0841c90f2aa8b47d8b7eecfb063cca59, type: 2}
+      nextNpcState: 0
+    - type: 4
+      stringValue: ""
+      item: {fileID: 0}
+      nextNpcState: 5
   incorrectItemDropDialogue:
-    entryId: 
-    requiredState: 0
-    requiredFlag: 
+    entryId: "incorrect-item-drop"
+    requiredState: 2
+    requiredFlag: ""
     requiredItem: {fileID: 0}
-    lines: []
+    lines:
+    - speaker: 0
+      text: "No spark in this."
     actions: []

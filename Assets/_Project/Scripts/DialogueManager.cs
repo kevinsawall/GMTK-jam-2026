@@ -220,9 +220,12 @@ public sealed class DialogueManager : MonoBehaviour
 
         if (typewriter != null) StopCoroutine(typewriter);
         DialogueLine line = currentEntry.lines[currentLineIndex];
-        speakerNameText.text = line != null && line.speaker == DialogueSpeaker.Player
-            ? playerDisplayName
-            : currentDialogue != null ? currentDialogue.npcDisplayName : string.Empty;
+        speakerNameText.text = line?.speaker switch
+        {
+            DialogueSpeaker.Player => playerDisplayName,
+            DialogueSpeaker.System => string.Empty,
+            _ => currentDialogue != null ? currentDialogue.npcDisplayName : string.Empty
+        };
         typewriter = StartCoroutine(TypeLine(line?.text ?? string.Empty));
     }
 

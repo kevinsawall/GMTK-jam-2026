@@ -13,49 +13,53 @@ MonoBehaviour:
   m_Name: NpcDialogueChild
   m_EditorClassIdentifier: Assembly-CSharp::NpcDialogueSO
   npcId: child-npc
-  npcDisplayName: Child
+  npcDisplayName: "Child"
   portrait: {fileID: 0}
   entries:
-  - entryId: first-talk
+  - entryId: "first-talk"
     requiredState: 0
-    requiredFlag: 
+    requiredFlag: ""
     requiredItem: {fileID: 0}
     lines:
-    - speaker: 0
-      text: I am a yellow NPC.
     - speaker: 1
-      text: I am a Player.
+      text: "What are you doing hiding here?"
+    - speaker: 1
+      text: "Please tell me that isn’t part of the train you’re holding."
     - speaker: 0
-      text: I have a test item.
+      text: "They were always away—my dad at work, my mom sad without him."
+    - speaker: 0
+      text: "So I wanted to get something of value. Something that’d make them see me, make me matter…"
+    - speaker: 1
+      text: "Oh, kid… They loved you and they miss you so much."
+    - speaker: 1
+      text: "You know you matter, with or without anything, just the way you are."
     actions:
     - type: 6
-      stringValue: Here's the test Item
-      item: {fileID: 11400000, guid: a23976eff82f64965bcd30843d1b0d8a, type: 2}
-      nextNpcState: 1
+      stringValue: ""
+      item: {fileID: 11400000, guid: 37658423e2dae4ad79ef6d85c50c7caf, type: 2}
+      nextNpcState: 0
     - type: 4
-      stringValue: 
+      stringValue: ""
       item: {fileID: 0}
-      nextNpcState: 1
-  - entryId: summary
-    requiredState: 1
-    requiredFlag: 
+      nextNpcState: 5
+  - entryId: "completed"
+    requiredState: 5
+    requiredFlag: ""
     requiredItem: {fileID: 0}
-    lines:
-    - speaker: 0
-      text: Nice to see you again.
+    lines: []
     actions: []
   expectedDroppedItem: {fileID: 0}
   correctItemDropDialogue:
-    entryId: 
-    requiredState: 0
-    requiredFlag: 
+    entryId: "correct-item-drop"
+    requiredState: 2
+    requiredFlag: ""
     requiredItem: {fileID: 0}
     lines: []
     actions: []
   incorrectItemDropDialogue:
-    entryId: 
-    requiredState: 0
-    requiredFlag: 
+    entryId: "incorrect-item-drop"
+    requiredState: 2
+    requiredFlag: ""
     requiredItem: {fileID: 0}
     lines: []
     actions: []

@@ -24,7 +24,8 @@ public enum DialogueActionType
 public enum DialogueSpeaker
 {
     Npc,
-    Player
+    Player,
+    System
 }
 
 [CreateAssetMenu(menuName = "Game/Dialogue/NPC Dialogue", fileName = "NpcDialogue")]

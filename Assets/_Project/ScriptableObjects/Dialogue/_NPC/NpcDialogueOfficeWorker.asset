@@ -13,49 +13,91 @@ MonoBehaviour:
   m_Name: NpcDialogueOfficeWorker
   m_EditorClassIdentifier: Assembly-CSharp::NpcDialogueSO
   npcId: office-worker-npc
-  npcDisplayName: Office Worker
+  npcDisplayName: "Office Worker"
   portrait: {fileID: 0}
   entries:
-  - entryId: first-talk
+  - entryId: "first-talk"
     requiredState: 0
-    requiredFlag: 
+    requiredFlag: ""
     requiredItem: {fileID: 0}
     lines:
-    - speaker: 0
-      text: I am a yellow NPC.
     - speaker: 1
-      text: I am a Player.
+      text: "Excuse…"
     - speaker: 0
-      text: I have a test item.
+      text: "I’m sorry, but I’m rather busy."
+    - speaker: 1
+      text: "This can’t wait…"
+    - speaker: 0
+      text: "I am a serious person, young lady. I need to take care of my family."
+    - speaker: 0
+      text: "Unlike some people, I have deadlines to meet."
     actions:
-    - type: 6
-      stringValue: Here's the test Item
-      item: {fileID: 11400000, guid: a23976eff82f64965bcd30843d1b0d8a, type: 2}
-      nextNpcState: 1
     - type: 4
-      stringValue: 
+      stringValue: ""
       item: {fileID: 0}
-      nextNpcState: 1
-  - entryId: summary
-    requiredState: 1
-    requiredFlag: 
+      nextNpcState: 2
+  - entryId: "waiting-for-item"
+    requiredState: 2
+    requiredFlag: ""
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: Nice to see you again.
+      text: "Need to finish this first."
     actions: []
-  expectedDroppedItem: {fileID: 0}
+  - entryId: "completed"
+    requiredState: 5
+    requiredFlag: ""
+    requiredItem: {fileID: 0}
+    lines:
+    - speaker: 0
+      text: "What have I done?!"
+    actions: []
+  expectedDroppedItem: {fileID: 11400000, guid: d94b6fda5eff342129682c774ac21818, type: 2}
   correctItemDropDialogue:
-    entryId: 
-    requiredState: 0
-    requiredFlag: 
+    entryId: "correct-item-drop"
+    requiredState: 2
+    requiredFlag: ""
     requiredItem: {fileID: 0}
-    lines: []
-    actions: []
+    lines:
+    - speaker: 1
+      text: "Since time is your department…"
+    - speaker: 0
+      text: "Is this… I can’t believe it… It’s our son’s watch! Oh, this brings back so many memories…"
+    - speaker: 0
+      text: "..."
+    - speaker: 0
+      text: "Although, I wish there were more memories we made together…"
+    - speaker: 0
+      text: "I kept telling myself I was working for them."
+    - speaker: 0
+      text: "Late nights. Weekends. One more promotion. One more project."
+    - speaker: 0
+      text: "My little boy… I miss him so much."
+    - speaker: 0
+      text: "How did my wife deal with this? I don’t even know!"
+    - speaker: 0
+      text: "She needed me, and I hid myself in the office day and night, buried myself under all these folders. What have I done?!"
+    - speaker: 0
+      text: "No more work! Take this away from me."
+    actions:
+    - type: 3
+      stringValue: ""
+      item: {fileID: 11400000, guid: d94b6fda5eff342129682c774ac21818, type: 2}
+      nextNpcState: 0
+    - type: 6
+      stringValue: ""
+      item: {fileID: 11400000, guid: e98d9d804f61b4e1a93748f563957296, type: 2}
+      nextNpcState: 0
+    - type: 4
+      stringValue: ""
+      item: {fileID: 0}
+      nextNpcState: 5
   incorrectItemDropDialogue:
-    entryId: 
-    requiredState: 0
-    requiredFlag: 
+    entryId: "incorrect-item-drop"
+    requiredState: 2
+    requiredFlag: ""
     requiredItem: {fileID: 0}
-    lines: []
+    lines:
+    - speaker: 0
+      text: "I don’t have time for this."
     actions: []

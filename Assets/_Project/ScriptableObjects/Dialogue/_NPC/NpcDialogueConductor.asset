@@ -13,49 +13,109 @@ MonoBehaviour:
   m_Name: NpcDialogueConductor
   m_EditorClassIdentifier: Assembly-CSharp::NpcDialogueSO
   npcId: conductor-npc
-  npcDisplayName: Conductor
+  npcDisplayName: "Conductor"
   portrait: {fileID: 0}
   entries:
-  - entryId: first-talk
+  - entryId: "first-talk"
     requiredState: 0
-    requiredFlag: 
+    requiredFlag: ""
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: I am a yellow NPC.
+      text: "Got your ticket?"
     - speaker: 1
-      text: I am a Player.
+      text: "Yes! Sorry, no time for this. I…"
     - speaker: 0
-      text: I have a test item.
+      text: "Time, eh? Spent my whole life making sure trains ran on it. You keep the railway on schedule long enough, and life slips right past the platform."
+    - speaker: 0
+      text: "Trains are always shaking, so I got the shakes, too, in the end. No wonder."
+    - speaker: 0
+      text: "And what did my good-for-nothing son do? Told me to stop working! Told me he’s so famous now, he can take care of me!"
+    - speaker: 1
+      text: "That’s great, actually, isn’t it? Listen…"
+    - speaker: 0
+      text: "Ha! But I knew him for a quitter. Didn’t stick to no rules. Left his steady job on trains, and ‘course he left me, too."
+    - speaker: 0
+      text: "Dead! I’m dead to him, just like he is dead to me!"
+    - speaker: 0
+      text: "Now, I need rest! Let me sleep!"
     actions:
-    - type: 6
-      stringValue: Here's the test Item
-      item: {fileID: 11400000, guid: a23976eff82f64965bcd30843d1b0d8a, type: 2}
-      nextNpcState: 1
     - type: 4
-      stringValue: 
+      stringValue: ""
       item: {fileID: 0}
       nextNpcState: 1
-  - entryId: summary
+  - entryId: "sleeping"
     requiredState: 1
-    requiredFlag: 
+    requiredFlag: ""
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: Nice to see you again.
+      text: "Z-z-z…"
     actions: []
-  expectedDroppedItem: {fileID: 0}
+  - entryId: "after-song"
+    requiredState: 2
+    requiredFlag: ""
+    requiredItem: {fileID: 0}
+    lines:
+    - speaker: 0
+      text: "There’s something wrong, isn’t there?"
+    - speaker: 1
+      text: "Yes! Finally! I was going crazy here on my own."
+    - speaker: 0
+      text: "But… I can’t trust myself."
+    - speaker: 1
+      text: "Please. I’ve searched everywhere. Do you know how to open the compartment at the back?"
+    - speaker: 0
+      text: "No, no. My mind’s not what it used to be. Best stick to the rules."
+    - speaker: 0
+      text: "Can’t trust myself."
+    actions: []
+  - entryId: "completed"
+    requiredState: 5
+    requiredFlag: ""
+    requiredItem: {fileID: 0}
+    lines:
+    - speaker: 0
+      text: "What are you waiting for?"
+    actions: []
+  expectedDroppedItem: {fileID: 11400000, guid: c9782c6d627d14a0d8375d49f01cb3be, type: 2}
   correctItemDropDialogue:
-    entryId: 
-    requiredState: 0
-    requiredFlag: 
+    entryId: "correct-item-drop"
+    requiredState: 2
+    requiredFlag: ""
     requiredItem: {fileID: 0}
-    lines: []
-    actions: []
+    lines:
+    - speaker: 0
+      text: "What’s this? Is that… me?"
+    - speaker: 0
+      text: "I remember… I was so young when they took this, just like my grandson now…"
+    - speaker: 0
+      text: "What would he do, I wonder?"
+    - speaker: 1
+      text: "I’m sure you know."
+    - speaker: 0
+      text: "..."
+    - speaker: 0
+      text: "Here’s the key."
+    actions:
+    - type: 3
+      stringValue: ""
+      item: {fileID: 11400000, guid: c9782c6d627d14a0d8375d49f01cb3be, type: 2}
+      nextNpcState: 0
+    - type: 6
+      stringValue: ""
+      item: {fileID: 11400000, guid: 31b8a41c8ff104bf1900deb615d6928f, type: 2}
+      nextNpcState: 0
+    - type: 4
+      stringValue: ""
+      item: {fileID: 0}
+      nextNpcState: 5
   incorrectItemDropDialogue:
-    entryId: 
-    requiredState: 0
-    requiredFlag: 
+    entryId: "incorrect-item-drop"
+    requiredState: 2
+    requiredFlag: ""
     requiredItem: {fileID: 0}
-    lines: []
+    lines:
+    - speaker: 0
+      text: "Don’t you know the rules?"
     actions: []
