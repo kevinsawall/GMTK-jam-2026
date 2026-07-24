@@ -64,6 +64,8 @@ MonoBehaviour:
     - speaker: 0
       text: "La-la-la\u2026"
     actions: []
+  skipFirstTalkWhenFlagSet: 
+  skippedFirstTalkState: 2
   expectedDroppedItem: {fileID: 11400000, guid: 0841c90f2aa8b47d8b7eecfb063cca59, type: 2}
   correctItemDropDialogue:
     entryId: correct-item-drop

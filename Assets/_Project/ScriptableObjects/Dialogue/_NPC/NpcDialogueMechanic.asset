@@ -40,7 +40,7 @@ MonoBehaviour:
     actions:
     - type: 6
       stringValue: 
-      item: {fileID: 11400000, guid: 0841c90f2aa8b47d8b7eecfb063cca59, type: 2}
+      item: {fileID: 11400000, guid: e5189ca137c624c61899108b68fb2247, type: 2}
       nextNpcState: 0
     - type: 1
       stringValue: got-quest
@@ -66,6 +66,8 @@ MonoBehaviour:
     - speaker: 0
       text: "That\u2019s it! That\u2019s exactly what I need to repair this!"
     actions: []
+  skipFirstTalkWhenFlagSet: 
+  skippedFirstTalkState: 2
   expectedDroppedItem: {fileID: 11400000, guid: 37658423e2dae4ad79ef6d85c50c7caf, type: 2}
   correctItemDropDialogue:
     entryId: correct-item-drop

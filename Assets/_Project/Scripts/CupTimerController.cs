@@ -108,7 +108,6 @@ public sealed class CupTimerController : MonoBehaviour
         if (remainingSeconds > 0f) return;
 
         hasExpired = true;
-        StartCameraShake();
         timeoutSequence = StartCoroutine(RunTimeoutSequence());
     }
 
@@ -199,6 +198,9 @@ public sealed class CupTimerController : MonoBehaviour
             yield return null;
         }
 
+        // Do not begin the timeout presentation until any awarded item's
+        // notification has been acknowledged by the player.
+        StartCameraShake();
         yield return new WaitForSecondsRealtime(1.5f);
 
         if (ShowNextEndPhrase())

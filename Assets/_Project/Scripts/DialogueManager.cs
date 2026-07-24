@@ -72,6 +72,7 @@ public sealed class DialogueManager : MonoBehaviour
     {
         if (dialogue == null) return;
 
+        ApplyFirstTalkOverride(dialogue);
         DialogueEntry entry = FindMatchingEntry(dialogue);
         if (entry == null)
         {
@@ -81,6 +82,18 @@ public sealed class DialogueManager : MonoBehaviour
 
         advancesNaturalCounter = entry.requiredState == DialogueState.FirstTalk;
         StartDialogueEntry(dialogue, entry);
+    }
+
+    private void ApplyFirstTalkOverride(NpcDialogueSO dialogue)
+    {
+        if (GetNpcState(dialogue.npcId) != DialogueState.FirstTalk ||
+            string.IsNullOrWhiteSpace(dialogue.skipFirstTalkWhenFlagSet) ||
+            !HasFlag(dialogue.skipFirstTalkWhenFlagSet))
+        {
+            return;
+        }
+
+        SetNpcState(dialogue.npcId, dialogue.skippedFirstTalkState);
     }
 
     public bool StartItemDropDialogue(NpcDialogueSO dialogue, ItemData droppedItem)

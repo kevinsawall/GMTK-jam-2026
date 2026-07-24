@@ -36,6 +36,11 @@ public sealed class NpcDialogueSO : ScriptableObject
     public Sprite portrait;
     public List<DialogueEntry> entries = new();
 
+    [Header("First Talk Override")]
+    [Tooltip("If this flag is set before the NPC's first talk, skip to the selected state.")]
+    public string skipFirstTalkWhenFlagSet;
+    public DialogueState skippedFirstTalkState = DialogueState.WaitingForItem;
+
     [Header("Item Drag and Drop")]
     public ItemData expectedDroppedItem;
     public DialogueEntry correctItemDropDialogue;
