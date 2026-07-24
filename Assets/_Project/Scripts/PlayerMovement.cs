@@ -259,8 +259,9 @@ public sealed class PlayerMovement : MonoBehaviour
 
     private static bool IsMovementBlocked()
     {
+        if (PauseMenuController.IsPaused) return true;
         if (DialogueManager.Instance != null && DialogueManager.Instance.IsOpen) return true;
-        if (StartCutsceneController.IsPlaying) return true;
+        if (CutsceneController.IsStartGamePlaying) return true;
         if (CupTimerController.Instance != null && CupTimerController.Instance.IsRestartSequencePlaying) return true;
         if (CupTimerController.Instance != null && CupTimerController.Instance.IsCutscenePlaying) return true;
         return ItemNotification.Instance != null && ItemNotification.Instance.IsVisible;

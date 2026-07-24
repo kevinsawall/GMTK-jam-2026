@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b39f30a5c9a46f5a147d5c1f2f4d10b, type: 3}
+  m_Name: NpcDialogueChild
+  m_EditorClassIdentifier: Assembly-CSharp::NpcDialogueSO
+  npcId: child-npc
+  npcDisplayName: Child
+  portrait: {fileID: 0}
+  entries:
+  - entryId: first-talk
+    requiredState: 0
+    requiredFlag: 
+    requiredItem: {fileID: 0}
+    lines:
+    - speaker: 0
+      text: I am a yellow NPC.
+    - speaker: 1
+      text: I am a Player.
+    - speaker: 0
+      text: I have a test item.
+    actions:
+    - type: 6
+      stringValue: Here's the test Item
+      item: {fileID: 11400000, guid: a23976eff82f64965bcd30843d1b0d8a, type: 2}
+      nextNpcState: 1
+    - type: 4
+      stringValue: 
+      item: {fileID: 0}
+      nextNpcState: 1
+  - entryId: summary
+    requiredState: 1
+    requiredFlag: 
+    requiredItem: {fileID: 0}
+    lines:
+    - speaker: 0
+      text: Nice to see you again.
+    actions: []
+  expectedDroppedItem: {fileID: 0}
+  correctItemDropDialogue:
+    entryId: 
+    requiredState: 0
+    requiredFlag: 
+    requiredItem: {fileID: 0}
+    lines: []
+    actions: []
+  incorrectItemDropDialogue:
+    entryId: 
+    requiredState: 0
+    requiredFlag: 
+    requiredItem: {fileID: 0}
+    lines: []
+    actions: []

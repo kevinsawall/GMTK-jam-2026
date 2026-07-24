@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,10 +7,13 @@ using UnityEngine.EventSystems;
 public sealed class ItemNotification : MonoBehaviour, IPointerClickHandler
 {
     public static ItemNotification Instance { get; private set; }
+    public static bool IsAnyVisible { get; private set; }
+    public static event Action<bool> AnyVisibilityChanged;
 
     [SerializeField] private TMP_Text notificationText;
 
     public bool IsVisible => gameObject.activeSelf;
+    public event Action<bool> VisibilityChanged;
 
     private void Awake()
     {
@@ -20,6 +24,20 @@ public sealed class ItemNotification : MonoBehaviour, IPointerClickHandler
     private void OnDestroy()
     {
         if (Instance == this) Instance = null;
+    }
+
+    private void OnEnable()
+    {
+        IsAnyVisible = true;
+        VisibilityChanged?.Invoke(true);
+        AnyVisibilityChanged?.Invoke(true);
+    }
+
+    private void OnDisable()
+    {
+        IsAnyVisible = false;
+        VisibilityChanged?.Invoke(false);
+        AnyVisibilityChanged?.Invoke(false);
     }
 
     public void Show(ItemData item)

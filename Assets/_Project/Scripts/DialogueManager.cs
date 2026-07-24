@@ -14,11 +14,15 @@ public sealed class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance { get; private set; }
     public static event Action NaturalCounterActionPerformed;
+    public static event Action<NpcDialogueSO> DialogueStarted;
+    public static event Action<NpcDialogueSO, DialogueState> DialogueClosed;
+    public static event Action PlayerDialogueStarted;
+    public static event Action PlayerDialogueClosed;
 
     [SerializeField] private TMP_Text speakerNameText;
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private Button continueButton;
-    [SerializeField] private string playerDisplayName = "Player";
+    [SerializeField] private string playerDisplayName = "You";
     [SerializeField, Min(1f)] private float charactersPerSecond = 45f;
 
     private readonly Dictionary<string, DialogueState> npcStates = new();
@@ -113,6 +117,7 @@ public sealed class DialogueManager : MonoBehaviour
         };
         currentLineIndex = 0;
         gameObject.SetActive(true);
+        PlayerDialogueStarted?.Invoke();
         ShowCurrentLine();
     }
 
@@ -173,14 +178,24 @@ public sealed class DialogueManager : MonoBehaviour
         DialogueState state = GetNpcState(dialogue.npcId);
         if (dialogue.entries == null) return null;
 
+        // Clicking an NPC who is waiting for an item always plays its waiting line.
+        // Item validation belongs exclusively to StartItemDropDialogue.
+        if (state == DialogueState.WaitingForItem)
+        {
+            foreach (DialogueEntry entry in dialogue.entries)
+            {
+                if (entry != null && entry.requiredState == state && HasFlag(entry.requiredFlag))
+                {
+                    return entry;
+                }
+            }
+
+            return null;
+        }
+
         foreach (DialogueEntry entry in dialogue.entries)
         {
             if (entry == null)
-            {
-                continue;
-            }
-
-            if (state == DialogueState.WaitingForItem && entry.requiredItem != null)
             {
                 continue;
             }
@@ -217,6 +232,7 @@ public sealed class DialogueManager : MonoBehaviour
         currentEntry = entry;
         currentLineIndex = 0;
         gameObject.SetActive(true);
+        DialogueStarted?.Invoke(dialogue);
         speakerNameText.text = dialogue.npcDisplayName;
         ShowCurrentLine();
     }
@@ -279,11 +295,27 @@ public sealed class DialogueManager : MonoBehaviour
     private void CloseDialogue()
     {
         if (typewriter != null) StopCoroutine(typewriter);
+
+        NpcDialogueSO finishedDialogue = currentDialogue;
+        bool wasPlayerDialogue = finishedDialogue == null;
+        DialogueState finishedState = currentEntry != null
+            ? currentEntry.requiredState
+            : DialogueState.FirstTalk;
+
         typewriter = null;
         isTyping = false;
         currentDialogue = null;
         currentEntry = null;
         gameObject.SetActive(false);
+
+        if (finishedDialogue != null)
+        {
+            DialogueClosed?.Invoke(finishedDialogue, finishedState);
+        }
+        else if (wasPlayerDialogue)
+        {
+            PlayerDialogueClosed?.Invoke();
+        }
     }
 
     private static InventoryManager GetInventoryManager()
