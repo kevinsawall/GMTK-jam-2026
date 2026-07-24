@@ -40,7 +40,7 @@ MonoBehaviour:
     actions:
     - type: 6
       stringValue: 
-      item: {fileID: 11400000, guid: 37658423e2dae4ad79ef6d85c50c7caf, type: 2}
+      item: {fileID: 11400000, guid: 0841c90f2aa8b47d8b7eecfb063cca59, type: 2}
       nextNpcState: 0
     - type: 1
       stringValue: got-quest

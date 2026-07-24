@@ -7,7 +7,8 @@ public enum NpcTooltipDisplayMode
     Always,
     AfterFirstDialogue,
     AfterFirstPlayerDialogue,
-    AfterFlag
+    AfterFlag,
+    StartSinging
 }
 
 public enum NpcTooltipHideCondition
@@ -22,6 +23,8 @@ public enum NpcTooltipHideCondition
 [RequireComponent(typeof(Canvas), typeof(CanvasGroup))]
 public sealed class NpcTooltipTrigger : MonoBehaviour
 {
+    private const string StartSingingFlag = "start-singing";
+
     [SerializeField] private NpcTooltipDisplayMode displayMode = NpcTooltipDisplayMode.AfterFirstDialogue;
     [SerializeField] private string requiredFlag = "wake_conductor";
     [SerializeField] private NpcTooltipHideCondition hideCondition = NpcTooltipHideCondition.None;
@@ -106,7 +109,8 @@ public sealed class NpcTooltipTrigger : MonoBehaviour
             return;
         }
 
-        if (displayMode == NpcTooltipDisplayMode.AfterFlag && flag == requiredFlag)
+        if ((displayMode == NpcTooltipDisplayMode.AfterFlag && flag == requiredFlag) ||
+            (displayMode == NpcTooltipDisplayMode.StartSinging && flag == StartSingingFlag))
         {
             RefreshVisibility(delayed: true);
         }
@@ -129,7 +133,9 @@ public sealed class NpcTooltipTrigger : MonoBehaviour
                           (displayMode == NpcTooltipDisplayMode.AfterFirstDialogue && hasFinishedFirstDialogue) ||
                           (displayMode == NpcTooltipDisplayMode.AfterFirstPlayerDialogue && hasFinishedFirstPlayerDialogue) ||
                           (displayMode == NpcTooltipDisplayMode.AfterFlag &&
-                           DialogueManager.Instance != null && DialogueManager.Instance.HasFlag(requiredFlag));
+                           DialogueManager.Instance != null && DialogueManager.Instance.HasFlag(requiredFlag)) ||
+                          (displayMode == NpcTooltipDisplayMode.StartSinging &&
+                           DialogueManager.Instance != null && DialogueManager.Instance.HasFlag(StartSingingFlag));
 
         if (!shouldShow)
         {
