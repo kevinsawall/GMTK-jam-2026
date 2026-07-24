@@ -31,10 +31,6 @@ MonoBehaviour:
     - speaker: 0
       text: They loved me! What more does a man need?
     actions:
-    - type: 6
-      stringValue: 
-      item: {fileID: 11400000, guid: 31b8a41c8ff104bf1900deb615d6928f, type: 2}
-      nextNpcState: 2
     - type: 4
       stringValue: 
       item: {fileID: 0}

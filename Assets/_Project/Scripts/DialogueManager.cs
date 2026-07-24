@@ -12,6 +12,9 @@ using UnityEngine.UI;
 /// </summary>
 public sealed class DialogueManager : MonoBehaviour
 {
+    private const string ConductorNpcId = "conductor-npc";
+    private const string StartSingingFlag = "start-singing";
+
     public static DialogueManager Instance { get; private set; }
     public static event Action NaturalCounterActionPerformed;
     public static event Action<string> FlagSet;
@@ -50,10 +53,12 @@ public sealed class DialogueManager : MonoBehaviour
         Instance = this;
         FindPanelReferences();
         continueButton?.onClick.AddListener(Continue);
+        FlagSet += HandleFlagSet;
     }
 
     private void OnDestroy()
     {
+        FlagSet -= HandleFlagSet;
         if (Instance == this) Instance = null;
     }
 
@@ -192,6 +197,17 @@ public sealed class DialogueManager : MonoBehaviour
 
         FlagSet?.Invoke(flag);
     }
+
+    private void HandleFlagSet(string flag)
+    {
+        if (flag != StartSingingFlag || GetNpcState(ConductorNpcId) != DialogueState.FirstTalk)
+        {
+            return;
+        }
+
+        SetNpcState(ConductorNpcId, DialogueState.WaitingForItem);
+    }
+
     public bool HasClue(string clueId) => !string.IsNullOrWhiteSpace(clueId) && clues.Contains(clueId);
     public bool HasItem(ItemData item) => item == null || GetInventoryManager()?.HasItem(item) == true;
     public void GiveItem(ItemData item) => GetInventoryManager()?.AddItem(item);

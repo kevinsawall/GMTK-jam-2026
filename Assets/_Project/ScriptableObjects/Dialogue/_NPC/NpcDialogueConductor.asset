@@ -15,7 +15,7 @@ MonoBehaviour:
   npcId: conductor-npc
   npcDisplayName: Conductor
   portrait: {fileID: 0}
-  skipFirstTalkWhenFlagSet: wake-conductor
+  skipFirstTalkWhenFlagSet: start-singing
   skippedFirstTalkState: 2
   entries:
   - entryId: first-talk

@@ -99,11 +99,11 @@ MonoBehaviour:
       item: {fileID: 0}
       nextNpcState: 5
     - type: 1
-      stringValue: wake_conductor
+      stringValue: start-singing
       item: {fileID: 0}
       nextNpcState: 5
     - type: 1
-      stringValue: start-singing
+      stringValue: wake_conductor
       item: {fileID: 0}
       nextNpcState: 5
   incorrectItemDropDialogue:
