@@ -107,21 +107,36 @@ public sealed class DialogueManager : MonoBehaviour
 
     public void ShowPlayerPhrase(string phrase)
     {
-        if (string.IsNullOrWhiteSpace(phrase)) return;
+        ShowPlayerPhrases(new[] { phrase });
+    }
+
+    /// <summary>Shows consecutive player lines in one dialogue panel session.</summary>
+    public bool ShowPlayerPhrases(IReadOnlyList<string> phrases)
+    {
+        if (phrases == null || IsOpen) return false;
+
+        List<DialogueLine> lines = new();
+        foreach (string phrase in phrases)
+        {
+            if (!string.IsNullOrWhiteSpace(phrase))
+            {
+                lines.Add(new DialogueLine { speaker = DialogueSpeaker.Player, text = phrase });
+            }
+        }
+
+        if (lines.Count == 0) return false;
 
         currentDialogue = null;
         currentEntry = new DialogueEntry
         {
-            lines = new List<DialogueLine>
-            {
-                new() { speaker = DialogueSpeaker.Player, text = phrase }
-            }
+            lines = lines
         };
         advancesNaturalCounter = false;
         currentLineIndex = 0;
         gameObject.SetActive(true);
         PlayerDialogueStarted?.Invoke();
         ShowCurrentLine();
+        return true;
     }
 
     public void Continue()

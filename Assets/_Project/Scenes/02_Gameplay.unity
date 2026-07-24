@@ -7287,12 +7287,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CupTimerController
   timerMode: 1
   DurationSeconds: 3
+  playerFirstGameStartPhrases:
+  - Ouch! Piping hot.
+  - "Huh? But it was cold\u2026"
+  - "Wait\u2026 Did the train crash?!"
   playerStartPhrases:
-  - Ouch! This tea is piping hot.
-  - Start phrase 1
+  - Second life!
+  - Here we go again.
+  - "\u2026another chance. "
+  - One more time.
+  - Argh!
   playerEndPhrases:
-  - End phrase
-  - End phrase 2
+  - "What\u2019s going on?"
+  - "Oh-no-no-no\u2026"
+  - "I just need\u2026"
+  - "I\u2019m not done yet!"
+  - "Do not go gentle\u2026"
   notification: {fileID: 1791256112}
 --- !u!1 &1222053692
 GameObject:

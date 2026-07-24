@@ -19,6 +19,8 @@ public sealed class CupTimerController : MonoBehaviour
 
     [SerializeField] private CupTimerMode timerMode = CupTimerMode.Sec;
     [SerializeField, Min(1f)] private float DurationSeconds = 60f;
+    [Header("Player Phrases")]
+    [SerializeField, TextArea(2, 5)] private List<string> playerFirstGameStartPhrases = new();
     [SerializeField, TextArea(2, 5)] private List<string> playerStartPhrases = new();
     [SerializeField, TextArea(2, 5)] private List<string> playerEndPhrases = new();
     [SerializeField] private ItemNotification notification;
@@ -63,14 +65,14 @@ public sealed class CupTimerController : MonoBehaviour
         isItemNotificationVisible = notification != null && notification.IsVisible;
         if (notification != null) notification.VisibilityChanged += OnItemNotificationVisibilityChanged;
         DialogueManager.NaturalCounterActionPerformed += OnNaturalCounterActionPerformed;
-        CutsceneController.StartGameFinished += ShowNextStartPhrase;
+        CutsceneController.StartGameFinished += ShowFirstGameStartPhrases;
     }
 
     private void OnDestroy()
     {
         if (notification != null) notification.VisibilityChanged -= OnItemNotificationVisibilityChanged;
         DialogueManager.NaturalCounterActionPerformed -= OnNaturalCounterActionPerformed;
-        CutsceneController.StartGameFinished -= ShowNextStartPhrase;
+        CutsceneController.StartGameFinished -= ShowFirstGameStartPhrases;
         if (Instance == this) Instance = null;
     }
 
@@ -247,36 +249,46 @@ public sealed class CupTimerController : MonoBehaviour
         cameraFollow?.StopHorizontalShakeAndResumeFollow();
     }
 
+    private void ShowFirstGameStartPhrases()
+    {
+        DialogueManager manager = DialogueManager.Instance ??
+            Object.FindFirstObjectByType<DialogueManager>(FindObjectsInactive.Include);
+        manager?.ShowPlayerPhrases(playerFirstGameStartPhrases);
+    }
+
     private void ShowNextStartPhrase()
     {
-        if (playerStartPhrases == null || playerStartPhrases.Count == 0) return;
+        if (!TryGetNextPhrase(playerStartPhrases, ref nextStartPhraseIndex, out string phrase)) return;
 
-        while (nextStartPhraseIndex < playerStartPhrases.Count)
-        {
-            string phrase = playerStartPhrases[nextStartPhraseIndex++];
-            if (string.IsNullOrWhiteSpace(phrase)) continue;
-
-            DialogueManager manager = DialogueManager.Instance ??
-                Object.FindFirstObjectByType<DialogueManager>(FindObjectsInactive.Include);
-            manager?.ShowPlayerPhrase(phrase);
-            return;
-        }
+        DialogueManager manager = DialogueManager.Instance ??
+            Object.FindFirstObjectByType<DialogueManager>(FindObjectsInactive.Include);
+        manager?.ShowPlayerPhrase(phrase);
     }
 
     private bool ShowNextEndPhrase()
     {
-        if (playerEndPhrases == null || playerEndPhrases.Count == 0) return false;
+        if (!TryGetNextPhrase(playerEndPhrases, ref nextEndPhraseIndex, out string phrase)) return false;
 
-        while (nextEndPhraseIndex < playerEndPhrases.Count)
+        DialogueManager manager = DialogueManager.Instance ??
+            Object.FindFirstObjectByType<DialogueManager>(FindObjectsInactive.Include);
+        if (manager == null) return false;
+
+        manager.ShowPlayerPhrase(phrase);
+        return true;
+    }
+
+    private static bool TryGetNextPhrase(List<string> phrases, ref int nextPhraseIndex, out string phrase)
+    {
+        phrase = null;
+        if (phrases == null || phrases.Count == 0) return false;
+
+        for (int attempt = 0; attempt < phrases.Count; attempt++)
         {
-            string phrase = playerEndPhrases[nextEndPhraseIndex++];
-            if (string.IsNullOrWhiteSpace(phrase)) continue;
+            nextPhraseIndex %= phrases.Count;
+            string candidate = phrases[nextPhraseIndex++];
+            if (string.IsNullOrWhiteSpace(candidate)) continue;
 
-            DialogueManager manager = DialogueManager.Instance ??
-                Object.FindFirstObjectByType<DialogueManager>(FindObjectsInactive.Include);
-            if (manager == null) return false;
-
-            manager.ShowPlayerPhrase(phrase);
+            phrase = candidate;
             return true;
         }
 
