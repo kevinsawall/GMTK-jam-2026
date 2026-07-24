@@ -62,20 +62,20 @@ public sealed class CupTimerController : MonoBehaviour
         isItemNotificationVisible = notification != null && notification.IsVisible;
         if (notification != null) notification.VisibilityChanged += OnItemNotificationVisibilityChanged;
         DialogueManager.NaturalCounterActionPerformed += OnNaturalCounterActionPerformed;
-        StartCutsceneController.Finished += ShowNextStartPhrase;
+        CutsceneController.StartGameFinished += ShowNextStartPhrase;
     }
 
     private void OnDestroy()
     {
         if (notification != null) notification.VisibilityChanged -= OnItemNotificationVisibilityChanged;
         DialogueManager.NaturalCounterActionPerformed -= OnNaturalCounterActionPerformed;
-        StartCutsceneController.Finished -= ShowNextStartPhrase;
+        CutsceneController.StartGameFinished -= ShowNextStartPhrase;
         if (Instance == this) Instance = null;
     }
 
     private void Update()
     {
-        bool gameplayHasStarted = !StartCutsceneController.IsPlaying;
+        bool gameplayHasStarted = !CutsceneController.IsStartGamePlaying;
         bool isModalUiVisible = IsModalUiVisible();
         bool canCountDown = gameplayHasStarted && !isModalUiVisible && !IsCutscenePlaying;
         SetVisibility(canCountDown && !hasExpired);
