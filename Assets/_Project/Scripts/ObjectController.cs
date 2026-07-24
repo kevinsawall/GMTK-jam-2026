@@ -4,6 +4,8 @@ public sealed class ObjectController : MonoBehaviour, IInteractable
 {
     [SerializeField] private InteractObject interactObject;
     [SerializeField, Min(1)] private int interactionDistance = 1;
+    [Header("Flag Trigger")]
+    [SerializeField] private string deactivateOnFlag;
     [Header("Hover Outline")]
     [SerializeField] private Material hoverOutlineMaterial;
 
@@ -24,6 +26,13 @@ public sealed class ObjectController : MonoBehaviour, IInteractable
 
     private void OnEnable()
     {
+        DialogueManager.FlagSet += HandleFlagSet;
+        if (ShouldDeactivateForFlag())
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         if (outlineRenderers == null) return;
 
         DialogueManager.DialogueStarted += RefreshHoverOutline;
@@ -50,6 +59,7 @@ public sealed class ObjectController : MonoBehaviour, IInteractable
 
     private void OnDisable()
     {
+        DialogueManager.FlagSet -= HandleFlagSet;
         if (outlineRenderers == null) return;
 
         DialogueManager.DialogueStarted -= RefreshHoverOutline;
@@ -60,6 +70,21 @@ public sealed class ObjectController : MonoBehaviour, IInteractable
         PauseMenuController.PauseStateChanged -= RefreshHoverOutline;
         CutsceneController.StartGameStateChanged -= RefreshHoverOutline;
         SetHoverOutlineVisible(false);
+    }
+
+    private void HandleFlagSet(string flag)
+    {
+        if (!string.IsNullOrWhiteSpace(deactivateOnFlag) && flag == deactivateOnFlag)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    private bool ShouldDeactivateForFlag()
+    {
+        return !string.IsNullOrWhiteSpace(deactivateOnFlag) &&
+               DialogueManager.Instance != null &&
+               DialogueManager.Instance.HasFlag(deactivateOnFlag);
     }
 
     private void CacheOutlineRenderers()

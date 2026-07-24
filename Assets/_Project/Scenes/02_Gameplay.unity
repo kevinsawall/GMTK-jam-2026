@@ -1150,6 +1150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectController
   interactObject: {fileID: 11400000, guid: 8c6267a91e244423dace92d8535e2f2a, type: 2}
   interactionDistance: 2
+  deactivateOnFlag: open-door
   hoverOutlineMaterial: {fileID: 2100000, guid: 4bb7653d21864d1f9a2e4d8c6e3a1f72, type: 2}
 --- !u!1 &147350126
 GameObject:
