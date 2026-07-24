@@ -1,16 +1,33 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public sealed class GameManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static GameManager Instance { get; private set; }
+
+    [SerializeField] private List<CutsceneController> cutscenes = new();
+
+    private void Awake()
     {
-        
+        Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        PlayCutscene(CutsceneType.StartGame);
+    }
+
+    public bool PlayCutscene(CutsceneType cutsceneType)
+    {
+        foreach (CutsceneController cutscene in cutscenes)
+        {
+            if (cutscene == null || cutscene.Type != cutsceneType) continue;
+
+            cutscene.gameObject.SetActive(true);
+            return true;
+        }
+
+        Debug.LogWarning($"No {cutsceneType} cutscene is assigned to the GameManager.", this);
+        return false;
     }
 }

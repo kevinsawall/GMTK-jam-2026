@@ -7846,7 +7846,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1634994277
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7931,14 +7931,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneController
   cutsceneType: 0
   totalDurationSeconds: 10
-  fadeOutSeconds: 3
+  fadeOutSeconds: 2
   titleText: {fileID: 960342099}
   titleTextOverride: 'Oh, the tea is cold now.
 
     I can finally drink it.'
-  titleAppearDelaySeconds: 2
+  titleAppearDelaySeconds: 1.5
   titleFadeInSeconds: 2
-  titleVisibleSeconds: 3
+  titleVisibleSeconds: 2
+  titleFadeOutSeconds: 1
 --- !u!1 &1645469195
 GameObject:
   m_ObjectHideFlags: 0
@@ -10013,6 +10014,52 @@ Transform:
   - {fileID: 203832716}
   m_Father: {fileID: 2002447361}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1900000000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1900000001}
+  - component: {fileID: 1900000002}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1900000001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900000000}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1900000002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900000000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d30baa6e69aac4b35a98c791688ca246, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  cutscenes:
+  - {fileID: 1634994281}
 --- !u!1 &1907071184
 GameObject:
   m_ObjectHideFlags: 0
@@ -10479,6 +10526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d30baa6e69aac4b35a98c791688ca246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  cutscenes: []
 --- !u!1 &2097407427
 GameObject:
   m_ObjectHideFlags: 0
@@ -11232,3 +11280,4 @@ SceneRoots:
   - {fileID: 1177342064}
   - {fileID: 1098391855}
   - {fileID: 2096772051}
+  - {fileID: 1900000001}

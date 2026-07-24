@@ -25,6 +25,7 @@ public sealed class CutsceneController : MonoBehaviour
     [SerializeField, Min(0f)] private float titleAppearDelaySeconds = 1f;
     [SerializeField, Min(0f)] private float titleFadeInSeconds = 1f;
     [SerializeField, Min(0f)] private float titleVisibleSeconds = 3f;
+    [SerializeField, Min(0f)] private float titleFadeOutSeconds;
 
     private static bool isStartGamePlaying;
     private CanvasGroup canvasGroup;
@@ -116,7 +117,15 @@ public sealed class CutsceneController : MonoBehaviour
     private IEnumerator HideTitleAfterDisplay()
     {
         yield return new WaitForSecondsRealtime(titleFadeInSeconds + titleVisibleSeconds);
-        if (titleCanvasGroup != null) titleCanvasGroup.alpha = 0f;
+        if (titleCanvasGroup == null) yield break;
+
+        if (titleFadeOutSeconds <= 0f)
+        {
+            titleCanvasGroup.alpha = 0f;
+            yield break;
+        }
+
+        LeanTween.alphaCanvas(titleCanvasGroup, 0f, titleFadeOutSeconds).setIgnoreTimeScale(true);
     }
 
     private void FadeBackgroundOut()

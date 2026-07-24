@@ -12,6 +12,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9366a4e0-1bf1-4e8d-8961-42e77efbb039" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/Assets/_Project/Scenes/02_Gameplay.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scenes/02_Gameplay.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/CutsceneController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/CutsceneController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scripts/GameManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +100,7 @@
       <option name="presentableId" value="Default" />
       <updated>1784780667989</updated>
       <workItem from="1784780669280" duration="5215000" />
-      <workItem from="1784866502402" duration="1477000" />
+      <workItem from="1784866502402" duration="2083000" />
     </task>
     <servers />
   </component>
