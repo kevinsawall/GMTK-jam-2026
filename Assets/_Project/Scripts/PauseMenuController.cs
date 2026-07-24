@@ -1,9 +1,13 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public sealed class PauseMenuController : MonoBehaviour
 {
+    public static bool IsPaused { get; private set; }
+    public static event Action<bool> PauseStateChanged;
+
     [SerializeField] private GameObject pauseMenuPanel;
     [SerializeField] private GameObject optionsPanel;
     [SerializeField] private string mainMenuSceneName = "01_MainMenu";
@@ -71,9 +75,11 @@ public sealed class PauseMenuController : MonoBehaviour
 
     private void SetPaused(bool isPaused)
     {
+        IsPaused = isPaused;
         pauseMenuPanel.SetActive(isPaused);
         optionsPanel.SetActive(false);
         Time.timeScale = isPaused ? 0f : 1f;
+        PauseStateChanged?.Invoke(isPaused);
     }
 
     private void BindOptionsBackButton()

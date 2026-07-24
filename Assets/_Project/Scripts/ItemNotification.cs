@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 public sealed class ItemNotification : MonoBehaviour, IPointerClickHandler
 {
     public static ItemNotification Instance { get; private set; }
+    public static bool IsAnyVisible { get; private set; }
+    public static event Action<bool> AnyVisibilityChanged;
 
     [SerializeField] private TMP_Text notificationText;
 
@@ -24,9 +26,19 @@ public sealed class ItemNotification : MonoBehaviour, IPointerClickHandler
         if (Instance == this) Instance = null;
     }
 
-    private void OnEnable() => VisibilityChanged?.Invoke(true);
+    private void OnEnable()
+    {
+        IsAnyVisible = true;
+        VisibilityChanged?.Invoke(true);
+        AnyVisibilityChanged?.Invoke(true);
+    }
 
-    private void OnDisable() => VisibilityChanged?.Invoke(false);
+    private void OnDisable()
+    {
+        IsAnyVisible = false;
+        VisibilityChanged?.Invoke(false);
+        AnyVisibilityChanged?.Invoke(false);
+    }
 
     public void Show(ItemData item)
     {

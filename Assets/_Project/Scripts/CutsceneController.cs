@@ -37,6 +37,7 @@ public sealed class CutsceneController : MonoBehaviour
 
     public static bool IsStartGamePlaying => isStartGamePlaying;
     public static event Action StartGameFinished;
+    public static event Action<bool> StartGameStateChanged;
     public bool IsPlaying => isPlaying;
     public CutsceneType Type => cutsceneType;
 
@@ -67,7 +68,11 @@ public sealed class CutsceneController : MonoBehaviour
     {
         hasFinished = false;
         isPlaying = true;
-        if (cutsceneType == CutsceneType.StartGame) isStartGamePlaying = true;
+        if (cutsceneType == CutsceneType.StartGame)
+        {
+            isStartGamePlaying = true;
+            StartGameStateChanged?.Invoke(true);
+        }
 
         SetBackgroundAlpha(1f);
         if (titleCanvasGroup != null) titleCanvasGroup.alpha = 0f;
@@ -80,7 +85,11 @@ public sealed class CutsceneController : MonoBehaviour
     private void OnDisable()
     {
         isPlaying = false;
-        if (!hasFinished && cutsceneType == CutsceneType.StartGame) isStartGamePlaying = false;
+        if (!hasFinished && cutsceneType == CutsceneType.StartGame)
+        {
+            isStartGamePlaying = false;
+            StartGameStateChanged?.Invoke(false);
+        }
     }
 
     private IEnumerator PlayCutscene()
@@ -156,6 +165,7 @@ public sealed class CutsceneController : MonoBehaviour
         if (cutsceneType == CutsceneType.StartGame)
         {
             isStartGamePlaying = false;
+            StartGameStateChanged?.Invoke(false);
             StartGameFinished?.Invoke();
         }
 

@@ -3,12 +3,11 @@ using UnityEngine;
 
 public enum DialogueState
 {
-    FirstTalk,
-    Summary,
-    WaitingForItem,
-    ItemGiven,
-    FinalTalk,
-    Completed
+    FirstTalk = 0,
+    Summary = 1,
+    WaitingForItem = 2,
+    // Keep this value so existing Completed dialogue assets remain valid.
+    Completed = 5
 }
 
 public enum DialogueActionType

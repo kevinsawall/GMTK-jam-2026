@@ -618,6 +618,7 @@ MonoBehaviour:
   playerMovement: {fileID: 7279695530631082702}
   interactObject: {fileID: 11400000, guid: 732ef152fd78e484aa61f366327208aa, type: 2}
   interactionDistance: 1
+  hoverOutlineMaterial: {fileID: 2100000, guid: 4bb7653d21864d1f9a2e4d8c6e3a1f72, type: 2}
 --- !u!114 &7279695530631082702
 MonoBehaviour:
   m_ObjectHideFlags: 0
