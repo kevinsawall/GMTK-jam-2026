@@ -4,7 +4,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "GMTK Jam/Interactions/Inspect", fileName = "InspectInteraction")]
 public sealed class InspectInteractObject : InteractObject
 {
+    [Header("Click and Correct Drop Phrases")]
     [SerializeField, TextArea(2, 5)] private List<string> playerPhrases = new();
+    [Header("Required Flag")]
+    [Tooltip("When assigned, the regular phrases play only after this story flag has been set.")]
+    [SerializeField] private string requiredFlag;
+    [Tooltip("Phrases played while the required flag has not been set.")]
+    [SerializeField, TextArea(2, 5)] private List<string> missingRequiredFlagPhrases = new();
     [Header("Item Drag and Drop")]
     [SerializeField] private ItemData expectedDroppedItem;
     [Tooltip("Optional story flag set after the expected item is dropped.")]
@@ -30,12 +36,6 @@ public sealed class InspectInteractObject : InteractObject
 
     private bool ShowNextPlayerPhrase(ObjectController controller, string flagToSet = null)
     {
-        if (playerPhrases == null || playerPhrases.Count == 0)
-        {
-            Debug.LogWarning("Inspect interaction has no player phrases assigned.", this);
-            return false;
-        }
-
         DialogueManager manager = DialogueManager.Instance ??
             Object.FindFirstObjectByType<DialogueManager>(FindObjectsInactive.Include);
         if (manager == null)
@@ -49,8 +49,20 @@ public sealed class InspectInteractObject : InteractObject
             manager.SetFlag(flagToSet);
         }
 
-        int phraseIndex = controller != null ? controller.GetNextInspectPhraseIndex(playerPhrases.Count) : 0;
-        manager.ShowPlayerPhrase(playerPhrases[phraseIndex]);
+        List<string> phrases = playerPhrases;
+        if (!string.IsNullOrWhiteSpace(requiredFlag) && !manager.HasFlag(requiredFlag))
+        {
+            phrases = missingRequiredFlagPhrases;
+        }
+
+        if (phrases == null || phrases.Count == 0)
+        {
+            Debug.LogWarning("Inspect interaction has no matching player phrases assigned.", this);
+            return false;
+        }
+
+        int phraseIndex = controller != null ? controller.GetNextInspectPhraseIndex(phrases.Count) : 0;
+        manager.ShowPlayerPhrase(phrases[phraseIndex]);
         return true;
     }
 
