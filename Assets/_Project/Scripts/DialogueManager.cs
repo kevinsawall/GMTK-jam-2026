@@ -14,6 +14,7 @@ public sealed class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance { get; private set; }
     public static event Action NaturalCounterActionPerformed;
+    public static event Action<string> FlagSet;
     public static event Action<NpcDialogueSO> DialogueStarted;
     public static event Action<NpcDialogueSO, DialogueState> DialogueClosed;
     public static event Action PlayerDialogueStarted;
@@ -157,7 +158,12 @@ public sealed class DialogueManager : MonoBehaviour
     }
 
     public bool HasFlag(string flag) => string.IsNullOrWhiteSpace(flag) || flags.Contains(flag);
-    public void SetFlag(string flag) { if (!string.IsNullOrWhiteSpace(flag)) flags.Add(flag); }
+    public void SetFlag(string flag)
+    {
+        if (string.IsNullOrWhiteSpace(flag) || !flags.Add(flag)) return;
+
+        FlagSet?.Invoke(flag);
+    }
     public bool HasClue(string clueId) => !string.IsNullOrWhiteSpace(clueId) && clues.Contains(clueId);
     public bool HasItem(ItemData item) => item == null || GetInventoryManager()?.HasItem(item) == true;
     public void GiveItem(ItemData item) => GetInventoryManager()?.AddItem(item);

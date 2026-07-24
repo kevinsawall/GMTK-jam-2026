@@ -179,7 +179,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Talk
+  m_text: Gah! So loud!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -400,7 +400,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 1.2}
-  m_SizeDelta: {x: 220, y: 60}
+  m_SizeDelta: {x: 300, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5521247504453363120
 Canvas:
@@ -491,7 +491,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8947e17fcd044e78a974b524ad177cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayMode: 0
+  displayMode: 4
+  requiredFlag: wake_conductor
   hideCondition: 0
   showDelay: 0.5
   fadeInDuration: 0.25

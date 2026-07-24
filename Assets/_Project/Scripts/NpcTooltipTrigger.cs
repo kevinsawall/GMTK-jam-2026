@@ -6,7 +6,8 @@ public enum NpcTooltipDisplayMode
     Never,
     Always,
     AfterFirstDialogue,
-    AfterFirstPlayerDialogue
+    AfterFirstPlayerDialogue,
+    AfterFlag
 }
 
 public enum NpcTooltipHideCondition
@@ -21,6 +22,7 @@ public enum NpcTooltipHideCondition
 public sealed class NpcTooltipTrigger : MonoBehaviour
 {
     [SerializeField] private NpcTooltipDisplayMode displayMode = NpcTooltipDisplayMode.AfterFirstDialogue;
+    [SerializeField] private string requiredFlag = "wake_conductor";
     [SerializeField] private NpcTooltipHideCondition hideCondition = NpcTooltipHideCondition.None;
     [SerializeField, Min(0f)] private float showDelay = 0.5f;
     [SerializeField, Min(0f)] private float fadeInDuration = 0.25f;
@@ -43,12 +45,18 @@ public sealed class NpcTooltipTrigger : MonoBehaviour
         RefreshVisibility();
     }
 
+    private void Start()
+    {
+        RefreshVisibility();
+    }
+
     private void OnEnable()
     {
         DialogueManager.DialogueStarted += HandleDialogueStarted;
         DialogueManager.DialogueClosed += HandleDialogueClosed;
         DialogueManager.PlayerDialogueStarted += HandlePlayerDialogueStarted;
         DialogueManager.PlayerDialogueClosed += HandlePlayerDialogueClosed;
+        DialogueManager.FlagSet += HandleFlagSet;
     }
 
     private void OnDisable()
@@ -57,6 +65,7 @@ public sealed class NpcTooltipTrigger : MonoBehaviour
         DialogueManager.DialogueClosed -= HandleDialogueClosed;
         DialogueManager.PlayerDialogueStarted -= HandlePlayerDialogueStarted;
         DialogueManager.PlayerDialogueClosed -= HandlePlayerDialogueClosed;
+        DialogueManager.FlagSet -= HandleFlagSet;
     }
 
     private void HandleDialogueStarted(NpcDialogueSO _)
@@ -85,11 +94,21 @@ public sealed class NpcTooltipTrigger : MonoBehaviour
         RefreshVisibility(delayed: true);
     }
 
+    private void HandleFlagSet(string flag)
+    {
+        if (displayMode == NpcTooltipDisplayMode.AfterFlag && flag == requiredFlag)
+        {
+            RefreshVisibility(delayed: true);
+        }
+    }
+
     private void RefreshVisibility(bool delayed = false)
     {
         bool shouldShow = displayMode == NpcTooltipDisplayMode.Always ||
                           (displayMode == NpcTooltipDisplayMode.AfterFirstDialogue && hasFinishedFirstDialogue) ||
-                          (displayMode == NpcTooltipDisplayMode.AfterFirstPlayerDialogue && hasFinishedFirstPlayerDialogue);
+                          (displayMode == NpcTooltipDisplayMode.AfterFirstPlayerDialogue && hasFinishedFirstPlayerDialogue) ||
+                          (displayMode == NpcTooltipDisplayMode.AfterFlag &&
+                           DialogueManager.Instance != null && DialogueManager.Instance.HasFlag(requiredFlag));
 
         if (!shouldShow)
         {
