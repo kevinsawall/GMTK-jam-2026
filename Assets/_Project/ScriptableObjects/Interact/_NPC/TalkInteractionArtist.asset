@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TalkInteractionArtist
   m_EditorClassIdentifier: Assembly-CSharp::TalkInteractObject
   prompt: Interact
-  dialogue: {fileID: 11400000, guid: 899a9440de6d4390bfe21e54769c08f9, type: 2}
+  dialogue: {fileID: 11400000, guid: 510ce13ba29b54dd9b83c50ca6287e92, type: 2}
