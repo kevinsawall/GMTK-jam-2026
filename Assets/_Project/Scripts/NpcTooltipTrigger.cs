@@ -12,7 +12,8 @@ public enum NpcTooltipDisplayMode
 
 public enum NpcTooltipHideCondition
 {
-    None
+    None,
+    EndGame
 }
 
 /// <summary>
@@ -24,6 +25,7 @@ public sealed class NpcTooltipTrigger : MonoBehaviour
     [SerializeField] private NpcTooltipDisplayMode displayMode = NpcTooltipDisplayMode.AfterFirstDialogue;
     [SerializeField] private string requiredFlag = "wake_conductor";
     [SerializeField] private NpcTooltipHideCondition hideCondition = NpcTooltipHideCondition.None;
+    [SerializeField] private string endGameFlag = "end-game";
     [SerializeField, Min(0f)] private float showDelay = 0.5f;
     [SerializeField, Min(0f)] private float fadeInDuration = 0.25f;
     [SerializeField] private Canvas tooltipCanvas;
@@ -33,6 +35,7 @@ public sealed class NpcTooltipTrigger : MonoBehaviour
     private NpcDialogueSO dialogue;
     private bool hasFinishedFirstDialogue;
     private bool hasFinishedFirstPlayerDialogue;
+    private bool isHiddenByCondition;
     private Coroutine delayedShow;
 
     private void Awake()
@@ -96,6 +99,13 @@ public sealed class NpcTooltipTrigger : MonoBehaviour
 
     private void HandleFlagSet(string flag)
     {
+        if (hideCondition == NpcTooltipHideCondition.EndGame && flag == endGameFlag)
+        {
+            isHiddenByCondition = true;
+            HideImmediately();
+            return;
+        }
+
         if (displayMode == NpcTooltipDisplayMode.AfterFlag && flag == requiredFlag)
         {
             RefreshVisibility(delayed: true);
@@ -104,6 +114,17 @@ public sealed class NpcTooltipTrigger : MonoBehaviour
 
     private void RefreshVisibility(bool delayed = false)
     {
+        if (ShouldBeHiddenByCondition())
+        {
+            isHiddenByCondition = true;
+        }
+
+        if (isHiddenByCondition)
+        {
+            HideImmediately();
+            return;
+        }
+
         bool shouldShow = displayMode == NpcTooltipDisplayMode.Always ||
                           (displayMode == NpcTooltipDisplayMode.AfterFirstDialogue && hasFinishedFirstDialogue) ||
                           (displayMode == NpcTooltipDisplayMode.AfterFirstPlayerDialogue && hasFinishedFirstPlayerDialogue) ||
@@ -126,6 +147,13 @@ public sealed class NpcTooltipTrigger : MonoBehaviour
         {
             delayedShow = StartCoroutine(ShowAfterDelay());
         }
+    }
+
+    private bool ShouldBeHiddenByCondition()
+    {
+        return hideCondition == NpcTooltipHideCondition.EndGame &&
+               DialogueManager.Instance != null &&
+               DialogueManager.Instance.HasFlag(endGameFlag);
     }
 
     private IEnumerator ShowAfterDelay()

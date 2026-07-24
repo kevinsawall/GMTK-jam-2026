@@ -492,7 +492,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayMode: 3
-  hideCondition: 0
+  requiredFlag: wake_conductor
+  hideCondition: 1
+  endGameFlag: end-game
   showDelay: 0.5
   fadeInDuration: 0.25
   tooltipCanvas: {fileID: 5521247504453363120}
