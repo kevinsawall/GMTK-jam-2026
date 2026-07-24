@@ -38,6 +38,7 @@ public sealed class CupTimerController : MonoBehaviour
     private bool isTimerVisible;
     private int nextStartPhraseIndex;
     private int nextEndPhraseIndex;
+    private Coroutine timeoutSequence;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     private static void CreateForCupTimer()
@@ -75,7 +76,7 @@ public sealed class CupTimerController : MonoBehaviour
 
     private void Update()
     {
-        bool gameplayHasStarted = !CutsceneController.IsStartGamePlaying;
+        bool gameplayHasStarted = !CutsceneController.IsStartGamePlaying && !GameManager.IsEndGameSequencePlaying;
         bool isModalUiVisible = IsModalUiVisible();
         bool canCountDown = gameplayHasStarted && !isModalUiVisible && !IsCutscenePlaying;
         SetVisibility(canCountDown && !hasExpired);
@@ -98,7 +99,7 @@ public sealed class CupTimerController : MonoBehaviour
 
     private void ConsumeCount(float amount)
     {
-        if (hasExpired) return;
+        if (hasExpired || GameManager.IsEndGameSequencePlaying) return;
 
         remainingSeconds = Mathf.Max(0f, remainingSeconds - amount);
         UpdateTimerText();
@@ -106,7 +107,20 @@ public sealed class CupTimerController : MonoBehaviour
 
         hasExpired = true;
         StartCameraShake();
-        StartCoroutine(RunTimeoutSequence());
+        timeoutSequence = StartCoroutine(RunTimeoutSequence());
+    }
+
+    /// <summary>Stops the cup-timer timeout flow so a higher-priority ending can take over.</summary>
+    public void CancelForEndGame()
+    {
+        if (timeoutSequence != null) StopCoroutine(timeoutSequence);
+        timeoutSequence = null;
+        hasExpired = false;
+        IsCutscenePlaying = false;
+        StopCameraShake();
+
+        if (cutsceneObject != null) cutsceneObject.SetActive(false);
+        SetVisibility(false);
     }
 
     private void SetVisibility(bool isVisible)
@@ -194,6 +208,7 @@ public sealed class CupTimerController : MonoBehaviour
         }
 
         yield return PlayCutsceneAndRestart();
+        timeoutSequence = null;
     }
 
     private static GameObject FindCutsceneObject()

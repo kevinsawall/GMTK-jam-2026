@@ -18,6 +18,7 @@ public sealed class PlayerCameraFollow : MonoBehaviour
     private float targetGroundHeight;
     private bool isShakingHorizontally;
     private float shakeStartedAt;
+    private float shakeIntensityMultiplier = 1f;
 
     private void Start()
     {
@@ -54,20 +55,23 @@ public sealed class PlayerCameraFollow : MonoBehaviour
 
         if (isShakingHorizontally)
         {
-            float horizontalOffset = Mathf.Sin((Time.unscaledTime - shakeStartedAt) * horizontalShakeFrequency) * horizontalShakeDistance;
+            float horizontalOffset = Mathf.Sin((Time.unscaledTime - shakeStartedAt) * horizontalShakeFrequency) *
+                                     horizontalShakeDistance * shakeIntensityMultiplier;
             transform.position += Vector3.right * horizontalOffset;
         }
     }
 
-    public void StartHorizontalShake()
+    public void StartHorizontalShake(float intensityMultiplier = 1f)
     {
         isShakingHorizontally = true;
         shakeStartedAt = Time.unscaledTime;
+        shakeIntensityMultiplier = Mathf.Max(0f, intensityMultiplier);
     }
 
     public void StopHorizontalShakeAndResumeFollow()
     {
         isShakingHorizontally = false;
+        shakeIntensityMultiplier = 1f;
         followVelocity = Vector3.zero;
         transform.position = Vector3.zero;
 

@@ -38,8 +38,10 @@ public sealed class CutsceneController : MonoBehaviour
     public static bool IsStartGamePlaying => isStartGamePlaying;
     public static event Action StartGameFinished;
     public static event Action<bool> StartGameStateChanged;
+    public event Action<CutsceneController> Finished;
     public bool IsPlaying => isPlaying;
     public CutsceneType Type => cutsceneType;
+    public float TotalDurationSeconds => totalDurationSeconds;
 
     private void Awake()
     {
@@ -169,6 +171,7 @@ public sealed class CutsceneController : MonoBehaviour
             StartGameFinished?.Invoke();
         }
 
+        Finished?.Invoke(this);
         gameObject.SetActive(false);
     }
 }

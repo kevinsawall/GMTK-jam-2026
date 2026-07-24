@@ -23,6 +23,7 @@ public sealed class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     private IInteractable pendingInteraction;
     private Transform pendingInteractionTarget;
+    private ItemData pendingItemDelivery;
     private int nextPathCell;
     private Vector3 lastPointPosition;
     private float blockedPointMovementTime;
@@ -97,6 +98,7 @@ public sealed class PlayerMovement : MonoBehaviour
             {
                 pendingInteraction = interactable;
                 pendingInteractionTarget = hit.collider.transform;
+                pendingItemDelivery = null;
             }
             else
             {
@@ -112,7 +114,28 @@ public sealed class PlayerMovement : MonoBehaviour
 
         pendingInteraction = null;
         pendingInteractionTarget = null;
+        pendingItemDelivery = null;
         SetReachableDestination(hit.point);
+    }
+
+    /// <summary>Walks the player into interaction range, then gives the item to the target.</summary>
+    public bool TryApproachAndDeliverItem(ItemData item, Collider targetCollider, Vector3 dropPoint)
+    {
+        if (item == null || targetCollider == null || gridManager == null || IsMovementBlocked())
+        {
+            return false;
+        }
+
+        IInteractable interactable = GetInteractable(targetCollider);
+        if (interactable == null || !SetReachableDestination(dropPoint, interactable.InteractionDistance))
+        {
+            return false;
+        }
+
+        pendingInteraction = interactable;
+        pendingInteractionTarget = targetCollider.transform;
+        pendingItemDelivery = item;
+        return true;
     }
 
     private static IInteractable GetInteractable(Collider collider)
@@ -229,6 +252,7 @@ public sealed class PlayerMovement : MonoBehaviour
     {
         pendingInteraction = null;
         pendingInteractionTarget = null;
+        pendingItemDelivery = null;
         pointPath.Clear();
         nextPathCell = 0;
         blockedPointMovementTime = 0f;
@@ -237,9 +261,13 @@ public sealed class PlayerMovement : MonoBehaviour
     private void CompletePointMovement()
     {
         IInteractable interaction = pendingInteraction;
+        ItemData itemToDeliver = pendingItemDelivery;
         CancelPointMovement();
         body.angularVelocity = Vector3.zero;
-        if (interaction != null) interaction.Interact();
+        if (interaction == null) return;
+
+        if (itemToDeliver != null) interaction.TryReceiveItem(itemToDeliver);
+        else interaction.Interact();
     }
 
     private void MoveTank()
@@ -260,6 +288,7 @@ public sealed class PlayerMovement : MonoBehaviour
     private static bool IsMovementBlocked()
     {
         if (PauseMenuController.IsPaused) return true;
+        if (GameManager.IsEndGameSequencePlaying) return true;
         if (DialogueManager.Instance != null && DialogueManager.Instance.IsOpen) return true;
         if (CutsceneController.IsStartGamePlaying) return true;
         if (CupTimerController.Instance != null && CupTimerController.Instance.IsRestartSequencePlaying) return true;

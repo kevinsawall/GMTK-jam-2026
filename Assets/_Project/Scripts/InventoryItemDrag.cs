@@ -90,15 +90,26 @@ public sealed class InventoryItemDrag : MonoBehaviour, IBeginDragHandler, IDragH
             return;
         }
 
-        CharacterManager character = hit.collider.GetComponentInParent<CharacterManager>();
-        if (character != null)
+        PlayerMovement playerMovement = FindPlayerMovement();
+        playerMovement?.TryApproachAndDeliverItem(item, hit.collider, hit.point);
+    }
+
+    private static PlayerMovement FindPlayerMovement()
+    {
+        foreach (CharacterManager character in Object.FindObjectsByType<CharacterManager>(
+                     FindObjectsInactive.Exclude,
+                     FindObjectsSortMode.None))
         {
-            character.TryReceiveItem(item);
-            return;
+            if (character.Type != CharacterManager.CharacterType.Player) continue;
+
+            PlayerMovement playerMovement = character.GetComponent<PlayerMovement>();
+            if (playerMovement != null && playerMovement.isActiveAndEnabled)
+            {
+                return playerMovement;
+            }
         }
 
-        ObjectController sceneObject = hit.collider.GetComponentInParent<ObjectController>();
-        sceneObject?.TryReceiveItem(item);
+        return null;
     }
 
     private void UpdateDragPosition(PointerEventData eventData)

@@ -21,7 +21,7 @@ public sealed class PauseMenuController : MonoBehaviour
 
     public void PauseGame()
     {
-        if (CutsceneController.IsStartGamePlaying || CupTimerController.Instance?.IsRestartSequencePlaying == true) return;
+        if (CutsceneController.IsStartGamePlaying || GameManager.IsEndGameSequencePlaying || CupTimerController.Instance?.IsRestartSequencePlaying == true) return;
         SetPaused(true);
     }
 
@@ -32,7 +32,7 @@ public sealed class PauseMenuController : MonoBehaviour
 
     public void TogglePause()
     {
-        if (CutsceneController.IsStartGamePlaying || CupTimerController.Instance?.IsRestartSequencePlaying == true) return;
+        if (CutsceneController.IsStartGamePlaying || GameManager.IsEndGameSequencePlaying || CupTimerController.Instance?.IsRestartSequencePlaying == true) return;
 
         if (optionsPanel.activeSelf)
         {
