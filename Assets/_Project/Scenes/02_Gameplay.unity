@@ -4145,7 +4145,7 @@ PrefabInstance:
     - target: {fileID: 905172475052839157, guid: ca8b2770755fc446b894690afcb8b5e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1579033596}
     - target: {fileID: 905172475052839157, guid: ca8b2770755fc446b894690afcb8b5e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: RestartGame
@@ -6467,7 +6467,7 @@ PrefabInstance:
     - target: {fileID: 905172475052839157, guid: ca8b2770755fc446b894690afcb8b5e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1579033596}
     - target: {fileID: 905172475052839157, guid: ca8b2770755fc446b894690afcb8b5e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ResumeGame
@@ -6608,6 +6608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   interactObject: {fileID: 11400000, guid: d0538cd8dea7f4b97bc334f792aaf1d9, type: 2}
   interactionDistance: 1
+  deactivateOnFlag: 
   hoverOutlineMaterial: {fileID: 0}
 --- !u!65 &1098391852
 BoxCollider:
@@ -7639,7 +7640,7 @@ PrefabInstance:
     - target: {fileID: 905172475052839157, guid: ca8b2770755fc446b894690afcb8b5e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1579033596}
     - target: {fileID: 905172475052839157, guid: ca8b2770755fc446b894690afcb8b5e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ShowOptions
@@ -11572,10 +11573,10 @@ PrefabInstance:
     - target: {fileID: 7375693800863390184, guid: 74458ec4d7474432b914430ee4ff86e9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1579033596}
     - target: {fileID: 7375693800863390184, guid: 74458ec4d7474432b914430ee4ff86e9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CloseOptions
+      value: PauseGame
       objectReference: {fileID: 0}
     - target: {fileID: 7375693800863390184, guid: 74458ec4d7474432b914430ee4ff86e9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -12228,7 +12229,7 @@ PrefabInstance:
     - target: {fileID: 905172475052839157, guid: ca8b2770755fc446b894690afcb8b5e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1579033596}
     - target: {fileID: 905172475052839157, guid: ca8b2770755fc446b894690afcb8b5e7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ReturnToMainMenu
@@ -13328,6 +13329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   interactObject: {fileID: 11400000, guid: d0538cd8dea7f4b97bc334f792aaf1d9, type: 2}
   interactionDistance: 2
+  deactivateOnFlag: 
   hoverOutlineMaterial: {fileID: 2100000, guid: 4bb7653d21864d1f9a2e4d8c6e3a1f72, type: 2}
 --- !u!1 &2080398285
 GameObject:

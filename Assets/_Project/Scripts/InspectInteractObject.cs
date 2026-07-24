@@ -31,19 +31,6 @@ public sealed class InspectInteractObject : InteractObject
             return ShowPlayerPhrase(incorrectItemDropPhrase);
         }
 
-        bool wasAccepted = ShowNextPlayerPhrase(controller, flagToSetOnCorrectItemDrop);
-        if (wasAccepted)
-        {
-            DialogueManager manager = DialogueManager.Instance ??
-                Object.FindFirstObjectByType<DialogueManager>(FindObjectsInactive.Include);
-            manager?.RemoveItem(item);
-        }
-
-        return wasAccepted;
-    }
-
-    private bool ShowNextPlayerPhrase(ObjectController controller, string flagToSet = null)
-    {
         DialogueManager manager = DialogueManager.Instance ??
             Object.FindFirstObjectByType<DialogueManager>(FindObjectsInactive.Include);
         if (manager == null)
@@ -52,9 +39,23 @@ public sealed class InspectInteractObject : InteractObject
             return false;
         }
 
-        if (!string.IsNullOrWhiteSpace(flagToSet))
+        if (!string.IsNullOrWhiteSpace(flagToSetOnCorrectItemDrop))
         {
-            manager.SetFlag(flagToSet);
+            manager.SetFlag(flagToSetOnCorrectItemDrop);
+        }
+
+        manager.RemoveItem(item);
+        return true;
+    }
+
+    private bool ShowNextPlayerPhrase(ObjectController controller)
+    {
+        DialogueManager manager = DialogueManager.Instance ??
+            Object.FindFirstObjectByType<DialogueManager>(FindObjectsInactive.Include);
+        if (manager == null)
+        {
+            Debug.LogWarning("No DialogueManager is present in the scene.", this);
+            return false;
         }
 
         List<string> phrases = playerPhrases;
