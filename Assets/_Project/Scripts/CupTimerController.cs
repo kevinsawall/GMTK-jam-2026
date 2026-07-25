@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum CupTimerMode
 {
@@ -8,7 +9,7 @@ public enum CupTimerMode
     Natural
 }
 
-/// <summary>Runs the gameplay countdown and hides its UI while modal dialogue is visible.</summary>
+/// <summary>Runs the gameplay countdown and pauses it while dialogue is visible.</summary>
 public sealed class CupTimerController : MonoBehaviour
 {
     private const string TimerObjectName = "Cup timer";
@@ -23,24 +24,28 @@ public sealed class CupTimerController : MonoBehaviour
     [SerializeField, TextArea(2, 5)] private List<string> playerFirstGameStartPhrases = new();
     [SerializeField, TextArea(2, 5)] private List<string> playerStartPhrases = new();
     [SerializeField, TextArea(2, 5)] private List<string> playerEndPhrases = new();
-    [SerializeField] private ItemNotification notification;
+    [Header("Natural Mode Display")]
+    [SerializeField] private List<Sprite> naturalStageSprites = new();
+    [SerializeField] private Sprite naturalEmptySprite;
+    [SerializeField, Min(0f)] private float naturalSpriteStepDuration = 0.1f;
 
     public static CupTimerController Instance { get; private set; }
     public bool IsCutscenePlaying { get; private set; }
     public bool IsRestartSequencePlaying => hasExpired;
 
     private TMP_Text timerText;
+    private Image timerImage;
     private CanvasGroup canvasGroup;
     private GameObject cutsceneObject;
     private CanvasGroup cutsceneCanvasGroup;
     private float remainingSeconds;
     private bool hasExpired;
-    private bool isItemNotificationVisible;
     private bool hasSetTimerVisibility;
     private bool isTimerVisible;
     private int nextStartPhraseIndex;
     private int nextEndPhraseIndex;
     private Coroutine timeoutSequence;
+    private Coroutine naturalCountAnimation;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     private static void CreateForCupTimer()
@@ -57,20 +62,18 @@ public sealed class CupTimerController : MonoBehaviour
     {
         Instance = this;
         timerText = GetComponentInChildren<TMP_Text>(true);
+        timerImage = GetComponent<Image>();
         canvasGroup = GetComponent<CanvasGroup>();
         if (canvasGroup == null) canvasGroup = gameObject.AddComponent<CanvasGroup>();
 
         remainingSeconds = DurationSeconds;
-        UpdateTimerText();
-        isItemNotificationVisible = notification != null && notification.IsVisible;
-        if (notification != null) notification.VisibilityChanged += OnItemNotificationVisibilityChanged;
+        UpdateTimerDisplay();
         DialogueManager.NaturalCounterActionPerformed += OnNaturalCounterActionPerformed;
         CutsceneController.StartGameFinished += ShowFirstGameStartPhrases;
     }
 
     private void OnDestroy()
     {
-        if (notification != null) notification.VisibilityChanged -= OnItemNotificationVisibilityChanged;
         DialogueManager.NaturalCounterActionPerformed -= OnNaturalCounterActionPerformed;
         CutsceneController.StartGameFinished -= ShowFirstGameStartPhrases;
         if (Instance == this) Instance = null;
@@ -81,7 +84,7 @@ public sealed class CupTimerController : MonoBehaviour
         bool gameplayHasStarted = !CutsceneController.IsStartGamePlaying && !GameManager.IsEndGameSequencePlaying;
         bool isModalUiVisible = IsModalUiVisible();
         bool canCountDown = gameplayHasStarted && !isModalUiVisible && !IsCutscenePlaying;
-        SetVisibility(canCountDown && !hasExpired);
+        SetVisibility(gameplayHasStarted && !IsCutscenePlaying);
         if (!canCountDown || hasExpired || timerMode != CupTimerMode.Sec) return;
 
         ConsumeCount(Time.deltaTime);
@@ -89,14 +92,13 @@ public sealed class CupTimerController : MonoBehaviour
 
     private void OnNaturalCounterActionPerformed()
     {
-        if (timerMode != CupTimerMode.Natural) return;
+        if (timerMode != CupTimerMode.Natural || hasExpired || naturalCountAnimation != null) return;
 
-        ConsumeCount(1f);
-    }
+        int stageCount = Mathf.CeilToInt(remainingSeconds);
+        if (stageCount <= 0) return;
 
-    private void OnItemNotificationVisibilityChanged(bool isVisible)
-    {
-        isItemNotificationVisible = isVisible;
+        remainingSeconds = Mathf.Max(0f, remainingSeconds - 1f);
+        naturalCountAnimation = StartCoroutine(AnimateNaturalCountDown(stageCount));
     }
 
     private void ConsumeCount(float amount)
@@ -104,7 +106,7 @@ public sealed class CupTimerController : MonoBehaviour
         if (hasExpired || GameManager.IsEndGameSequencePlaying) return;
 
         remainingSeconds = Mathf.Max(0f, remainingSeconds - amount);
-        UpdateTimerText();
+        UpdateTimerDisplay();
         if (remainingSeconds > 0f) return;
 
         hasExpired = true;
@@ -135,16 +137,66 @@ public sealed class CupTimerController : MonoBehaviour
         canvasGroup.blocksRaycasts = isVisible;
     }
 
-    private void UpdateTimerText()
+    private void UpdateTimerDisplay()
     {
-        if (timerText != null) timerText.text = Mathf.CeilToInt(remainingSeconds).ToString();
+        if (timerMode == CupTimerMode.Natural && HasNaturalStageSprites())
+        {
+            if (timerText != null) timerText.gameObject.SetActive(false);
+            SetNaturalStageSprite(Mathf.CeilToInt(remainingSeconds), 4);
+            return;
+        }
+
+        if (timerText != null)
+        {
+            timerText.gameObject.SetActive(true);
+            timerText.text = Mathf.CeilToInt(remainingSeconds).ToString();
+        }
+    }
+
+    private System.Collections.IEnumerator AnimateNaturalCountDown(int stageCount)
+    {
+        // Each stage drains from its full image (for example, 3_4) to 3_1
+        // before the next full stage image (2_4) appears.
+        for (int frame = 4; frame >= 1; frame--)
+        {
+            SetNaturalStageSprite(stageCount, frame);
+            yield return new WaitForSecondsRealtime(naturalSpriteStepDuration);
+        }
+
+        if (remainingSeconds > 0f)
+        {
+            SetNaturalStageSprite(Mathf.CeilToInt(remainingSeconds), 4);
+        }
+        else
+        {
+            timerImage.sprite = naturalEmptySprite;
+            hasExpired = true;
+            timeoutSequence = StartCoroutine(RunTimeoutSequence());
+        }
+
+        naturalCountAnimation = null;
+    }
+
+    private bool HasNaturalStageSprites()
+    {
+        return timerImage != null && naturalStageSprites != null && naturalStageSprites.Count >= 12;
+    }
+
+    private void SetNaturalStageSprite(int stageCount, int frame)
+    {
+        if (!HasNaturalStageSprites()) return;
+
+        int spriteIndex = (stageCount - 1) * 4 + (frame - 1);
+        if (spriteIndex < 0 || spriteIndex >= naturalStageSprites.Count) return;
+
+        timerImage.sprite = naturalStageSprites[spriteIndex];
     }
 
     private bool IsModalUiVisible()
     {
         if (DialogueManager.Instance != null && DialogueManager.Instance.IsOpen) return true;
 
-        return isItemNotificationVisible;
+        return false;
     }
 
     private System.Collections.IEnumerator PlayCutsceneAndRestart()
@@ -177,7 +229,7 @@ public sealed class CupTimerController : MonoBehaviour
         remainingSeconds = DurationSeconds;
         hasExpired = false;
         IsCutscenePlaying = false;
-        UpdateTimerText();
+        UpdateTimerDisplay();
         ShowNextStartPhrase();
     }
 
@@ -191,15 +243,6 @@ public sealed class CupTimerController : MonoBehaviour
         // Let the closed dialogue panel finish its frame before the timeout UI starts.
         yield return null;
 
-        // A dialogue can award an item. Let the player dismiss its notification
-        // before the timeout's end dialogue and cutscene take control.
-        while (isItemNotificationVisible || ItemNotification.IsAnyVisible)
-        {
-            yield return null;
-        }
-
-        // Do not begin the timeout presentation until any awarded item's
-        // notification has been acknowledged by the player.
         StartCameraShake();
         yield return new WaitForSecondsRealtime(1.5f);
 

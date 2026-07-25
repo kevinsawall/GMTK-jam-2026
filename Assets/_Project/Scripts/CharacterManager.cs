@@ -40,7 +40,6 @@ public sealed class CharacterManager : MonoBehaviour, IInteractable
         DialogueManager.DialogueClosed += RefreshHoverOutline;
         DialogueManager.PlayerDialogueStarted += RefreshHoverOutline;
         DialogueManager.PlayerDialogueClosed += RefreshHoverOutline;
-        ItemNotification.AnyVisibilityChanged += RefreshHoverOutline;
         PauseMenuController.PauseStateChanged += RefreshHoverOutline;
         CutsceneController.StartGameStateChanged += RefreshHoverOutline;
         RefreshHoverOutline();
@@ -66,7 +65,6 @@ public sealed class CharacterManager : MonoBehaviour, IInteractable
         DialogueManager.DialogueClosed -= RefreshHoverOutline;
         DialogueManager.PlayerDialogueStarted -= RefreshHoverOutline;
         DialogueManager.PlayerDialogueClosed -= RefreshHoverOutline;
-        ItemNotification.AnyVisibilityChanged -= RefreshHoverOutline;
         PauseMenuController.PauseStateChanged -= RefreshHoverOutline;
         CutsceneController.StartGameStateChanged -= RefreshHoverOutline;
         SetHoverOutlineVisible(false);
@@ -105,7 +103,6 @@ public sealed class CharacterManager : MonoBehaviour, IInteractable
     private void RefreshHoverOutline()
     {
         bool isBlockedByModal = DialogueManager.Instance?.IsOpen == true ||
-                                ItemNotification.IsAnyVisible ||
                                 PauseMenuController.IsPaused ||
                                 CutsceneController.IsStartGamePlaying;
         SetHoverOutlineVisible(isHovered && !isBlockedByModal);

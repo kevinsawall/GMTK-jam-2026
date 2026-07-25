@@ -171,7 +171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4239655
 Transform:
   m_ObjectHideFlags: 0
@@ -1046,7 +1046,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &134520262
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1913,11 +1913,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 665035559}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 180, y: 198}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &225692359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1959,6 +1959,7 @@ MonoBehaviour:
   itemContainer: {fileID: 225692358}
   itemViewPrefab: {fileID: 1830113112684370741, guid: e713add696e9647b19c2d20e3fb8b22f, type: 3}
   itemNotification: {fileID: 1791256112}
+  itemTooltip: {fileID: 715819}
   itemTooltipText: {fileID: 1763042358}
   tooltipCursorOffset: {x: 120, y: 0}
 --- !u!1001 &226851994
@@ -6020,7 +6021,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!64 &867809639
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8084,7 +8085,21 @@ MonoBehaviour:
   - "I just need\u2026"
   - "I\u2019m not done yet!"
   - "Do not go gentle\u2026"
-  notification: {fileID: 1791256112}
+  naturalStageSprites:
+  - {fileID: 21300000, guid: 1f3a4aab816594759abdfbd017d8235a, type: 3}
+  - {fileID: 21300000, guid: 4978a2e6b49834d0193d0cb55130bf5a, type: 3}
+  - {fileID: 21300000, guid: f8d3f418297c1431e921cd3878faa687, type: 3}
+  - {fileID: 21300000, guid: 9add25f191e664f0198c69b504aaf69f, type: 3}
+  - {fileID: 21300000, guid: 39940b93a94864d3599e2cd88f1dde35, type: 3}
+  - {fileID: 21300000, guid: 7cee8f845776a4937be42a307a3662a1, type: 3}
+  - {fileID: 21300000, guid: 7ba83888f88444a1baea8a3cbeba54d7, type: 3}
+  - {fileID: 21300000, guid: e2bca7b48836e48ffa9ba6e3859875d1, type: 3}
+  - {fileID: 21300000, guid: 17f0e33635d32433595956f1e2881359, type: 3}
+  - {fileID: 21300000, guid: d462eabb219cf445383f6fdbe661fd38, type: 3}
+  - {fileID: 21300000, guid: e46a8dac521d546de838588eed4b94da, type: 3}
+  - {fileID: 21300000, guid: cd951a9b7170343f7bc3aa8212e8cd0e, type: 3}
+  naturalEmptySprite: {fileID: 21300000, guid: e87699441aeca4701a00d15cca7a62cb, type: 3}
+  naturalSpriteStepDuration: 0.1
 --- !u!1 &1215319601
 GameObject:
   m_ObjectHideFlags: 0
@@ -12726,6 +12741,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemNotification
   notificationText: {fileID: 1731452925}
+  displayDurationSeconds: 5
+  fadeInDuration: 0.2
+  fadeOutDuration: 0.2
 --- !u!114 &1791256113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12740,7 +12758,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -13729,7 +13747,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1983761665
 Transform:
   m_ObjectHideFlags: 0

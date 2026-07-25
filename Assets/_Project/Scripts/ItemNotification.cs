@@ -1,43 +1,23 @@
-using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-/// <summary>Shows a newly acquired item and closes when the player clicks it.</summary>
-public sealed class ItemNotification : MonoBehaviour, IPointerClickHandler
+/// <summary>Shows a newly acquired item briefly, without interrupting gameplay.</summary>
+public sealed class ItemNotification : MonoBehaviour
 {
-    public static ItemNotification Instance { get; private set; }
-    public static bool IsAnyVisible { get; private set; }
-    public static event Action<bool> AnyVisibilityChanged;
-
     [SerializeField] private TMP_Text notificationText;
+    [SerializeField, Min(0f)] private float displayDurationSeconds = 5f;
+    [SerializeField, Min(0f)] private float fadeInDuration = 0.2f;
+    [SerializeField, Min(0f)] private float fadeOutDuration = 0.2f;
 
     public bool IsVisible => gameObject.activeSelf;
-    public event Action<bool> VisibilityChanged;
+    private CanvasGroup canvasGroup;
+    private Coroutine displayRoutine;
 
     private void Awake()
     {
-        Instance = this;
         if (notificationText == null) notificationText = GetComponentInChildren<TMP_Text>(true);
-    }
-
-    private void OnDestroy()
-    {
-        if (Instance == this) Instance = null;
-    }
-
-    private void OnEnable()
-    {
-        IsAnyVisible = true;
-        VisibilityChanged?.Invoke(true);
-        AnyVisibilityChanged?.Invoke(true);
-    }
-
-    private void OnDisable()
-    {
-        IsAnyVisible = false;
-        VisibilityChanged?.Invoke(false);
-        AnyVisibilityChanged?.Invoke(false);
+        canvasGroup = GetComponent<CanvasGroup>();
+        if (canvasGroup == null) canvasGroup = gameObject.AddComponent<CanvasGroup>();
     }
 
     public void Show(ItemData item)
@@ -46,14 +26,31 @@ public sealed class ItemNotification : MonoBehaviour, IPointerClickHandler
 
         gameObject.SetActive(true);
         notificationText.text = $"You got {GetArticle(item.displayName)} {item.displayName}.";
+        if (displayRoutine != null) StopCoroutine(displayRoutine);
+        LeanTween.cancel(gameObject);
+        canvasGroup.alpha = 0f;
+        displayRoutine = StartCoroutine(ShowAndHide());
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void Hide()
     {
-        Hide();
+        if (displayRoutine != null) StopCoroutine(displayRoutine);
+        displayRoutine = null;
+        LeanTween.cancel(gameObject);
+        gameObject.SetActive(false);
     }
 
-    public void Hide() => gameObject.SetActive(false);
+    private System.Collections.IEnumerator ShowAndHide()
+    {
+        LeanTween.alphaCanvas(canvasGroup, 1f, fadeInDuration).setIgnoreTimeScale(true);
+        yield return new WaitForSecondsRealtime(fadeInDuration);
+        yield return new WaitForSecondsRealtime(displayDurationSeconds);
+        LeanTween.alphaCanvas(canvasGroup, 0f, fadeOutDuration).setIgnoreTimeScale(true);
+        yield return new WaitForSecondsRealtime(fadeOutDuration);
+
+        displayRoutine = null;
+        gameObject.SetActive(false);
+    }
 
     private static string GetArticle(string itemName)
     {

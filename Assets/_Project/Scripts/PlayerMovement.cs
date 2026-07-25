@@ -293,6 +293,6 @@ public sealed class PlayerMovement : MonoBehaviour
         if (CutsceneController.IsStartGamePlaying) return true;
         if (CupTimerController.Instance != null && CupTimerController.Instance.IsRestartSequencePlaying) return true;
         if (CupTimerController.Instance != null && CupTimerController.Instance.IsCutscenePlaying) return true;
-        return ItemNotification.Instance != null && ItemNotification.Instance.IsVisible;
+        return false;
     }
 }
