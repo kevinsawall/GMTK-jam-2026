@@ -7,6 +7,8 @@ public sealed class SittingAnimationController : MonoBehaviour
 
     private void Awake()
     {
+        if (GetComponent<CharacterManager>()?.Type == CharacterManager.CharacterType.Player) return;
+
         Animator animator = GetComponentInChildren<Animator>();
         if (animator != null && sittingController != null)
         {

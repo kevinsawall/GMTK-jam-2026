@@ -14,12 +14,16 @@ public sealed class PlayerMovement : MonoBehaviour
     [SerializeField, Min(0f)] private float cornerTurnDistance = 0.75f;
     [SerializeField] private bool pointMovement = true;
     [SerializeField] private GridManager gridManager;
+    [Header("Animation")]
+    [SerializeField] private RuntimeAnimatorController animationController;
     [Header("Pseudo Restart Start Pose")]
     [SerializeField] private Vector3 restartPosition;
     [SerializeField] private Vector3 restartRotationEuler;
 
     private readonly List<GridCell> pointPath = new();
     private Rigidbody body;
+    private Animator animator;
+    private bool controlsAnimation;
     private Vector2 moveInput;
     private IInteractable pendingInteraction;
     private Transform pendingInteractionTarget;
@@ -27,11 +31,24 @@ public sealed class PlayerMovement : MonoBehaviour
     private int nextPathCell;
     private Vector3 lastPointPosition;
     private float blockedPointMovementTime;
+    private bool isMovingToPoint;
+
+    private static readonly int IsWalking = Animator.StringToHash("IsWalking");
 
     private void Awake()
     {
         body = GetComponent<Rigidbody>();
+        animator = GetComponentInChildren<Animator>();
+
+        if (GetComponent<CharacterManager>()?.Type == CharacterManager.CharacterType.Player &&
+            animator != null && animationController != null)
+        {
+            animator.runtimeAnimatorController = animationController;
+            controlsAnimation = true;
+        }
     }
+
+    private void OnDisable() => SetWalking(false);
 
     public void ResetToStartPosition()
     {
@@ -66,14 +83,21 @@ public sealed class PlayerMovement : MonoBehaviour
         if (IsMovementBlocked())
         {
             CancelPointMovement();
+            SetWalking(false);
             return;
         }
 
         if (moveInput.sqrMagnitude > 0f) CancelPointMovement();
-        else if (MoveToPoint()) return;
+        else if (MoveToPoint())
+        {
+            SetWalking(isMovingToPoint);
+            return;
+        }
 
-        if (movementStyle == MovementStyle.Tank) MoveTank();
-        else MoveDirectional();
+        bool isWalking = movementStyle == MovementStyle.Tank
+            ? MoveTank()
+            : MoveDirectional();
+        SetWalking(isWalking);
     }
 
     private void TrySetPointDestination()
@@ -166,6 +190,7 @@ public sealed class PlayerMovement : MonoBehaviour
 
     private bool MoveToPoint()
     {
+        isMovingToPoint = false;
         if (!pointMovement || pointPath.Count == 0) return false;
         if (nextPathCell >= pointPath.Count)
         {
@@ -197,12 +222,14 @@ public sealed class PlayerMovement : MonoBehaviour
         if (pathDirection.sqrMagnitude <= 0.0025f)
         {
             nextPathCell++;
+            isMovingToPoint = nextPathCell < pointPath.Count;
             return true;
         }
 
         Quaternion targetRotation = Quaternion.LookRotation(GetPointMovementFacingDirection(pathDirection), Vector3.up);
         body.MoveRotation(Quaternion.RotateTowards(body.rotation, targetRotation, turnSpeed * Time.fixedDeltaTime));
         body.MovePosition(Vector3.MoveTowards(body.position, targetPosition, moveSpeed * Time.fixedDeltaTime));
+        isMovingToPoint = true;
         return true;
     }
 
@@ -270,19 +297,29 @@ public sealed class PlayerMovement : MonoBehaviour
         else interaction.Interact();
     }
 
-    private void MoveTank()
+    private bool MoveTank()
     {
         body.MoveRotation(body.rotation * Quaternion.Euler(0f, moveInput.x * turnSpeed * Time.fixedDeltaTime, 0f));
         body.MovePosition(body.position + transform.forward * (moveInput.y * moveSpeed * Time.fixedDeltaTime));
+        return !Mathf.Approximately(moveInput.y, 0f);
     }
 
-    private void MoveDirectional()
+    private bool MoveDirectional()
     {
-        if (moveInput.sqrMagnitude <= 0f) return;
+        if (moveInput.sqrMagnitude <= 0f) return false;
         Vector3 targetDirection = new(moveInput.x, 0f, moveInput.y);
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection, Vector3.up);
         body.MoveRotation(Quaternion.RotateTowards(body.rotation, targetRotation, turnSpeed * Time.fixedDeltaTime));
         body.MovePosition(body.position + targetDirection * (moveSpeed * Time.fixedDeltaTime));
+        return true;
+    }
+
+    private void SetWalking(bool isWalking)
+    {
+        if (controlsAnimation && animator != null)
+        {
+            animator.SetBool(IsWalking, isWalking);
+        }
     }
 
     private static bool IsMovementBlocked()

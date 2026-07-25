@@ -274,6 +274,7 @@ MonoBehaviour:
   cornerTurnDistance: 0.75
   pointMovement: 1
   gridManager: {fileID: 0}
+  animationController: {fileID: 9100000, guid: d2a76a3c6605482bbdcb1f8b6568f72e, type: 2}
   restartPosition: {x: 0, y: 0, z: 0}
   restartRotationEuler: {x: 0, y: 0, z: 0}
 --- !u!54 &7279695530631082703
