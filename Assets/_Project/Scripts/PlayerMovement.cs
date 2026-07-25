@@ -43,6 +43,9 @@ public sealed class PlayerMovement : MonoBehaviour
         if (GetComponent<CharacterManager>()?.Type == CharacterManager.CharacterType.Player &&
             animator != null && animationController != null)
         {
+            // Physics movement owns the character transform; root motion would compete
+            // with Rigidbody.MovePosition between physics steps and cause visible jitter.
+            animator.applyRootMotion = false;
             animator.runtimeAnimatorController = animationController;
             controlsAnimation = true;
         }
