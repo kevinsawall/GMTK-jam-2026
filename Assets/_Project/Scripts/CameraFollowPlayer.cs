@@ -17,6 +17,7 @@ public sealed class CameraFollowPlayer : MonoBehaviour
     [SerializeField, Min(0.01f)] private float followSmoothTime = 0.12f;
 
     [Header("Train Sway")]
+    [SerializeField] private bool trainSwayEnabled = true;
     [SerializeField] private Vector3 positionSway = new(0.04f, 0.025f, 0.02f);
     [SerializeField] private Vector3 rotationSway = new(0.25f, 0.2f, 0.4f);
     [SerializeField, Min(0.1f)] private float minimumSwayDuration = 0.7f;
@@ -30,6 +31,7 @@ public sealed class CameraFollowPlayer : MonoBehaviour
     private Vector3 positionSwayTo;
     private Vector3 rotationSwayFrom;
     private Vector3 rotationSwayTo;
+    private bool wasTrainSwayEnabled;
 
     private void Start()
     {
@@ -41,17 +43,24 @@ public sealed class CameraFollowPlayer : MonoBehaviour
 
         followPosition = player.position + followOffset;
         transform.position = followPosition;
-        StartNextSway();
+        wasTrainSwayEnabled = trainSwayEnabled;
+        if (trainSwayEnabled) StartNextSway();
     }
 
     private void OnDisable()
     {
         LeanTween.cancel(gameObject);
+        wasTrainSwayEnabled = false;
     }
 
     private void LateUpdate()
     {
         if (player == null || mainCamera == null) return;
+
+        if (trainSwayEnabled != wasTrainSwayEnabled)
+        {
+            SetTrainSwayEnabled();
+        }
 
         followPosition = Vector3.SmoothDamp(
             followPosition,
@@ -71,6 +80,8 @@ public sealed class CameraFollowPlayer : MonoBehaviour
 
     private void StartNextSway()
     {
+        if (!trainSwayEnabled || !isActiveAndEnabled) return;
+
         positionSwayFrom = currentPositionSway;
         rotationSwayFrom = currentRotationSway;
         positionSwayTo = RandomSway(positionSway);
@@ -83,6 +94,16 @@ public sealed class CameraFollowPlayer : MonoBehaviour
             .setEaseInOutSine()
             .setOnUpdate(UpdateSway)
             .setOnComplete(StartNextSway);
+    }
+
+    private void SetTrainSwayEnabled()
+    {
+        LeanTween.cancel(gameObject);
+        currentPositionSway = Vector3.zero;
+        currentRotationSway = Vector3.zero;
+        wasTrainSwayEnabled = trainSwayEnabled;
+
+        if (trainSwayEnabled) StartNextSway();
     }
 
     private void UpdateSway(float progress)
