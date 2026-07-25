@@ -9,6 +9,7 @@ public sealed class PauseMenuController : MonoBehaviour
     public static event Action<bool> PauseStateChanged;
 
     [SerializeField] private GameObject pauseMenuPanel;
+    [SerializeField] private GameObject buttonsPanel;
     [SerializeField] private GameObject optionsPanel;
     [SerializeField] private string mainMenuSceneName = "01_MainMenu";
     [SerializeField] private string endScreenSceneName = "03_EndScreen";
@@ -45,7 +46,7 @@ public sealed class PauseMenuController : MonoBehaviour
 
     public void ShowOptions()
     {
-        pauseMenuPanel.SetActive(false);
+        if (buttonsPanel != null) buttonsPanel.SetActive(false);
         optionsPanel.SetActive(true);
         Time.timeScale = 0f;
     }
@@ -77,6 +78,7 @@ public sealed class PauseMenuController : MonoBehaviour
     {
         IsPaused = isPaused;
         pauseMenuPanel.SetActive(isPaused);
+        if (buttonsPanel != null) buttonsPanel.SetActive(isPaused);
         optionsPanel.SetActive(false);
         Time.timeScale = isPaused ? 0f : 1f;
         PauseStateChanged?.Invoke(isPaused);
