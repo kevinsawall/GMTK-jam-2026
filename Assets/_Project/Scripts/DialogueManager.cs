@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -161,6 +162,8 @@ public sealed class DialogueManager : MonoBehaviour
     {
         if (!IsOpen) return;
 
+        ClearContinueButtonSelection();
+
         if (isTyping)
         {
             FinishTyping();
@@ -176,6 +179,16 @@ public sealed class DialogueManager : MonoBehaviour
 
         ApplyActions(currentDialogue, currentEntry);
         CloseDialogue();
+    }
+
+    private void ClearContinueButtonSelection()
+    {
+        EventSystem eventSystem = EventSystem.current;
+        if (eventSystem != null && continueButton != null &&
+            eventSystem.currentSelectedGameObject == continueButton.gameObject)
+        {
+            eventSystem.SetSelectedGameObject(null);
+        }
     }
 
     public DialogueState GetNpcState(string npcId)

@@ -25,7 +25,7 @@ public sealed class ItemNotification : MonoBehaviour
         if (item == null) return;
 
         gameObject.SetActive(true);
-        notificationText.text = $"You got {GetArticle(item.displayName)} {item.displayName}.";
+        notificationText.text = $"{item.displayName} acquired";
         if (displayRoutine != null) StopCoroutine(displayRoutine);
         LeanTween.cancel(gameObject);
         canvasGroup.alpha = 0f;
@@ -50,13 +50,5 @@ public sealed class ItemNotification : MonoBehaviour
 
         displayRoutine = null;
         gameObject.SetActive(false);
-    }
-
-    private static string GetArticle(string itemName)
-    {
-        if (string.IsNullOrWhiteSpace(itemName)) return "an item";
-
-        char firstLetter = char.ToLowerInvariant(itemName.TrimStart()[0]);
-        return firstLetter is 'a' or 'e' or 'i' or 'o' or 'u' ? "an" : "a";
     }
 }
