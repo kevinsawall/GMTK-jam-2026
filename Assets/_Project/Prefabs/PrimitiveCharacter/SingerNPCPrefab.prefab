@@ -707,6 +707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SittingAnimationController
   sittingController: {fileID: 9100000, guid: 89f8e5346f2143dd9376ff8406b98265, type: 2}
+  sittingClip: {fileID: -203655887218126122, guid: d466641516e044e468930209e4abb3b2, type: 3}
 --- !u!1 &8495266883132930282
 GameObject:
   m_ObjectHideFlags: 0
