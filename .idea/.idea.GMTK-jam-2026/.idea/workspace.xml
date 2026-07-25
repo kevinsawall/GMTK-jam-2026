@@ -11,6 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9366a4e0-1bf1-4e8d-8961-42e77efbb039" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/PrimitiveCharacter/ArtistNPCPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Prefabs/PrimitiveCharacter/ArtistNPCPrefab.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/PrimitiveCharacter/MechanicNPCPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Prefabs/PrimitiveCharacter/MechanicNPCPrefab.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Project/Scenes/02_Gameplay.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scenes/02_Gameplay.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,6 +55,16 @@
   }
 }]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/Builds/build_1.app/Contents/MacOS/GMTK-jam-2026" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Builds/build_1.app/Contents/MacOS" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/6000.4.5f1/Unity.app/Contents/MacOS/Unity" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath $PROJECT_DIR$ -debugCodeOptimization" />
@@ -98,7 +110,7 @@
       <option name="presentableId" value="Default" />
       <updated>1784780667989</updated>
       <workItem from="1784780669280" duration="5215000" />
-      <workItem from="1784866502402" duration="5699000" />
+      <workItem from="1784866502402" duration="6895000" />
     </task>
     <servers />
   </component>
