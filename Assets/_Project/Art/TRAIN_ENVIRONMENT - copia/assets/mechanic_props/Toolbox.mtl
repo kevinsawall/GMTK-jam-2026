@@ -1,0 +1,19 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl Tool_Detail
+Ka 0.000000 0.000000 0.000000
+Kd 0.666667 0.666667 0.666667
+Ks 0.330000 0.330000 0.330000
+
+newmtl Tool_Rubber
+Ka 0.000000 0.000000 0.000000
+Kd 0.223529 0.223529 0.223529
+Ks 0.330000 0.330000 0.330000
+
+newmtl Tool_Base
+Ka 0.000000 0.000000 0.000000
+Kd 0.600000 0.000000 0.000000
+Ks 0.330000 0.330000 0.330000
+
