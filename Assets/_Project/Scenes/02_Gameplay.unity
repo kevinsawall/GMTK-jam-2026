@@ -3974,8 +3974,8 @@ MonoBehaviour:
   target: {fileID: 495516048}
   followOffset: {x: -3.05, y: 7.58, z: -4.37}
   lookAtOffset: {x: -0.36, y: -1.16, z: -0.61}
-  positionSmoothTime: 0.01
-  rotationSmoothSpeed: 0
+  positionSmoothTime: 0.12
+  rotationSmoothSpeed: 12
   lockVerticalFollow: 1
   horizontalShakeDistance: 0.15
   horizontalShakeFrequency: 16
@@ -7865,8 +7865,8 @@ Transform:
   m_GameObject: {fileID: 867809638}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.54405975, y: -0.34662253, z: -0.7797088}
-  m_LocalScale: {x: 4.66, y: 1, z: 1}
+  m_LocalPosition: {x: -12.7461, y: -0.34662253, z: -0.7797088}
+  m_LocalScale: {x: 7.3180637, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -18178,11 +18178,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7279695530631082702, guid: c8e4a08ffb61746bea5a48d8aa3a71f9, type: 3}
       propertyPath: moveSpeed
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7279695530631082702, guid: c8e4a08ffb61746bea5a48d8aa3a71f9, type: 3}
       propertyPath: turnSpeed
-      value: 200
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 7279695530631082702, guid: c8e4a08ffb61746bea5a48d8aa3a71f9, type: 3}
       propertyPath: gridManager
@@ -18219,6 +18219,10 @@ PrefabInstance:
     - target: {fileID: 7739519622341891530, guid: c8e4a08ffb61746bea5a48d8aa3a71f9, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432147295180634701, guid: c8e4a08ffb61746bea5a48d8aa3a71f9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9043728932515342390, guid: c8e4a08ffb61746bea5a48d8aa3a71f9, type: 3}
       propertyPath: m_Enabled

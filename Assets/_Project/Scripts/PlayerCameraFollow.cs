@@ -8,13 +8,15 @@ public sealed class PlayerCameraFollow : MonoBehaviour
     [SerializeField] private Vector3 followOffset = new(-6f, 8f, -6f);
     [SerializeField] private Vector3 lookAtOffset = new(0f, 0.75f, 0f);
     [SerializeField, Min(0.01f)] private float positionSmoothTime = 0.2f;
-    [SerializeField, Min(0f)] private float rotationSmoothSpeed = 10f;
+    [SerializeField, Min(0.01f)] private float rotationSmoothSpeed = 10f;
     [SerializeField] private bool lockVerticalFollow = true;
     [Header("Timeout Shake")]
     [SerializeField, Min(0f)] private float horizontalShakeDistance = 0.15f;
     [SerializeField, Min(0f)] private float horizontalShakeFrequency = 16f;
 
-    private Vector3 followVelocity;
+    private Vector3 focusVelocity;
+    private Vector3 followFocusPoint;
+    private Vector3 followPosition;
     private float targetGroundHeight;
     private bool isShakingHorizontally;
     private float shakeStartedAt;
@@ -37,28 +39,25 @@ public sealed class PlayerCameraFollow : MonoBehaviour
             return;
         }
 
-        Vector3 focusPoint = GetFocusPoint();
-        Vector3 targetPosition = focusPoint + followOffset;
-        transform.position = Vector3.SmoothDamp(
-            transform.position,
-            targetPosition,
-            ref followVelocity,
+        Vector3 targetFocusPoint = GetFocusPoint();
+        // Smooth the shared focus point instead of only the camera position. This
+        // preserves the camera-to-focus relationship and avoids constant micro-rotations.
+        followFocusPoint = Vector3.SmoothDamp(
+            followFocusPoint,
+            targetFocusPoint,
+            ref focusVelocity,
             positionSmoothTime);
+        followPosition = followFocusPoint + followOffset;
 
         Quaternion targetRotation = Quaternion.LookRotation(
-            focusPoint + lookAtOffset - transform.position,
+            followFocusPoint + lookAtOffset - followPosition,
             Vector3.up);
+        float rotationBlend = 1f - Mathf.Exp(-rotationSmoothSpeed * Time.deltaTime);
         transform.rotation = Quaternion.Slerp(
             transform.rotation,
             targetRotation,
-            rotationSmoothSpeed * Time.deltaTime);
-
-        if (isShakingHorizontally)
-        {
-            float horizontalOffset = Mathf.Sin((Time.unscaledTime - shakeStartedAt) * horizontalShakeFrequency) *
-                                     horizontalShakeDistance * shakeIntensityMultiplier;
-            transform.position += Vector3.right * horizontalOffset;
-        }
+            rotationBlend);
+        transform.position = followPosition + GetShakeOffset();
     }
 
     public void StartHorizontalShake(float intensityMultiplier = 1f)
@@ -72,12 +71,6 @@ public sealed class PlayerCameraFollow : MonoBehaviour
     {
         isShakingHorizontally = false;
         shakeIntensityMultiplier = 1f;
-        followVelocity = Vector3.zero;
-        transform.position = Vector3.zero;
-
-        enabled = false;
-        enabled = true;
-        SnapToTarget();
     }
 
     private void SnapToTarget()
@@ -88,8 +81,11 @@ public sealed class PlayerCameraFollow : MonoBehaviour
         }
 
         Vector3 focusPoint = GetFocusPoint();
-        transform.position = focusPoint + followOffset;
-        transform.LookAt(focusPoint + lookAtOffset, Vector3.up);
+        followFocusPoint = focusPoint;
+        followPosition = focusPoint + followOffset;
+        focusVelocity = Vector3.zero;
+        transform.position = followPosition;
+        transform.rotation = Quaternion.LookRotation(focusPoint + lookAtOffset - followPosition, Vector3.up);
     }
 
     private Vector3 GetFocusPoint()
@@ -101,5 +97,14 @@ public sealed class PlayerCameraFollow : MonoBehaviour
         }
 
         return focusPoint;
+    }
+
+    private Vector3 GetShakeOffset()
+    {
+        if (!isShakingHorizontally) return Vector3.zero;
+
+        float horizontalOffset = Mathf.Sin((Time.unscaledTime - shakeStartedAt) * horizontalShakeFrequency) *
+                                 horizontalShakeDistance * shakeIntensityMultiplier;
+        return Vector3.right * horizontalOffset;
     }
 }

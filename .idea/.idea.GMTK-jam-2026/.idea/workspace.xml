@@ -10,11 +10,7 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9366a4e0-1bf1-4e8d-8961-42e77efbb039" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/PrimitiveCharacter/ArtistNPCPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Prefabs/PrimitiveCharacter/ArtistNPCPrefab.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Prefabs/PrimitiveCharacter/MechanicNPCPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Prefabs/PrimitiveCharacter/MechanicNPCPrefab.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Project/Scenes/02_Gameplay.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Project/Scenes/02_Gameplay.unity" afterDir="false" />
-    </list>
+    <list default="true" id="9366a4e0-1bf1-4e8d-8961-42e77efbb039" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,7 +39,7 @@
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "movement-controller",
     "junie.onboarding.icon.badge.shown": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -110,7 +106,7 @@
       <option name="presentableId" value="Default" />
       <updated>1784780667989</updated>
       <workItem from="1784780669280" duration="5215000" />
-      <workItem from="1784866502402" duration="6895000" />
+      <workItem from="1784866502402" duration="7513000" />
     </task>
     <servers />
   </component>
