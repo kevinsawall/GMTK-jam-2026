@@ -284,14 +284,14 @@ public sealed class CupTimerController : MonoBehaviour
 
     private static void StartCameraShake()
     {
-        PlayerCameraFollow cameraFollow = Object.FindFirstObjectByType<PlayerCameraFollow>(FindObjectsInactive.Exclude);
-        cameraFollow?.StartHorizontalShake();
+        CameraFollowPlayer cameraFollow = Object.FindFirstObjectByType<CameraFollowPlayer>(FindObjectsInactive.Exclude);
+        cameraFollow?.StartPseudoResetShake();
     }
 
     private static void StopCameraShake()
     {
-        PlayerCameraFollow cameraFollow = Object.FindFirstObjectByType<PlayerCameraFollow>(FindObjectsInactive.Exclude);
-        cameraFollow?.StopHorizontalShakeAndResumeFollow();
+        CameraFollowPlayer cameraFollow = Object.FindFirstObjectByType<CameraFollowPlayer>(FindObjectsInactive.Exclude);
+        cameraFollow?.StopEventShake();
     }
 
     private void ShowFirstGameStartPhrases()

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemId: binder
   displayName: Binder
-  icon: {fileID: 21300000, guid: 3fce877f7c740422e8412a1c88ad7a93, type: 3}
+  icon: {fileID: 21300000, guid: 6a718a05261b84afdb57b65df4463993, type: 3}

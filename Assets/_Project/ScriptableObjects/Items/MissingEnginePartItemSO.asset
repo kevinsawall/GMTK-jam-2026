@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemId: missing-engine-part
   displayName: Missing Engine Part
-  icon: {fileID: 21300000, guid: 228064728af5a4e9baf2bfc6c0dd2afe, type: 3}
+  icon: {fileID: 21300000, guid: bb5602248451f4059b41304d3bc754b3, type: 3}

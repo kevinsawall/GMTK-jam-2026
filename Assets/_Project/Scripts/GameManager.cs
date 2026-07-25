@@ -12,7 +12,6 @@ public sealed class GameManager : MonoBehaviour
     [Header("End Game")]
     [SerializeField] private string endGameFlag = "end-game";
     [SerializeField, Min(0f)] private float endGameShakeLeadSeconds = 1f;
-    [SerializeField, Min(0f)] private float endGameShakeIntensity = 0.5f;
     [SerializeField, Min(0f)] private float endSceneTransitionLeadSeconds = 1f;
     [SerializeField] private string endScreenSceneName = "03_EndScreen";
 
@@ -67,10 +66,10 @@ public sealed class GameManager : MonoBehaviour
             yield return null;
         }
 
-        PlayerCameraFollow cameraFollow = Object.FindFirstObjectByType<PlayerCameraFollow>(FindObjectsInactive.Exclude);
-        cameraFollow?.StartHorizontalShake(endGameShakeIntensity);
+        CameraFollowPlayer cameraFollow = Object.FindFirstObjectByType<CameraFollowPlayer>(FindObjectsInactive.Exclude);
+        cameraFollow?.StartEndGameShake();
         yield return new WaitForSecondsRealtime(endGameShakeLeadSeconds);
-        cameraFollow?.StopHorizontalShakeAndResumeFollow();
+        cameraFollow?.StopEventShake();
 
         CutsceneController endCutscene = FindCutscene(CutsceneType.EndGame);
         if (endCutscene == null)

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemId: key
   displayName: Key
-  icon: {fileID: 21300000, guid: 65b9153f63be944bd8e0f786aa8a7eb2, type: 3}
+  icon: {fileID: 21300000, guid: 1d771e88c30604879af6e1adc0d9008a, type: 3}
