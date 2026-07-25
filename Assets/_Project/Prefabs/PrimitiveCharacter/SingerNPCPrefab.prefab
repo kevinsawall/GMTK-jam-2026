@@ -598,8 +598,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.9, y: 1.9, z: 1.9}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3115965872666739982}
   - {fileID: 7279695530631082705}
@@ -703,7 +703,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c6d08333cae48b6b680d060ae5651b2, type: 3}
-  m_Name: ''
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SittingAnimationController
   sittingController: {fileID: 9100000, guid: 89f8e5346f2143dd9376ff8406b98265, type: 2}
 --- !u!1 &8495266883132930282
@@ -828,15 +828,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d466641516e044e468930209e4abb3b2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.27275
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d466641516e044e468930209e4abb3b2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.4314592
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d466641516e044e468930209e4abb3b2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.8783801
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d466641516e044e468930209e4abb3b2, type: 3}
       propertyPath: m_LocalRotation.w
