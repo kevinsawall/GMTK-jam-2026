@@ -22,14 +22,13 @@ MonoBehaviour:
     requiredItem: {fileID: 0}
     lines:
     - speaker: 1
-      text: Excuse me, I need someone to help me...
+      text: "Excuse me, I need someone to help me..."
     - speaker: 0
-      text: "I am a fighter, that\u2019s everything I am. No one ever needed me to
-        be anything else."
+      text: "I am a fighter, that’s everything I am. No one ever needed me to be anything else."
     - speaker: 0
-      text: "You should\u2019ve seen the crowds! Thousands chanting my name!"
+      text: "You should’ve seen the crowds! Thousands chanting my name!"
     - speaker: 0
-      text: They loved me! What more does a man need?
+      text: "They loved me! What more does a man need?"
     actions:
     - type: 4
       stringValue: 
@@ -41,7 +40,7 @@ MonoBehaviour:
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "I\u2019m a fighter! Yeah!"
+      text: "I’m a fighter! Yeah!"
     actions: []
   - entryId: completed
     requiredState: 5
@@ -49,7 +48,7 @@ MonoBehaviour:
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "I\u2019ll go see my son... when I have the courage."
+      text: "I’ll go see my son... when I have the courage."
     actions: []
   skipFirstTalkWhenFlagSet: 
   skippedFirstTalkState: 2
@@ -61,31 +60,31 @@ MonoBehaviour:
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "...That\u2019s... That\u2019s my family... My ni\xF1o... My da..."
+      text: "...That’s... That’s my family... My niño... My da..."
     - speaker: 0
-      text: I kept telling myself I was a champion. Maybe I was.
+      text: "I kept telling myself I was a champion. Maybe I was."
     - speaker: 0
-      text: "But I wasn\u2019t much of a father."
+      text: "But I wasn’t much of a father."
     - speaker: 0
-      text: "Should\u2019ve supported my boy when he said he\u2019d follow in da\u2019s
-        steps."
+      text: "Should’ve supported my boy when he said he’d follow in da’s steps."
     - speaker: 0
-      text: Here. This belonged to my da.
+      text: "Here. This belonged to my da."
     - speaker: 0
-      text: Look at that picture... young as can be. My son must be that age now.
+      text: "Look at that picture... young as can be. My son must be that age now."
     - speaker: 0
-      text: Da worked those rails his whole life. Never even bothered getting a new
-        photograph.
+      text: "Da worked those rails his whole life. Never even bothered getting a new photograph."
     - speaker: 0
-      text: "Don\u2019t know why I kept it. He hated me."
+      text: "Don’t know why I kept it. He hated me."
     - speaker: 0
-      text: Da fell ill, see? The tremors, the memory lapses... He sent me away.
-        I should have stayed. Should have insisted...
+      text: "Da fell ill, see? The tremors, the memory lapses…"
+    - speaker: 0
+      text: "He chased me away. I should have stayed. Should have insisted..."
     - speaker: 1
-      text: "That\u2019s a lot to remember at once. Here\u2019s your dad\u2019s card
-        back."
+      text: "That’s a lot to remember at once."
+    - speaker: 1
+      text: "Here’s your dad’s card back."
     - speaker: 0
-      text: "No, no. Keep it. I\u2019ll go see my son... when I have the courage."
+      text: "No, no. Keep it. I’ll go see my son... when I have the courage."
     actions:
     - type: 3
       stringValue: 
@@ -106,5 +105,5 @@ MonoBehaviour:
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "What\u2019s this supposed to mean to me?"
+      text: "What’s this supposed to mean to me?"
     actions: []

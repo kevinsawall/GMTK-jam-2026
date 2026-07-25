@@ -16,7 +16,7 @@ MonoBehaviour:
   npcDisplayName: "Child"
   portrait: {fileID: 0}
   entries:
-  - entryId: "first-talk"
+  - entryId: first-talk
     requiredState: 0
     requiredFlag: ""
     requiredItem: {fileID: 0}
@@ -26,13 +26,17 @@ MonoBehaviour:
     - speaker: 1
       text: "Please tell me that isn’t part of the train you’re holding."
     - speaker: 0
-      text: "They were always away—my dad at work, my mom sad without him."
+      text: "I… It’s just… They were always away."
+    - speaker: 0
+      text: "My dad at work. My mom sad without him."
     - speaker: 0
       text: "So I wanted to get something of value. Something that’d make them see me, make me matter…"
     - speaker: 1
       text: "Oh, kid… They loved you and they miss you so much."
     - speaker: 1
       text: "You know you matter, with or without anything, just the way you are."
+    - speaker: 0
+      text: "I think… this part is important. You can take this back."
     actions:
     - type: 6
       stringValue: ""
@@ -42,7 +46,7 @@ MonoBehaviour:
       stringValue: ""
       item: {fileID: 0}
       nextNpcState: 5
-  - entryId: "completed"
+  - entryId: completed
     requiredState: 5
     requiredFlag: ""
     requiredItem: {fileID: 0}

@@ -22,21 +22,25 @@ MonoBehaviour:
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "Oh no, oh no, oh no. Something\u2019s wrong. An engine part\u2019s missing."
+      text: "Oh no, oh no, oh no. Something’s wrong. An engine part’s missing."
     - speaker: 0
-      text: "I should have listened to my grandda. He used to say the rules are to
-        be followed precisely, but I thought I\u2019d check this later. And now\u2026
-        it\u2019s too late!"
+      text: "I should have listened to my grandda. He used to say the rules are to be followed precisely, but I thought I’d check this later. And now… it’s too late!"
     - speaker: 0
-      text: "Oh, grandda. Look at this photo, it\u2019s me and my grandda\u2019s
-        holding me\u2026"
+      text: "Oh, grandda… It’s Dia de Muertos, the Day of the Dead, I wonder if I’ll see him…"
+    - speaker: 1
+      text: "Strangely, there are marigolds all around the train. Should be enough to attract souls of the dead. And the whole altar at the back..."
     - speaker: 0
-      text: "My da\u2019s there, too. But he\u2019s never been around much, having
-        his career and all that..."
+      text: "That’s my only hope! I’d appreciate his advice now."
     - speaker: 0
-      text: "Listen, I can\u2019t leave this unattended, or we\u2019ll crash. Help
-        me find the engine part, I beg you! It should be somewhere on the train.
-        Hurry!"
+      text: "Look at this photo. It’s me, and my grandda’s holding me…"
+    - speaker: 0
+      text: "My da’s there, too. But he’s never been around much, having his career and all that..."
+    - speaker: 1
+      text: "That’s great, I mean, sad. But didn’t you say something about a missing train part?"
+    - speaker: 0
+      text: "Yes! The engine part’s gone! Listen, I can’t leave this unattended, or we’ll crash."
+    - speaker: 0
+      text: "Help me find this part, I beg you! It should be somewhere on the train. Hurry!"
     actions:
     - type: 6
       stringValue: 
@@ -56,7 +60,7 @@ MonoBehaviour:
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "Oh no\u2026"
+      text: "Oh no…"
     actions: []
   - entryId: completed
     requiredState: 5
@@ -64,7 +68,7 @@ MonoBehaviour:
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "That\u2019s it! That\u2019s exactly what I need to repair this!"
+      text: "That’s it! That’s exactly what I need to repair this!"
     actions: []
   skipFirstTalkWhenFlagSet: 
   skippedFirstTalkState: 2
@@ -76,9 +80,9 @@ MonoBehaviour:
     requiredItem: {fileID: 0}
     lines:
     - speaker: 1
-      text: "Is this what you\u2019ve been looking for?"
+      text: "Is this what you’ve been looking for?"
     - speaker: 0
-      text: "That\u2019s it! That\u2019s exactly what I need to repair this!"
+      text: "That’s it! That’s exactly what I need to repair this!"
     actions:
     - type: 3
       stringValue: 
@@ -99,5 +103,5 @@ MonoBehaviour:
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "That\u2019s not the engine part. Hurry!"
+      text: "That’s not the engine part. Hurry!"
     actions: []

@@ -16,7 +16,7 @@ MonoBehaviour:
   npcDisplayName: "Artist"
   portrait: {fileID: 0}
   entries:
-  - entryId: "first-talk"
+  - entryId: first-talk
     requiredState: 0
     requiredFlag: ""
     requiredItem: {fileID: 0}
@@ -24,7 +24,9 @@ MonoBehaviour:
     - speaker: 0
       text: "Hey! Don’t look! Those are just sketches!"
     - speaker: 1
-      text: "Sorry, I didn’t mean to. They are not so bad, though. Have that weekly manga feel to them…"
+      text: "Sorry, I didn’t mean to."
+    - speaker: 1
+      text: "They are not so bad, though. Have that weekly manga feel to them…"
     - speaker: 0
       text: "They’re terrible! No use finishing them."
     - speaker: 0
@@ -38,7 +40,7 @@ MonoBehaviour:
       stringValue: ""
       item: {fileID: 0}
       nextNpcState: 2
-  - entryId: "waiting-for-item"
+  - entryId: waiting-for-item
     requiredState: 2
     requiredFlag: ""
     requiredItem: {fileID: 0}
@@ -46,13 +48,13 @@ MonoBehaviour:
     - speaker: 0
       text: "I’ll finish it… someday."
     actions: []
-  - entryId: "completed"
+  - entryId: completed
     requiredState: 5
     requiredFlag: ""
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "This is turning out great!"
+      text: "That one’s turning out great!"
     actions: []
   expectedDroppedItem: {fileID: 11400000, guid: e98d9d804f61b4e1a93748f563957296, type: 2}
   correctItemDropDialogue:
@@ -64,7 +66,9 @@ MonoBehaviour:
     - speaker: 1
       text: "Your skills aren’t the problem."
     - speaker: 0
-      text: "Thank you! That’s exactly what I needed. Look how neatly they fit into the binder. I can colour-code!"
+      text: "Thank you! That’s exactly what I needed."
+    - speaker: 0
+      text: "Look how neatly they fit into the binder. I can colour-code!"
     - speaker: 1
       text: "That was quick."
     - speaker: 0

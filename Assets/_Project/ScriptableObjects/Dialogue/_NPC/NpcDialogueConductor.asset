@@ -22,26 +22,23 @@ MonoBehaviour:
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: Got your ticket?
+      text: "Got your ticket?"
     - speaker: 1
-      text: "Yes! Sorry, no time for this. I\u2026"
+      text: "Yes! Sorry, no time for this. I…"
     - speaker: 0
-      text: Time, eh? Spent my whole life making sure trains ran on it. You keep
-        the railway on schedule long enough, and life slips right past the platform.
+      text: "Time, eh? Spent my whole life making sure trains ran on it. You keep the railway on schedule long enough, and life slips right past the platform."
     - speaker: 0
-      text: Trains are always shaking, so I got the shakes, too, in the end. No wonder.
+      text: "Trains are always shaking, so I got the shakes, too, in the end. No wonder."
     - speaker: 0
-      text: "And what did my good-for-nothing son do? Told me to stop working! Told
-        me he\u2019s so famous now, he can take care of me!"
+      text: "And what did my good-for-nothing son do? Told me to stop working! Told me he’s so famous now, he can take care of me!"
     - speaker: 1
-      text: "That\u2019s great, actually, isn\u2019t it? Listen\u2026"
+      text: "That’s great, actually, isn’t it? Listen…"
     - speaker: 0
-      text: "Ha! But I knew him for a quitter. Didn\u2019t stick to no rules. Left
-        his steady job on trains, and \u2018course he left me, too."
+      text: "Ha! But I knew him for a quitter. Didn’t stick to no rules. Left his steady job on trains, and ‘course he left me, too."
     - speaker: 0
-      text: "Dead! I\u2019m dead to him, just like he is dead to me!"
+      text: "Dead! I’m dead to him, just like he is dead to me!"
     - speaker: 0
-      text: Now, I need rest! Let me sleep!
+      text: "Now, I need rest! Let me sleep!"
     actions:
     - type: 4
       stringValue: 
@@ -53,18 +50,15 @@ MonoBehaviour:
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "There\u2019s something wrong, isn\u2019t there?"
+      text: "There’s something wrong, isn’t there?"
     - speaker: 1
-      text: Yes! Finally! I was going crazy here on my own.
+      text: "Yes! Finally! I was going crazy here on my own."
     - speaker: 0
-      text: "But\u2026 I can\u2019t trust myself."
+      text: "But… I can’t trust myself."
     - speaker: 1
-      text: "Please. I\u2019ve searched everywhere. Do you know how to open the compartment
-        at the back?"
+      text: "Please. I’ve searched everywhere. Do you know how to open the compartment at the back?"
     - speaker: 0
-      text: "No, no. My mind\u2019s not what it used to be. Best stick to the rules."
-    - speaker: 0
-      text: "Can\u2019t trust myself."
+      text: "No, no. My mind’s not what it used to be. Best stick to the rules."
     actions:
     - type: 4
       stringValue: 
@@ -76,15 +70,15 @@ MonoBehaviour:
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "Z-z-z\u2026"
+      text: "Z-z-z…"
     actions: []
-  - entryId: waitin-item
+  - entryId: waiting-for-item
     requiredState: 2
     requiredFlag: 
     requiredItem: {fileID: 11400000, guid: c9782c6d627d14a0d8375d49f01cb3be, type: 2}
     lines:
     - speaker: 0
-      text: "Can\u2019t trust myself."
+      text: "Can’t trust myself…"
     actions: []
   - entryId: completed
     requiredState: 5
@@ -92,7 +86,7 @@ MonoBehaviour:
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: What are you waiting for?
+      text: "What are you waiting for?"
     actions: []
   skipFirstTalkWhenFlagSet: start-singing
   skippedFirstTalkState: 2
@@ -104,18 +98,17 @@ MonoBehaviour:
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "What\u2019s this? Is that\u2026 me?"
+      text: "What’s this? Is that… me?"
     - speaker: 0
-      text: "I remember\u2026 I was so young when they took this, just like my grandson
-        now\u2026"
+      text: "I remember… I was so young when they took this, just like my grandson now…"
     - speaker: 0
-      text: What would he do, I wonder?
+      text: "What would he do, I wonder?"
     - speaker: 1
-      text: "I\u2019m sure you know."
+      text: "I’m sure you know."
     - speaker: 0
-      text: ...
+      text: "..."
     - speaker: 0
-      text: "Here\u2019s the key."
+      text: "Here’s the key."
     actions:
     - type: 3
       stringValue: 
@@ -136,5 +129,5 @@ MonoBehaviour:
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "Don\u2019t you know the rules?"
+      text: "Don’t you know the rules?"
     actions: []

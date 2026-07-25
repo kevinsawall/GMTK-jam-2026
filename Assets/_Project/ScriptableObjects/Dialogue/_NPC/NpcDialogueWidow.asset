@@ -22,37 +22,39 @@ MonoBehaviour:
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "Travelling on your own, coraz\xF3n?"
+      text: "Travelling on your own, corazón?"
     - speaker: 1
-      text: Yes. New software job in Mexico City.
+      text: "Yes. New software job in Mexico City."
     - speaker: 1
-      text: "And yes, I\u2019m going on my own."
+      text: "And yes, I’m going on my own."
     - speaker: 0
-      text: "Me too. All alone now. Though wasn\u2019t I alone all my life even though
-        I had a family?"
+      text: "Me too. All alone now. Though, wasn’t I alone all my life, even with a family?"
     - speaker: 0
-      text: "Our child, nuestro ni\xF1o lindo\u2026 He liked to collect things, you
-        know? He\u2019d show them to me, then bring them up to the attic, where he\u2019d
-        hide. He died so young."
+      text: "Our child, nuestro niño lindo… He liked to collect things, you know?"
+    - speaker: 0
+      text: "He’d show them to me, then bring them up to the attic, where he’d hide."
+    - speaker: 0
+      text: "He died so young."
     - speaker: 1
-      text: "I\u2019m so sorry."
+      text: "I’m so sorry."
     - speaker: 0
-      text: "It\u2019s alright, coraz\xF3n. I made peace with it. I only wish\u2026
-        that his father spent more time with him, got to know his son."
+      text: "It’s alright, corazón. I made peace with it."
     - speaker: 0
-      text: "We were so crushed\u2026 I barely saw my husband in 20 years, until
-        he finally retired. And the first day off work he died. A heart attack."
+      text: "I only wish… that his father spent more time with him, got to know his son."
     - speaker: 0
-      text: "I wish we had more time together. Just the two of us with our son, travelling,
-        visiting relatives, living\u2026"
+      text: "We were so crushed… I barely saw my husband in 20 years, until he finally retired."
     - speaker: 0
-      text: "You\u2019re still so young, ni\xF1a. You probably think I'm a crazy
-        old lady."
+      text: "And on the first day off work he died. A heart attack."
+    - speaker: 0
+      text: "I wish we had more time together. Just the two of us with our son, travelling, visiting relatives, living…"
+    - speaker: 0
+      text: "You’re still so young, niña. You probably think I’m a crazy old lady."
     - speaker: 1
-      text: Oh no, not at all.
+      text: "Oh no, not at all."
     - speaker: 0
-      text: "Here, take this. One of my son\u2019s treasures. Keep it as a reminder
-        that time flies by."
+      text: "Here, take this. One of my son’s treasures. Keep it as a reminder that time flies by."
+    - speaker: 1
+      text: "Thank you. That’s… very relevant."
     actions:
     - type: 6
       stringValue: 
@@ -68,7 +70,7 @@ MonoBehaviour:
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: I wish we had more time.
+      text: "I wish we had more time..."
     actions: []
   expectedDroppedItem: {fileID: 0}
   correctItemDropDialogue:
@@ -85,5 +87,5 @@ MonoBehaviour:
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "What\u2019s this then, love?"
+      text: "What’s this then, corazón?"
     actions: []
