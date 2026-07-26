@@ -24813,8 +24813,8 @@ MonoBehaviour:
   audioMixer: {fileID: 0}
   musicMixerGroup: {fileID: 0}
   sfxMixerGroup: {fileID: 0}
-  masterVolume: 1
-  musicVolume: 1
+  masterVolume: 0.8
+  musicVolume: 0.7
   sfxVolume: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

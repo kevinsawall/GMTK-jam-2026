@@ -6,6 +6,10 @@ public sealed class AudioManager : MonoBehaviour
     private const string MasterVolumeParameter = "MasterVolume";
     private const string MusicVolumeParameter = "MusicVolume";
     private const string SfxVolumeParameter = "SfxVolume";
+    private const string MasterVolumePreferenceKey = "Audio.MasterVolume";
+    private const string MusicVolumePreferenceKey = "Audio.MusicVolume";
+    private const float DefaultMasterVolume = 0.8f;
+    private const float DefaultMusicVolume = 0.7f;
 
     public static AudioManager Instance { get; private set; }
 
@@ -13,12 +17,13 @@ public sealed class AudioManager : MonoBehaviour
     [SerializeField] private AudioMixer audioMixer;
     [SerializeField] private AudioMixerGroup musicMixerGroup;
     [SerializeField] private AudioMixerGroup sfxMixerGroup;
-    [SerializeField, Range(0f, 1f)] private float masterVolume = 1f;
-    [SerializeField, Range(0f, 1f)] private float musicVolume = 1f;
+    [SerializeField, Range(0f, 1f)] private float masterVolume = DefaultMasterVolume;
+    [SerializeField, Range(0f, 1f)] private float musicVolume = DefaultMusicVolume;
     [SerializeField, Range(0f, 1f)] private float sfxVolume = 1f;
 
     private AudioSource musicSource;
     private AudioSource sfxSource;
+    private float musicClipVolume = 1f;
 
     public float MasterVolume => masterVolume;
     public float MusicVolume => musicVolume;
@@ -37,6 +42,8 @@ public sealed class AudioManager : MonoBehaviour
 
         musicSource = CreateSource("MusicSource", musicMixerGroup);
         sfxSource = CreateSource("SfxSource", sfxMixerGroup);
+        masterVolume = Mathf.Clamp01(PlayerPrefs.GetFloat(MasterVolumePreferenceKey, DefaultMasterVolume));
+        musicVolume = Mathf.Clamp01(PlayerPrefs.GetFloat(MusicVolumePreferenceKey, DefaultMusicVolume));
         SetMasterVolume(masterVolume);
         SetMusicVolume(musicVolume);
         SetSfxVolume(sfxVolume);
@@ -56,7 +63,8 @@ public sealed class AudioManager : MonoBehaviour
         }
 
         musicSource.clip = entry.clip;
-        musicSource.volume = entry.volume;
+        musicClipVolume = entry.volume;
+        ApplyMusicVolume();
         musicSource.loop = entry.loop;
         musicSource.Play();
     }
@@ -75,19 +83,27 @@ public sealed class AudioManager : MonoBehaviour
             return;
         }
 
-        sfxSource.PlayOneShot(entry.clip, entry.volume);
+        float volume = entry.volume;
+        if (audioMixer == null) volume *= masterVolume * sfxVolume;
+        sfxSource.PlayOneShot(entry.clip, volume);
     }
 
     public void SetMusicVolume(float value)
     {
         musicVolume = Mathf.Clamp01(value);
         SetMixerVolume(MusicVolumeParameter, musicVolume);
+        ApplyMusicVolume();
+        PlayerPrefs.SetFloat(MusicVolumePreferenceKey, musicVolume);
+        PlayerPrefs.Save();
     }
 
     public void SetMasterVolume(float value)
     {
         masterVolume = Mathf.Clamp01(value);
         SetMixerVolume(MasterVolumeParameter, masterVolume);
+        ApplyMusicVolume();
+        PlayerPrefs.SetFloat(MasterVolumePreferenceKey, masterVolume);
+        PlayerPrefs.Save();
     }
 
     public void SetSfxVolume(float value)
@@ -105,6 +121,15 @@ public sealed class AudioManager : MonoBehaviour
         source.playOnAwake = false;
         source.outputAudioMixerGroup = mixerGroup;
         return source;
+    }
+
+    private void ApplyMusicVolume()
+    {
+        if (musicSource == null) return;
+
+        musicSource.volume = audioMixer == null
+            ? musicClipVolume * masterVolume * musicVolume
+            : musicClipVolume;
     }
 
     private void SetMixerVolume(string parameterName, float value)

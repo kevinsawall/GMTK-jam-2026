@@ -1889,8 +1889,8 @@ MonoBehaviour:
   audioMixer: {fileID: 0}
   musicMixerGroup: {fileID: 0}
   sfxMixerGroup: {fileID: 0}
-  masterVolume: 1
-  musicVolume: 1
+  masterVolume: 0.8
+  musicVolume: 0.7
   sfxVolume: 1
 --- !u!224 &296360394898655017
 RectTransform:
@@ -2134,6 +2134,10 @@ PrefabInstance:
     - target: {fileID: 6056226082610949791, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
       propertyPath: m_Name
       value: CreditsPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6056226082610949791, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2818,9 +2822,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30f2a7c1d45e4b98a6c3f0d1e2b57964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioSettingsController
-  masterVolumeSlider: {fileID: 5687766056385882757}
+  masterVolumeSlider: {fileID: 8973280915380562914}
   musicVolumeSlider: {fileID: 5318075513923161535}
-  sfxVolumeSlider: {fileID: 8973280915380562914}
+  sfxVolumeSlider: {fileID: 5687766056385882757}
 --- !u!1 &2609776928284975502
 GameObject:
   m_ObjectHideFlags: 0
