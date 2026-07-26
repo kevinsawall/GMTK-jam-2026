@@ -6,6 +6,9 @@ public sealed class ObjectController : MonoBehaviour, IInteractable
     [SerializeField, Min(1)] private int interactionDistance = 1;
     [Header("Flag Trigger")]
     [SerializeField] private string deactivateOnFlag;
+    [Header("Linked Interaction")]
+    [SerializeField] private ObjectController linkedObjectController;
+    [SerializeField] private string disableInteractionOnFlag;
     [Header("Hover Outline")]
     [SerializeField] private Material hoverOutlineMaterial;
 
@@ -14,9 +17,10 @@ public sealed class ObjectController : MonoBehaviour, IInteractable
     private Material[][] originalMaterials;
     private bool isHovered;
     private bool isHoverOutlineVisible;
+    private bool isInteractionDisabled;
 
     public InteractObject InteractObject => interactObject;
-    public bool HasInteraction => interactObject != null;
+    public bool HasInteraction => interactObject != null && !isInteractionDisabled;
     public int InteractionDistance => interactionDistance;
 
     private void Awake()
@@ -31,6 +35,11 @@ public sealed class ObjectController : MonoBehaviour, IInteractable
         {
             gameObject.SetActive(false);
             return;
+        }
+
+        if (ShouldDisableInteractionForFlag())
+        {
+            DisableInteraction();
         }
 
         if (outlineRenderers == null) return;
@@ -75,6 +84,12 @@ public sealed class ObjectController : MonoBehaviour, IInteractable
         if (!string.IsNullOrWhiteSpace(deactivateOnFlag) && flag == deactivateOnFlag)
         {
             gameObject.SetActive(false);
+            return;
+        }
+
+        if (!string.IsNullOrWhiteSpace(disableInteractionOnFlag) && flag == disableInteractionOnFlag)
+        {
+            DisableInteraction();
         }
     }
 
@@ -83,6 +98,13 @@ public sealed class ObjectController : MonoBehaviour, IInteractable
         return !string.IsNullOrWhiteSpace(deactivateOnFlag) &&
                DialogueManager.Instance != null &&
                DialogueManager.Instance.HasFlag(deactivateOnFlag);
+    }
+
+    private bool ShouldDisableInteractionForFlag()
+    {
+        return !string.IsNullOrWhiteSpace(disableInteractionOnFlag) &&
+               DialogueManager.Instance != null &&
+               DialogueManager.Instance.HasFlag(disableInteractionOnFlag);
     }
 
     private void CacheOutlineRenderers()
@@ -136,7 +158,7 @@ public sealed class ObjectController : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (interactObject != null)
+        if (!isInteractionDisabled && interactObject != null)
         {
             interactObject.Interact(this);
         }
@@ -144,7 +166,18 @@ public sealed class ObjectController : MonoBehaviour, IInteractable
 
     public bool TryReceiveItem(ItemData item)
     {
-        return interactObject != null && interactObject.TryReceiveItem(item, this);
+        return !isInteractionDisabled && interactObject != null && interactObject.TryReceiveItem(item, this);
+    }
+
+    /// <summary>Stops this object and its linked partner from receiving any further interactions.</summary>
+    public void DisableInteraction()
+    {
+        if (isInteractionDisabled) return;
+
+        isInteractionDisabled = true;
+        isHovered = false;
+        SetHoverOutlineVisible(false);
+        linkedObjectController?.DisableInteraction();
     }
 
     /// <summary>Returns this object's next inspect phrase index and advances it, looping at the end.</summary>

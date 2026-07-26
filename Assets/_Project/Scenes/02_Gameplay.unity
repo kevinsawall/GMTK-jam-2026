@@ -14331,6 +14331,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1523127068}
+  - component: {fileID: 1523127070}
+  - component: {fileID: 1523127069}
   m_Layer: 0
   m_Name: DoorRight
   m_TagString: Untagged
@@ -14355,6 +14357,41 @@ Transform:
   - {fileID: 147897876}
   m_Father: {fileID: 128604536}
   m_LocalEulerAnglesHint: {x: 0, y: -152.37, z: 0}
+--- !u!114 &1523127069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523127067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a2e4c6d8f104b92a3c5e7f9b1d3a5c7, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::DoorController
+  openOnFlag: open-door
+  door: {fileID: 1523127068}
+  openRotationOffset: {x: 0, y: 90, z: 0}
+  openDuration: 0.45
+  easeType: 4
+--- !u!114 &1523127070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523127067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e8986ed1ad7b48cea750b7ed4041850, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectController
+  interactObject: {fileID: 11400000, guid: 8c6267a91e244423dace92d8535e2f2a, type: 2}
+  interactionDistance: 1
+  deactivateOnFlag:
+  linkedObjectController: {fileID: 1683821603}
+  disableInteractionOnFlag: open-door
+  hoverOutlineMaterial: {fileID: 2100000, guid: 4bb7653d21864d1f9a2e4d8c6e3a1f72, type: 2}
 --- !u!1 &1539067435
 GameObject:
   m_ObjectHideFlags: 0
@@ -16456,6 +16493,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1683821601}
+  - component: {fileID: 1683821603}
+  - component: {fileID: 1683821602}
   m_Layer: 0
   m_Name: DoorLeft
   m_TagString: Untagged
@@ -16480,6 +16519,41 @@ Transform:
   - {fileID: 2050123326}
   m_Father: {fileID: 128604536}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1683821602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683821600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a2e4c6d8f104b92a3c5e7f9b1d3a5c7, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::DoorController
+  openOnFlag: open-door
+  door: {fileID: 1683821601}
+  openRotationOffset: {x: 0, y: 90, z: 0}
+  openDuration: 0.45
+  easeType: 4
+--- !u!114 &1683821603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683821600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e8986ed1ad7b48cea750b7ed4041850, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectController
+  interactObject: {fileID: 11400000, guid: 8c6267a91e244423dace92d8535e2f2a, type: 2}
+  interactionDistance: 1
+  deactivateOnFlag:
+  linkedObjectController: {fileID: 1523127070}
+  disableInteractionOnFlag: open-door
+  hoverOutlineMaterial: {fileID: 2100000, guid: 4bb7653d21864d1f9a2e4d8c6e3a1f72, type: 2}
 --- !u!1 &1688555816
 GameObject:
   m_ObjectHideFlags: 0
