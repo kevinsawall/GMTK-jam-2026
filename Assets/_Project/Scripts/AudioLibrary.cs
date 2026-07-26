@@ -18,7 +18,8 @@ public enum SfxId
     Pause,
     Resume,
     TrainOnTheRun,
-    TrainDestruction
+    TrainDestruction,
+    TrainDestructionShort
 }
 
 [Serializable]

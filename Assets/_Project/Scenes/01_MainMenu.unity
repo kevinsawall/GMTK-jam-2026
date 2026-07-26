@@ -970,6 +970,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1171563932}
+  - component: {fileID: 1171563933}
   m_Layer: 5
   m_Name: GameTitle
   m_TagString: Untagged
@@ -998,6 +999,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 328.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1171563933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171563931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ee708e6a2ad40b9b90c29feb4903cd7, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::GameTitleTrainSway
+  movementRange: {x: 12, y: 8}
+  rotationRange: 1.25
+  swayDurationRange: {x: 2.5, y: 4.5}
 --- !u!1001 &1218467405
 PrefabInstance:
   m_ObjectHideFlags: 0

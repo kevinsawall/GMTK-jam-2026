@@ -14,7 +14,7 @@ public sealed class CupTimerController : MonoBehaviour
 {
     private const string TimerObjectName = "Cup timer";
     private const string CutsceneObjectName = "CutsceneObject";
-    private const float CutsceneDurationSeconds = 4f;
+    private const float CutsceneDurationSeconds = 6f;
     private const float PlayerResetTimeSeconds = 2f;
     private const float CutsceneFadeOutSeconds = 1f;
 
@@ -109,7 +109,6 @@ public sealed class CupTimerController : MonoBehaviour
         UpdateTimerDisplay();
         if (remainingSeconds > 0f) return;
 
-        AudioManager.Instance?.StopLoopingSfx(SfxId.TrainOnTheRun);
         hasExpired = true;
         timeoutSequence = StartCoroutine(RunTimeoutSequence());
     }
@@ -171,7 +170,6 @@ public sealed class CupTimerController : MonoBehaviour
         else
         {
             timerImage.sprite = naturalEmptySprite;
-            AudioManager.Instance?.StopLoopingSfx(SfxId.TrainOnTheRun);
             hasExpired = true;
             timeoutSequence = StartCoroutine(RunTimeoutSequence());
         }
@@ -255,6 +253,8 @@ public sealed class CupTimerController : MonoBehaviour
             {
                 yield return null;
             }
+
+            AudioManager.Instance?.PlaySfx(SfxId.TrainDestructionShort);
         }
 
         yield return PlayCutsceneAndRestart();
