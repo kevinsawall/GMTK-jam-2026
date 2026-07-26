@@ -12131,17 +12131,17 @@ MonoBehaviour:
   - "Huh? But it was cold\u2026"
   - "Wait\u2026 Did the train crash?!"
   playerStartPhrases:
-  - Second life!
+  - Respawned! How many lives do I get?
   - Here we go again.
   - "\u2026another chance. "
   - One more time.
-  - Argh!
+  - Second first time for everything!
   playerEndPhrases:
   - "What\u2019s going on?"
   - "Oh-no-no-no\u2026"
   - "I just need\u2026"
   - "I\u2019m not done yet!"
-  - "Do not go gentle\u2026"
+  - "$%#^$ I wish I could swear in this\u2026!"
   naturalStageSprites:
   - {fileID: 21300000, guid: 1f3a4aab816594759abdfbd017d8235a, type: 3}
   - {fileID: 21300000, guid: 4978a2e6b49834d0193d0cb55130bf5a, type: 3}
