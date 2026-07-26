@@ -23,27 +23,28 @@ MonoBehaviour:
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "You know who I am, verdad?"
+      text: You know who I am, verdad?
     - speaker: 1
-      text: "Nope. But I have a feeling I’m about to get educated."
+      text: "Nope. But I have a feeling I\u2019m about to get educated."
     - speaker: 0
-      text: "No? Ay... what a tragedy. I am a star!"
+      text: No? Ay... what a tragedy. I am a star!
     - speaker: 0
-      text: "There wasn’t a dance night without my songs."
+      text: "There wasn\u2019t a dance night without my songs."
     - speaker: 0
-      text: "The girls screamed. The boys copied my style."
+      text: The girls screamed. The boys copied my style.
     - speaker: 0
-      text: "The radio couldn’t get enough of me."
+      text: "The radio couldn\u2019t get enough of me."
     - speaker: 0
-      text: "Then... they found somebody younger."
+      text: Then... they found somebody younger.
     - speaker: 0
-      text: "That’s show business… I guess."
+      text: "That\u2019s show business\u2026 I guess."
     - speaker: 1
-      text: "Yeah, life’s tough. I want to make games. But I’ve found a job that pays, so…"
+      text: "Yeah, life\u2019s tough. I want to make games. But I\u2019ve found a
+        job that pays, so\u2026"
     - speaker: 0
-      text: "Bah! I just need another canción."
+      text: "Bah! I just need another canci\xF3n."
     - speaker: 0
-      text: "Another hit, and I can sing on the main stage again."
+      text: Another hit, and I can sing on the main stage again.
     actions:
     - type: 4
       stringValue: 
@@ -55,7 +56,7 @@ MonoBehaviour:
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "Just need some inspiration..."
+      text: Just need some inspiration...
     actions: []
   - entryId: completed
     requiredState: 5
@@ -63,7 +64,7 @@ MonoBehaviour:
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "La-la-la…"
+      text: "La-la-la\u2026"
     actions: []
   skipFirstTalkWhenFlagSet: 
   skippedFirstTalkState: 2
@@ -75,25 +76,25 @@ MonoBehaviour:
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "Whoah, it’s us! We’re all in it, together."
+      text: "Whoah, it\u2019s us! We\u2019re all in it, together."
     - speaker: 1
-      text: "You can’t even imagine how right you are…"
+      text: "You can\u2019t even imagine how right you are\u2026"
     - speaker: 0
-      text: "This… This is the inspiration I was waiting for."
+      text: "This\u2026 This is the inspiration I was waiting for."
     - speaker: 0
-      text: "I spent my whole life trying to make strangers cheer."
+      text: I spent my whole life trying to make strangers cheer.
     - speaker: 0
-      text: "Maybe I should've been making songs for the people standing beside me."
+      text: Maybe I should've been making songs for the people standing beside me.
     - speaker: 0
-      text: "Forget the charts. Forget the fame."
+      text: Forget the charts. Forget the fame.
     - speaker: 0
-      text: "If one little song can make someone’s journey a little lighter..."
+      text: "If one little song can make someone\u2019s journey a little lighter..."
     - speaker: 0
-      text: "...that’s enough for me."
+      text: "...that\u2019s enough for me."
     - speaker: 0
-      text: "Now listen."
+      text: Now listen.
     - speaker: 2
-      text: "Play the Singer’s song."
+      text: "Play the Singer\u2019s song."
     actions:
     - type: 3
       stringValue: 
@@ -118,5 +119,5 @@ MonoBehaviour:
     requiredItem: {fileID: 0}
     lines:
     - speaker: 0
-      text: "No spark in this."
+      text: No spark in this.
     actions: []
