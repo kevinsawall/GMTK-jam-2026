@@ -37,7 +37,10 @@ public sealed class GameManager : MonoBehaviour
 
     private void Start()
     {
-        PlayCutscene(CutsceneType.StartGame);
+        if (PlayCutscene(CutsceneType.StartGame))
+        {
+            AudioManager.Instance?.PlaySfx(SfxId.TrainDestruction);
+        }
     }
 
     public bool PlayCutscene(CutsceneType cutsceneType)
