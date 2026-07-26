@@ -270,6 +270,7 @@ GameObject:
   - component: {fileID: 87025846}
   - component: {fileID: 87025848}
   - component: {fileID: 87025847}
+  - component: {fileID: 87025849}
   m_Layer: 5
   m_Name: ResultMessage
   m_TagString: Untagged
@@ -317,7 +318,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Thank you for playing! \n\nFollow us to learn about our upcoming game:\nEmindar
-    the Last Emperor\n\nX:  https://x.com/Emindargame\nbsky: @emindar.bsky.social"
+    the Last Emperor\n\nX:  <link=\"https://x.com/Emindargame\">https://x.com/Emindargame</link>\nbsky:
+    <link=\"https://bsky.app/profile/emindar.bsky.social\">@emindar.bsky.social</link>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6ed4149c2707045c9bc7971789ddf93a, type: 2}
   m_sharedMaterial: {fileID: 4117455241340578937, guid: 6ed4149c2707045c9bc7971789ddf93a, type: 2}
@@ -389,6 +391,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &87025849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87025845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f8a7c2d9b6e4a1f8c3d7e5b0a2c9d6f, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: Assembly-CSharp::TmpLinkOpener
 --- !u!222 &87025848
 CanvasRenderer:
   m_ObjectHideFlags: 0
