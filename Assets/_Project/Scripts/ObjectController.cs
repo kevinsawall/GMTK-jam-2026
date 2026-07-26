@@ -9,6 +9,7 @@ public sealed class ObjectController : MonoBehaviour, IInteractable
     [Header("Linked Interaction")]
     [SerializeField] private ObjectController linkedObjectController;
     [SerializeField] private string disableInteractionOnFlag;
+    [SerializeField] private bool disableCollidersOnInteractionDisabled;
     [Header("Hover Outline")]
     [SerializeField] private Material hoverOutlineMaterial;
 
@@ -177,6 +178,15 @@ public sealed class ObjectController : MonoBehaviour, IInteractable
         isInteractionDisabled = true;
         isHovered = false;
         SetHoverOutlineVisible(false);
+
+        if (disableCollidersOnInteractionDisabled)
+        {
+            foreach (Collider interactionCollider in GetComponents<Collider>())
+            {
+                interactionCollider.enabled = false;
+            }
+        }
+
         linkedObjectController?.DisableInteraction();
     }
 
