@@ -12071,7 +12071,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 20.650024, y: 21.82}
+  m_AnchoredPosition: {x: 20.650024, y: 21.820007}
   m_SizeDelta: {x: 235.6, y: 423.3}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1215222820
@@ -16046,8 +16046,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CutsceneController
   cutsceneType: 0
-  totalDurationSeconds: 13
-  fadeOutSeconds: 2
+  totalDurationSeconds: 14.5
+  fadeOutSeconds: 1
   titleText: {fileID: 960342099}
   titleTextOverride: 'Oh, the tea is cold now.
 

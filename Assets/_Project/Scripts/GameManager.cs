@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public sealed class GameManager : MonoBehaviour
 {
+    private const float StartDestructionDelaySeconds = 7f;
+
     public static GameManager Instance { get; private set; }
     public static bool IsEndGameSequencePlaying => Instance != null && Instance.isEndGameSequencePlaying;
 
@@ -23,23 +25,23 @@ public sealed class GameManager : MonoBehaviour
         Instance = this;
 
         DialogueManager.FlagSet += HandleFlagSet;
-        CutsceneController.StartGameFadeOutStarted += HandleStartGameFadeOut;
         CutsceneController.StartGameFinished += HandleStartGameFinished;
     }
 
     private void OnDestroy()
     {
         DialogueManager.FlagSet -= HandleFlagSet;
-        CutsceneController.StartGameFadeOutStarted -= HandleStartGameFadeOut;
         CutsceneController.StartGameFinished -= HandleStartGameFinished;
         if (Instance == this) Instance = null;
     }
 
     private void Start()
     {
+        AudioManager.Instance?.PlayLoopingSfx(SfxId.TrainOnTheRun);
+
         if (PlayCutscene(CutsceneType.StartGame))
         {
-            AudioManager.Instance?.PlaySfx(SfxId.TrainDestruction);
+            StartCoroutine(PlayStartDestructionAfterDelay());
         }
     }
 
@@ -71,9 +73,10 @@ public sealed class GameManager : MonoBehaviour
         AudioManager.Instance?.PlayMusic(MusicId.Gameplay);
     }
 
-    private void HandleStartGameFadeOut()
+    private IEnumerator PlayStartDestructionAfterDelay()
     {
-        AudioManager.Instance?.PlayLoopingSfx(SfxId.TrainOnTheRun);
+        yield return new WaitForSecondsRealtime(StartDestructionDelaySeconds);
+        AudioManager.Instance?.PauseLoopingSfxForOneShot(SfxId.TrainOnTheRun, SfxId.TrainDestruction);
     }
 
     private IEnumerator RunEndGameSequence()

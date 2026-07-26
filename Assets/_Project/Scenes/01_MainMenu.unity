@@ -1218,6 +1218,7 @@ GameObject:
   - component: {fileID: 1489018893}
   - component: {fileID: 1489018895}
   - component: {fileID: 1489018894}
+  - component: {fileID: 2147000300}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -1957,6 +1958,20 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 3d46a78712050ac4cb356194b0867f3b, type: 2}
+--- !u!114 &2147000300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489018892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1f3ca21e0a4c33af1ee61e42d83b76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SubtleCanvasFade
+  minimumAlpha: 0.92
+  halfCycleDuration: 1.5
 --- !u!224 &296360394898655017
 RectTransform:
   m_ObjectHideFlags: 0

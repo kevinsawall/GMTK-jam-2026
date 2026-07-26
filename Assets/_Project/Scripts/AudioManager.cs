@@ -31,6 +31,7 @@ public sealed class AudioManager : MonoBehaviour
     private float loopingSfxClipVolume = 1f;
     private float musicDuckMultiplier = 1f;
     private Coroutine musicDuckRoutine;
+    private Coroutine loopingSfxResumeRoutine;
 
     public float MasterVolume => masterVolume;
     public float MusicVolume => musicVolume;
@@ -127,6 +128,21 @@ public sealed class AudioManager : MonoBehaviour
         musicDuckRoutine = StartCoroutine(DuckMusicForClip(entry.clip.length, musicDuckMultiplier));
     }
 
+    public void PauseLoopingSfxForOneShot(SfxId loopingSfxId, SfxId oneShotSfxId)
+    {
+        if (!audioLibrary.TryGetSfx(oneShotSfxId, out SfxEntry entry))
+        {
+            Debug.LogWarning($"No SFX clip is configured for {oneShotSfxId}.", this);
+            return;
+        }
+
+        StopLoopingSfx(loopingSfxId);
+        PlaySfx(oneShotSfxId);
+
+        if (loopingSfxResumeRoutine != null) StopCoroutine(loopingSfxResumeRoutine);
+        loopingSfxResumeRoutine = StartCoroutine(ResumeLoopingSfxAfterClip(loopingSfxId, entry.clip.length));
+    }
+
     public void StopLoopingSfx(SfxId id)
     {
         if (!audioLibrary.TryGetSfx(id, out SfxEntry entry) || loopingSfxSource.clip != entry.clip) return;
@@ -199,6 +215,13 @@ public sealed class AudioManager : MonoBehaviour
         musicDuckMultiplier = 1f;
         ApplyMusicVolume();
         musicDuckRoutine = null;
+    }
+
+    private IEnumerator ResumeLoopingSfxAfterClip(SfxId id, float duration)
+    {
+        yield return new WaitForSecondsRealtime(duration);
+        PlayLoopingSfx(id);
+        loopingSfxResumeRoutine = null;
     }
 
     private void SetMixerVolume(string parameterName, float value)
