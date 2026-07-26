@@ -2,6 +2,7 @@ using UnityEngine;
 
 public sealed class MainMenuController : MonoBehaviour
 {
+    [SerializeField] private GameObject mainPanel;
     [SerializeField] private GameObject optionsPanel;
     [SerializeField] private GameObject creditsPanel;
     [SerializeField] private string gameplaySceneName = "02_Gameplay";
@@ -38,7 +39,8 @@ public sealed class MainMenuController : MonoBehaviour
 
     private void SetActivePanel(GameObject panelToShow)
     {
-        optionsPanel.SetActive(panelToShow == optionsPanel);
-        creditsPanel.SetActive(panelToShow == creditsPanel);
+        if (mainPanel != null) mainPanel.SetActive(panelToShow == null);
+        if (optionsPanel != null) optionsPanel.SetActive(panelToShow == optionsPanel);
+        if (creditsPanel != null) creditsPanel.SetActive(panelToShow == creditsPanel);
     }
 }
