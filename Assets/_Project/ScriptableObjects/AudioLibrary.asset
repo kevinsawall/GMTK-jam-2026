@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: AudioLibrary
   m_EditorClassIdentifier: Assembly-CSharp::AudioLibrary
   music:
-  - id: 0
-    clip: {fileID: 0}
-    volume: 0
-    loop: 0
+  - id: 2
+    clip: {fileID: 8300000, guid: de3402d637e6945e494498756138ccbd, type: 3}
+    volume: 1
+    loop: 1
   sfx:
   - id: 0
     clip: {fileID: 0}

@@ -23,11 +23,13 @@ public sealed class GameManager : MonoBehaviour
         Instance = this;
 
         DialogueManager.FlagSet += HandleFlagSet;
+        CutsceneController.StartGameFinished += HandleStartGameFinished;
     }
 
     private void OnDestroy()
     {
         DialogueManager.FlagSet -= HandleFlagSet;
+        CutsceneController.StartGameFinished -= HandleStartGameFinished;
         if (Instance == this) Instance = null;
     }
 
@@ -57,6 +59,11 @@ public sealed class GameManager : MonoBehaviour
         isEndGameSequencePlaying = true;
         CupTimerController.Instance?.CancelForEndGame();
         StartCoroutine(RunEndGameSequence());
+    }
+
+    private void HandleStartGameFinished()
+    {
+        AudioManager.Instance?.PlayMusic(MusicId.Gameplay);
     }
 
     private IEnumerator RunEndGameSequence()
