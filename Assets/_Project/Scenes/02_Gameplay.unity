@@ -2579,6 +2579,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectController
   interactObject: {fileID: 11400000, guid: 8c6267a91e244423dace92d8535e2f2a, type: 2}
   interactionDistance: 2
+  fitBoxColliderToVisualBounds: 0
   deactivateOnFlag: 
   linkedObjectController: {fileID: 0}
   disableInteractionOnFlag: 
@@ -2969,6 +2970,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectController
   interactObject: {fileID: 11400000, guid: 8c6267a91e244423dace92d8535e2f2a, type: 2}
   interactionDistance: 2
+  fitBoxColliderToVisualBounds: 0
   deactivateOnFlag: 
   linkedObjectController: {fileID: 0}
   disableInteractionOnFlag: 
@@ -8579,6 +8581,7 @@ GameObject:
   m_Component:
   - component: {fileID: 761661945}
   - component: {fileID: 761661946}
+  - component: {fileID: 761661947}
   m_Layer: 0
   m_Name: Altar
   m_TagString: Untagged
@@ -8616,11 +8619,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectController
   interactObject: {fileID: 11400000, guid: ced2cb821bdf140ddba9d54ecabd0061, type: 2}
   interactionDistance: 1
+  fitBoxColliderToVisualBounds: 1
   deactivateOnFlag: 
   linkedObjectController: {fileID: 0}
   disableInteractionOnFlag: 
   disableCollidersOnInteractionDisabled: 0
   hoverOutlineMaterial: {fileID: 2100000, guid: 4bb7653d21864d1f9a2e4d8c6e3a1f72, type: 2}
+--- !u!65 &761661947
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761661944}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 3.1109009, y: 1.3188949, z: 5.2056766}
+  m_Center: {x: 29.42688, y: 1.278043, z: -1.7621071}
 --- !u!1 &773252032
 GameObject:
   m_ObjectHideFlags: 0
@@ -10175,6 +10200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectController
   interactObject: {fileID: 11400000, guid: 8c6267a91e244423dace92d8535e2f2a, type: 2}
   interactionDistance: 1
+  fitBoxColliderToVisualBounds: 0
   deactivateOnFlag: 
   linkedObjectController: {fileID: 0}
   disableInteractionOnFlag: open-door
@@ -11479,6 +11505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectController
   interactObject: {fileID: 11400000, guid: 8c6267a91e244423dace92d8535e2f2a, type: 2}
   interactionDistance: 2
+  fitBoxColliderToVisualBounds: 0
   deactivateOnFlag: 
   linkedObjectController: {fileID: 0}
   disableInteractionOnFlag: 
@@ -11655,6 +11682,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   interactObject: {fileID: 11400000, guid: d0538cd8dea7f4b97bc334f792aaf1d9, type: 2}
   interactionDistance: 1
+  fitBoxColliderToVisualBounds: 0
   deactivateOnFlag: 
   linkedObjectController: {fileID: 0}
   disableInteractionOnFlag: 
@@ -14195,6 +14223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObjectController
   interactObject: {fileID: 11400000, guid: 8c6267a91e244423dace92d8535e2f2a, type: 2}
   interactionDistance: 1
+  fitBoxColliderToVisualBounds: 0
   deactivateOnFlag: 
   linkedObjectController: {fileID: 0}
   disableInteractionOnFlag: open-door
@@ -18114,7 +18143,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1959af59749ea417783e8e5edd95406f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1997772620}
   m_SourcePrefab: {fileID: 100100000, guid: 1959af59749ea417783e8e5edd95406f, type: 3}
 --- !u!4 &1754747903 stripped
 Transform:
@@ -20954,6 +20986,32 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!1 &1997772617 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1959af59749ea417783e8e5edd95406f, type: 3}
+  m_PrefabInstance: {fileID: 1754747902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1997772620
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997772617}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.30736, y: 0.7997621, z: 0.94036055}
+  m_Center: {x: 0.05514955, y: -0.34244692, z: 0.027942348}
 --- !u!1 &2002447360
 GameObject:
   m_ObjectHideFlags: 0
@@ -21807,6 +21865,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   interactObject: {fileID: 11400000, guid: d0538cd8dea7f4b97bc334f792aaf1d9, type: 2}
   interactionDistance: 2
+  fitBoxColliderToVisualBounds: 0
   deactivateOnFlag: 
   linkedObjectController: {fileID: 0}
   disableInteractionOnFlag: 
