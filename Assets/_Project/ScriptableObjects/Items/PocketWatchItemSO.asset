@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemId: pocket-watch
   displayName: Pocket Watch
-  icon: {fileID: 21300000, guid: d0ffb5865bd8c48c0ae783b44777627a, type: 3}
+  icon: {fileID: 21300000, guid: 5982eec17f06b4a7c9b42abd3be77708, type: 3}

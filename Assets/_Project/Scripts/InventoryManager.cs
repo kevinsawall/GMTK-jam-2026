@@ -209,7 +209,19 @@ public sealed class InventoryManager : MonoBehaviour
         }
 
         if (tooltipCanvas == null) tooltipCanvas = itemTooltip.GetComponentInParent<Canvas>()?.rootCanvas;
+        ConfigureTooltipRaycasts();
         return tooltipCanvas != null;
+    }
+
+    // A cursor-following tooltip can overlap its source item. It must never become
+    // the current UI raycast target, otherwise it causes alternating exit/enter events.
+    private void ConfigureTooltipRaycasts()
+    {
+        CanvasGroup canvasGroup = itemTooltip.GetComponent<CanvasGroup>();
+        if (canvasGroup == null) canvasGroup = itemTooltip.gameObject.AddComponent<CanvasGroup>();
+
+        canvasGroup.blocksRaycasts = false;
+        canvasGroup.interactable = false;
     }
 
     private void UpdateTooltipPosition()

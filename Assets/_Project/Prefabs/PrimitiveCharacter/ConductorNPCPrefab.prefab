@@ -181,8 +181,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Gah! So loud!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6ed4149c2707045c9bc7971789ddf93a, type: 2}
+  m_sharedMaterial: {fileID: 4117455241340578937, guid: 6ed4149c2707045c9bc7971789ddf93a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -704,7 +704,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c6d08333cae48b6b680d060ae5651b2, type: 3}
-  m_Name: ''
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SittingAnimationController
   sittingController: {fileID: 9100000, guid: 89f8e5346f2143dd9376ff8406b98265, type: 2}
   sittingClip: {fileID: -203655887218126122, guid: 7533c6a057e7149da8580a74976c7c80, type: 3}

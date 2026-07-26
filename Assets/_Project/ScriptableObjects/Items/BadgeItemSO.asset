@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemId: train-id-badge
   displayName: Train ID Badge
-  icon: {fileID: 21300000, guid: 04550506daccc4ac383d22a4ec08d7b2, type: 3}
+  icon: {fileID: 21300000, guid: 49fd8cc080f18490885bc79ea4dbf19d, type: 3}

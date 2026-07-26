@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemId: family-photograph
   displayName: Family Photograph
-  icon: {fileID: 21300000, guid: fd4c81d7f84474907907c2e770726869, type: 3}
+  icon: {fileID: 21300000, guid: bb546b7037fed41c087014a4f8829964, type: 3}

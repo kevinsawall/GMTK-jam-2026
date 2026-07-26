@@ -3586,7 +3586,7 @@ MonoBehaviour:
   itemNotification: {fileID: 1791256112}
   itemTooltip: {fileID: 715819}
   itemTooltipText: {fileID: 1763042358}
-  tooltipCursorOffset: {x: 120, y: 0}
+  tooltipCursorOffset: {x: 200, y: 0}
 --- !u!1001 &226851994
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10270,11 +10270,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974035844520696219, guid: 7851aaf0a3d7748ac9cab688d474352f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.781
+      value: 1.414
       objectReference: {fileID: 0}
     - target: {fileID: 2974035844520696219, guid: 7851aaf0a3d7748ac9cab688d474352f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.41829965
+      value: -0.65337366
       objectReference: {fileID: 0}
     - target: {fileID: 2974035844520696219, guid: 7851aaf0a3d7748ac9cab688d474352f, type: 3}
       propertyPath: m_LocalRotation.x
@@ -10282,7 +10282,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974035844520696219, guid: 7851aaf0a3d7748ac9cab688d474352f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9083091
+      value: 0.75703555
       objectReference: {fileID: 0}
     - target: {fileID: 2974035844520696219, guid: 7851aaf0a3d7748ac9cab688d474352f, type: 3}
       propertyPath: m_LocalRotation.z
@@ -10294,7 +10294,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974035844520696219, guid: 7851aaf0a3d7748ac9cab688d474352f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 229.455
+      value: 261.59302
       objectReference: {fileID: 0}
     - target: {fileID: 2974035844520696219, guid: 7851aaf0a3d7748ac9cab688d474352f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -17757,8 +17757,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: small tooltip vers
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6ed4149c2707045c9bc7971789ddf93a, type: 2}
+  m_sharedMaterial: {fileID: 4117455241340578937, guid: 6ed4149c2707045c9bc7971789ddf93a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
