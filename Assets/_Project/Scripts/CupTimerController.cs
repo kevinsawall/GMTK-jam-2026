@@ -254,7 +254,7 @@ public sealed class CupTimerController : MonoBehaviour
                 yield return null;
             }
 
-            AudioManager.Instance?.PlaySfx(SfxId.TrainDestructionShort);
+            AudioManager.Instance?.PlaySfxWithMusicDuck(SfxId.TrainDestructionShort, 0.5f);
         }
 
         yield return PlayCutsceneAndRestart();

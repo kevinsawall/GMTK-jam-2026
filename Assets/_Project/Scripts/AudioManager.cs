@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -28,6 +29,8 @@ public sealed class AudioManager : MonoBehaviour
     private AudioSource loopingSfxSource;
     private float musicClipVolume = 1f;
     private float loopingSfxClipVolume = 1f;
+    private float musicDuckMultiplier = 1f;
+    private Coroutine musicDuckRoutine;
 
     public float MasterVolume => masterVolume;
     public float MusicVolume => musicVolume;
@@ -110,6 +113,20 @@ public sealed class AudioManager : MonoBehaviour
         loopingSfxSource.Play();
     }
 
+    public void PlaySfxWithMusicDuck(SfxId id, float musicDuckMultiplier)
+    {
+        if (!audioLibrary.TryGetSfx(id, out SfxEntry entry))
+        {
+            Debug.LogWarning($"No SFX clip is configured for {id}.", this);
+            return;
+        }
+
+        PlaySfx(id);
+
+        if (musicDuckRoutine != null) StopCoroutine(musicDuckRoutine);
+        musicDuckRoutine = StartCoroutine(DuckMusicForClip(entry.clip.length, musicDuckMultiplier));
+    }
+
     public void StopLoopingSfx(SfxId id)
     {
         if (!audioLibrary.TryGetSfx(id, out SfxEntry entry) || loopingSfxSource.clip != entry.clip) return;
@@ -162,7 +179,7 @@ public sealed class AudioManager : MonoBehaviour
     {
         if (musicSource == null) return;
 
-        musicSource.volume = musicClipVolume * masterVolume * musicVolume;
+        musicSource.volume = musicClipVolume * masterVolume * musicVolume * musicDuckMultiplier;
     }
 
     private void ApplyLoopingSfxVolume()
@@ -170,6 +187,18 @@ public sealed class AudioManager : MonoBehaviour
         if (loopingSfxSource == null) return;
 
         loopingSfxSource.volume = loopingSfxClipVolume * masterVolume * sfxVolume;
+    }
+
+    private IEnumerator DuckMusicForClip(float duration, float duckMultiplier)
+    {
+        musicDuckMultiplier = Mathf.Clamp01(duckMultiplier);
+        ApplyMusicVolume();
+
+        yield return new WaitForSecondsRealtime(duration);
+
+        musicDuckMultiplier = 1f;
+        ApplyMusicVolume();
+        musicDuckRoutine = null;
     }
 
     private void SetMixerVolume(string parameterName, float value)
