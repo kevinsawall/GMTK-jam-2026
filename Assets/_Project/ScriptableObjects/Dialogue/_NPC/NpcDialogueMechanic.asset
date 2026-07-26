@@ -15,7 +15,7 @@ MonoBehaviour:
   npcId: mechanic-npc
   npcDisplayName: Mechanic
   portrait: {fileID: 0}
-  speakerNameColor: {r: 0.5294118, g: 0.1294118, b: 0.16862746, a: 1}
+  speakerNameColor: {r: 0.6037736, g: 0.1509434, b: 0.19533843, a: 1}
   entries:
   - entryId: first-talk
     requiredState: 0
