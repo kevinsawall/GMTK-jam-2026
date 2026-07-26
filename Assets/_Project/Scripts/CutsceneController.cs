@@ -36,6 +36,7 @@ public sealed class CutsceneController : MonoBehaviour
     private bool hasFinished;
 
     public static bool IsStartGamePlaying => isStartGamePlaying;
+    public static event Action StartGameFadeOutStarted;
     public static event Action StartGameFinished;
     public static event Action<bool> StartGameStateChanged;
     public event Action<CutsceneController> Finished;
@@ -141,6 +142,8 @@ public sealed class CutsceneController : MonoBehaviour
 
     private void FadeBackgroundOut()
     {
+        if (cutsceneType == CutsceneType.StartGame) StartGameFadeOutStarted?.Invoke();
+
         if (backgroundImage == null || fadeOutSeconds <= 0f)
         {
             SetBackgroundAlpha(0f);

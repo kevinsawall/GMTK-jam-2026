@@ -109,6 +109,7 @@ public sealed class CupTimerController : MonoBehaviour
         UpdateTimerDisplay();
         if (remainingSeconds > 0f) return;
 
+        AudioManager.Instance?.StopLoopingSfx(SfxId.TrainOnTheRun);
         hasExpired = true;
         timeoutSequence = StartCoroutine(RunTimeoutSequence());
     }
@@ -170,6 +171,7 @@ public sealed class CupTimerController : MonoBehaviour
         else
         {
             timerImage.sprite = naturalEmptySprite;
+            AudioManager.Instance?.StopLoopingSfx(SfxId.TrainOnTheRun);
             hasExpired = true;
             timeoutSequence = StartCoroutine(RunTimeoutSequence());
         }
@@ -229,6 +231,7 @@ public sealed class CupTimerController : MonoBehaviour
         remainingSeconds = DurationSeconds;
         hasExpired = false;
         IsCutscenePlaying = false;
+        AudioManager.Instance?.PlayLoopingSfx(SfxId.TrainOnTheRun);
         UpdateTimerDisplay();
         ShowNextStartPhrase();
     }

@@ -23,12 +23,14 @@ public sealed class GameManager : MonoBehaviour
         Instance = this;
 
         DialogueManager.FlagSet += HandleFlagSet;
+        CutsceneController.StartGameFadeOutStarted += HandleStartGameFadeOut;
         CutsceneController.StartGameFinished += HandleStartGameFinished;
     }
 
     private void OnDestroy()
     {
         DialogueManager.FlagSet -= HandleFlagSet;
+        CutsceneController.StartGameFadeOutStarted -= HandleStartGameFadeOut;
         CutsceneController.StartGameFinished -= HandleStartGameFinished;
         if (Instance == this) Instance = null;
     }
@@ -64,6 +66,11 @@ public sealed class GameManager : MonoBehaviour
     private void HandleStartGameFinished()
     {
         AudioManager.Instance?.PlayMusic(MusicId.Gameplay);
+    }
+
+    private void HandleStartGameFadeOut()
+    {
+        AudioManager.Instance?.PlayLoopingSfx(SfxId.TrainOnTheRun);
     }
 
     private IEnumerator RunEndGameSequence()

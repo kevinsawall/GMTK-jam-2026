@@ -16,7 +16,8 @@ public enum SfxId
     ButtonClick,
     ButtonHover,
     Pause,
-    Resume
+    Resume,
+    TrainOnTheRun
 }
 
 [Serializable]

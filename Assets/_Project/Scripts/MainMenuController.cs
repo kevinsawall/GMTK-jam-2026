@@ -12,6 +12,11 @@ public sealed class MainMenuController : MonoBehaviour
         ShowMainMenu();
     }
 
+    private void Start()
+    {
+        AudioManager.Instance?.PlayLoopingSfx(SfxId.TrainOnTheRun);
+    }
+
     public void ShowOptions()
     {
         SetActivePanel(optionsPanel);
@@ -29,6 +34,7 @@ public sealed class MainMenuController : MonoBehaviour
 
     public void PlayGame()
     {
+        AudioManager.Instance?.StopLoopingSfx(SfxId.TrainOnTheRun);
         SceneLoader.Load(gameplaySceneName);
     }
 

@@ -13,8 +13,14 @@ public sealed class EndScreenController : MonoBehaviour
         ShowEndScreen();
     }
 
+    private void Start()
+    {
+        AudioManager.Instance?.PlayLoopingSfx(SfxId.TrainOnTheRun);
+    }
+
     public void PlayAgain()
     {
+        AudioManager.Instance?.StopLoopingSfx(SfxId.TrainOnTheRun);
         SceneLoader.Load(gameplaySceneName);
     }
 

@@ -23,7 +23,9 @@ public sealed class AudioManager : MonoBehaviour
 
     private AudioSource musicSource;
     private AudioSource sfxSource;
+    private AudioSource loopingSfxSource;
     private float musicClipVolume = 1f;
+    private float loopingSfxClipVolume = 1f;
 
     public float MasterVolume => masterVolume;
     public float MusicVolume => musicVolume;
@@ -42,6 +44,7 @@ public sealed class AudioManager : MonoBehaviour
 
         musicSource = CreateSource("MusicSource", musicMixerGroup);
         sfxSource = CreateSource("SfxSource", sfxMixerGroup);
+        loopingSfxSource = CreateSource("LoopingSfxSource", sfxMixerGroup);
         masterVolume = Mathf.Clamp01(PlayerPrefs.GetFloat(MasterVolumePreferenceKey, DefaultMasterVolume));
         musicVolume = Mathf.Clamp01(PlayerPrefs.GetFloat(MusicVolumePreferenceKey, DefaultMusicVolume));
         SetMasterVolume(masterVolume);
@@ -88,6 +91,31 @@ public sealed class AudioManager : MonoBehaviour
         sfxSource.PlayOneShot(entry.clip, volume);
     }
 
+    public void PlayLoopingSfx(SfxId id)
+    {
+        if (!audioLibrary.TryGetSfx(id, out SfxEntry entry))
+        {
+            Debug.LogWarning($"No SFX clip is configured for {id}.", this);
+            return;
+        }
+
+        if (loopingSfxSource.clip == entry.clip && loopingSfxSource.isPlaying) return;
+
+        loopingSfxSource.clip = entry.clip;
+        loopingSfxClipVolume = entry.volume;
+        loopingSfxSource.loop = true;
+        ApplyLoopingSfxVolume();
+        loopingSfxSource.Play();
+    }
+
+    public void StopLoopingSfx(SfxId id)
+    {
+        if (!audioLibrary.TryGetSfx(id, out SfxEntry entry) || loopingSfxSource.clip != entry.clip) return;
+
+        loopingSfxSource.Stop();
+        loopingSfxSource.clip = null;
+    }
+
     public void SetMusicVolume(float value)
     {
         musicVolume = Mathf.Clamp01(value);
@@ -102,6 +130,7 @@ public sealed class AudioManager : MonoBehaviour
         masterVolume = Mathf.Clamp01(value);
         SetMixerVolume(MasterVolumeParameter, masterVolume);
         ApplyMusicVolume();
+        ApplyLoopingSfxVolume();
         PlayerPrefs.SetFloat(MasterVolumePreferenceKey, masterVolume);
         PlayerPrefs.Save();
     }
@@ -110,6 +139,7 @@ public sealed class AudioManager : MonoBehaviour
     {
         sfxVolume = Mathf.Clamp01(value);
         SetMixerVolume(SfxVolumeParameter, sfxVolume);
+        ApplyLoopingSfxVolume();
     }
 
     private AudioSource CreateSource(string sourceName, AudioMixerGroup mixerGroup)
@@ -119,6 +149,7 @@ public sealed class AudioManager : MonoBehaviour
 
         AudioSource source = sourceObject.AddComponent<AudioSource>();
         source.playOnAwake = false;
+        source.spatialBlend = 0f;
         source.outputAudioMixerGroup = mixerGroup;
         return source;
     }
@@ -130,6 +161,15 @@ public sealed class AudioManager : MonoBehaviour
         musicSource.volume = audioMixer == null
             ? musicClipVolume * masterVolume * musicVolume
             : musicClipVolume;
+    }
+
+    private void ApplyLoopingSfxVolume()
+    {
+        if (loopingSfxSource == null) return;
+
+        loopingSfxSource.volume = audioMixer == null
+            ? loopingSfxClipVolume * masterVolume * sfxVolume
+            : loopingSfxClipVolume;
     }
 
     private void SetMixerVolume(string parameterName, float value)

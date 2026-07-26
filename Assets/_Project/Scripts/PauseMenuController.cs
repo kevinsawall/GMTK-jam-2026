@@ -59,6 +59,7 @@ public sealed class PauseMenuController : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1f;
+        AudioManager.Instance?.StopLoopingSfx(SfxId.TrainOnTheRun);
         SceneLoader.Load(SceneManager.GetActiveScene().name);
     }
 
