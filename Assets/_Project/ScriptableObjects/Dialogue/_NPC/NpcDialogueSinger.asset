@@ -15,6 +15,7 @@ MonoBehaviour:
   npcId: singer-npc
   npcDisplayName: Singer
   portrait: {fileID: 0}
+  speakerNameColor: {r: 1, g: 0.8392157, b: 0.2, a: 1}
   entries:
   - entryId: first-talk
     requiredState: 0

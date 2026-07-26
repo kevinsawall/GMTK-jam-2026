@@ -10493,6 +10493,7 @@ MonoBehaviour:
   dialogueText: {fileID: 13873193}
   continueButton: {fileID: 1540327788}
   playerDisplayName: You
+  playerNameColor: {r: 0.85882354, g: 0.85882354, b: 0.85882354, a: 1}
   charactersPerSecond: 45
 --- !u!1 &1066415228
 GameObject:

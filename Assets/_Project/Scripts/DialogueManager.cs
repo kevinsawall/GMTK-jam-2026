@@ -28,6 +28,7 @@ public sealed class DialogueManager : MonoBehaviour
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private Button continueButton;
     [SerializeField] private string playerDisplayName = "You";
+    [SerializeField] private Color playerNameColor = new(0.85882354f, 0.85882354f, 0.85882354f, 1f);
     [SerializeField, Min(1f)] private float charactersPerSecond = 45f;
 
     private readonly Dictionary<string, DialogueState> npcStates = new();
@@ -285,12 +286,16 @@ public sealed class DialogueManager : MonoBehaviour
 
         if (typewriter != null) StopCoroutine(typewriter);
         DialogueLine line = currentEntry.lines[currentLineIndex];
-        speakerNameText.text = line?.speaker switch
+        DialogueSpeaker speaker = line?.speaker ?? DialogueSpeaker.System;
+        speakerNameText.text = speaker switch
         {
             DialogueSpeaker.Player => playerDisplayName,
             DialogueSpeaker.System => string.Empty,
             _ => currentDialogue != null ? currentDialogue.npcDisplayName : string.Empty
         };
+        speakerNameText.color = speaker == DialogueSpeaker.Npc && currentDialogue != null
+            ? currentDialogue.speakerNameColor
+            : playerNameColor;
         typewriter = StartCoroutine(TypeLine(line?.text ?? string.Empty));
     }
 

@@ -15,6 +15,7 @@ MonoBehaviour:
   npcId: widow-npc
   npcDisplayName: Widow
   portrait: {fileID: 0}
+  speakerNameColor: {r: 0.30980393, g: 0.43529412, b: 0.27058825, a: 1}
   entries:
   - entryId: first-talk
     requiredState: 0

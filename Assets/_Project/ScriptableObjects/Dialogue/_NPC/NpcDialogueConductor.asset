@@ -15,6 +15,7 @@ MonoBehaviour:
   npcId: conductor-npc
   npcDisplayName: Conductor
   portrait: {fileID: 0}
+  speakerNameColor: {r: 0.69803923, g: 0.20392157, b: 0.3254902, a: 1}
   entries:
   - entryId: first-talk
     requiredState: 0

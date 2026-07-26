@@ -34,6 +34,8 @@ public sealed class NpcDialogueSO : ScriptableObject
     public string npcId;
     public string npcDisplayName;
     public Sprite portrait;
+    [Header("Dialogue Panel")]
+    public Color speakerNameColor = Color.white;
     public List<DialogueEntry> entries = new();
 
     [Header("First Talk Override")]
