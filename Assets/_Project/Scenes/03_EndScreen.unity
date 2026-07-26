@@ -612,6 +612,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 804086557138291823, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_text
+      value: Dana Gonzalez
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110900689214784956, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -609
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110900689214784956, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -114
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887756279161438474, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_text
+      value: "Tomas\u030Cevi\u0107"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887756279161438474, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_fontSize
+      value: 42.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887756279161438474, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.6039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887756279161438474, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887756279161438474, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887756279161438474, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 42.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887756279161438474, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4288321945
+      objectReference: {fileID: 0}
     - target: {fileID: 5638124489782046215, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -624,6 +664,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: EndScreenController, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 5899018049966263317, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_text
+      value: "Milo\u0161 Andri\u0107"
+      objectReference: {fileID: 0}
     - target: {fileID: 6056226082610949791, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
       propertyPath: m_Name
       value: CreditsPanel (1)
@@ -631,6 +675,14 @@ PrefabInstance:
     - target: {fileID: 6056226082610949791, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7885722092726940986, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_text
+      value: Kevin Sawall & Ann Gry
+      objectReference: {fileID: 0}
+    - target: {fileID: 8746037208836670749, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1503,20 +1555,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1046930221833744604, guid: ca8b2770755fc446b894690afcb8b5e7, type: 3}
   m_PrefabInstance: {fileID: 1660677523}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2147000301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1435781108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c1f3ca21e0a4c33af1ee61e42d83b76, type: 3}
-  m_Name:
-  m_EditorClassIdentifier: Assembly-CSharp::SubtleCanvasFade
-  minimumAlpha: 0.92
-  halfCycleDuration: 1.5
 --- !u!1001 &1660677523
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2180,6 +2218,20 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 3d46a78712050ac4cb356194b0867f3b, type: 2}
+--- !u!114 &2147000301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435781108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1f3ca21e0a4c33af1ee61e42d83b76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SubtleCanvasFade
+  minimumAlpha: 0.92
+  halfCycleDuration: 1.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

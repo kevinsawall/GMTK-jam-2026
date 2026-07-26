@@ -1,0 +1,911 @@
+fileFormatVersion: 2
+guid: dcf52bce1ec5147ccb02f5c83831313d
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: body
+    second: {fileID: 2100000, guid: fccf8ab91bd6e44179371d0898f0a0f4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: clothes
+    second: {fileID: 2100000, guid: 44a032f8e35214e27b20e2582c4d71cb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hair
+    second: {fileID: 2100000, guid: 4f8a8953cdc5745b8bb3cb7e85af81b8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shoes
+    second: {fileID: 2100000, guid: 23ef956cc97ca4b8a851ffc6dfab1cf4, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: conductor:Hips
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:RightUpLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:LeftLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:RightLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:LeftFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:RightFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:Spine1
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:LeftShoulder
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:RightShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:LeftArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:LeftForeArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:LeftHand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:RightHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:LeftToeBase
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:RightToeBase
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:LeftHandThumb1
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:LeftHandThumb2
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:LeftHandThumb3
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:LeftHandIndex1
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:LeftHandIndex2
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:LeftHandIndex3
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:LeftHandMiddle1
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:LeftHandMiddle2
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:LeftHandMiddle3
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:LeftHandRing1
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:LeftHandRing2
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:LeftHandRing3
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:LeftHandPinky1
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:LeftHandPinky2
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:LeftHandPinky3
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:RightHandThumb1
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:RightHandThumb2
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:RightHandThumb3
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:RightHandIndex1
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:RightHandIndex2
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:RightHandIndex3
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:RightHandMiddle1
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:RightHandMiddle2
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:RightHandMiddle3
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:RightHandRing1
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:RightHandRing2
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:RightHandRing3
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:RightHandPinky1
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:RightHandPinky2
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:RightHandPinky3
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: conductor:Spine2
+      humanName: UpperChest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: conductor_textures(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor_CLOTHES_01suitoffice_worker
+      parentName: conductor_textures(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor_suitoffice_workerSHOES
+      parentName: conductor_textures(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor_office_workerhair03
+      parentName: conductor_textures(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor_office_workerFACEbody
+      parentName: conductor_textures(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor_office_workerbodyR_arm
+      parentName: conductor_textures(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor_suitoffice_workerCLOTHES
+      parentName: conductor_textures(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor_office_workerbodyL_arm
+      parentName: conductor_textures(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:Hips
+      parentName: conductor_textures(Clone)
+      position: {x: -0.000005488074, y: 0.49695477, z: -0.0069352505}
+      rotation: {x: 0.00000021376256, y: -0.000002629377, z: 0.00008775917, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightUpLeg
+      parentName: conductor:Hips
+      position: {x: 0.049060285, y: -0.03128044, z: 0.005909332}
+      rotation: {x: -0.000077781595, y: -0.0062479875, z: 0.99996084, w: -0.0062712138}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightLeg
+      parentName: conductor:RightUpLeg
+      position: {x: -4.9825245e-11, y: 0.23609142, z: 2.5401936e-10}
+      rotation: {x: -0.019109346, y: 0.00017788999, z: -0.014178966, w: 0.9997169}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightFoot
+      parentName: conductor:RightLeg
+      position: {x: -1.9081405e-10, y: 0.19205339, z: 7.364277e-10}
+      rotation: {x: 0.56533825, y: -0.0033301425, z: 0.004252064, w: 0.8248415}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightToeBase
+      parentName: conductor:RightFoot
+      position: {x: -4.7581848e-11, y: 0.092834204, z: -0.0000000022293607}
+      rotation: {x: 0.23785102, y: 0.030924167, z: -0.0075767343, w: 0.9707797}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightToe_End
+      parentName: conductor:RightToeBase
+      position: {x: 2.7331522e-11, y: 0.039459433, z: 8.895206e-11}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftUpLeg
+      parentName: conductor:Hips
+      position: {x: -0.049060285, y: -0.03128044, z: 0.0061477064}
+      rotation: {x: 0.00014375002, y: -0.014709553, z: 0.9998711, w: 0.00644484}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftLeg
+      parentName: conductor:LeftUpLeg
+      position: {x: 2.1344e-10, y: 0.23612459, z: -8.588359e-11}
+      rotation: {x: -0.0008645606, y: -0.0000106907855, z: 0.014181485, w: 0.9998991}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftFoot
+      parentName: conductor:LeftLeg
+      position: {x: 2.3629666e-11, y: 0.19192658, z: 6.471063e-11}
+      rotation: {x: 0.5565386, y: 0.0033665653, z: -0.0042234072, w: 0.8308042}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftToeBase
+      parentName: conductor:LeftFoot
+      position: {x: -8.762768e-11, y: 0.09248349, z: 0.0000000031886258}
+      rotation: {x: 0.23830578, y: -0.030763706, z: 0.0075526545, w: 0.97067344}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftToe_End
+      parentName: conductor:LeftToeBase
+      position: {x: -1.955442e-11, y: 0.03995646, z: -5.522902e-12}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:Spine
+      parentName: conductor:Hips
+      position: {x: -0, y: 0.056292992, z: -0.0045435894}
+      rotation: {x: -0.040258713, y: 0.000006160251, z: -0.00008758217, w: 0.9991893}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:Spine1
+      parentName: conductor:Spine
+      position: {x: -0, y: 0.06588863, z: 2.7417857e-10}
+      rotation: {x: 6.486168e-18, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:Spine2
+      parentName: conductor:Spine1
+      position: {x: -0, y: 0.07530139, z: 2.345827e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:Neck
+      parentName: conductor:Spine2
+      position: {x: -0, y: 0.08471399, z: -0.0000000030274192}
+      rotation: {x: 0.040258445, y: -4.588355e-21, z: -5.443896e-20, w: 0.9991893}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:Head
+      parentName: conductor:Neck
+      position: {x: -0, y: 0.039986268, z: 0.015191578}
+      rotation: {x: -0.000000011360977, y: 1.3552527e-20, z: 1.5396995e-28, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:HeadTop_End
+      parentName: conductor:Head
+      position: {x: -0, y: 0.12112388, z: 0.04601738}
+      rotation: {x: -1.3877788e-17, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightShoulder
+      parentName: conductor:Spine2
+      position: {x: 0.034440804, y: 0.071475975, z: -0.0011617556}
+      rotation: {x: -0.5449409, y: -0.44580787, z: 0.5586255, w: -0.43844295}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightArm
+      parentName: conductor:RightShoulder
+      position: {x: 9.947768e-11, y: 0.07093415, z: 0.0000000010443638}
+      rotation: {x: -0.11005029, y: 0.054012153, z: 0.0049004164, w: 0.9924453}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightForeArm
+      parentName: conductor:RightArm
+      position: {x: -6.6255443e-12, y: 0.13117436, z: -5.8223876e-10}
+      rotation: {x: -0.00000014922978, y: -0.0018631647, z: 0.00000020902397, w: 0.9999983}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightHand
+      parentName: conductor:RightForeArm
+      position: {x: 1.3100783e-10, y: 0.15217198, z: 6.682366e-10}
+      rotation: {x: 0.00441156, y: -0.0043356763, z: -0.03399488, w: 0.9994029}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightHandPinky1
+      parentName: conductor:RightHand
+      position: {x: 0.017435785, y: 0.064309485, z: 0.001811986}
+      rotation: {x: -0.0043165744, y: 0.0015217275, z: 0.0339282, w: 0.9994138}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightHandPinky2
+      parentName: conductor:RightHandPinky1
+      position: {x: -0.0000019273432, y: 0.012593312, z: -6.5620254e-10}
+      rotation: {x: -0.00000010540099, y: 0.00004667868, z: 0.0013246249, w: 0.99999917}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightHandPinky3
+      parentName: conductor:RightHandPinky2
+      position: {x: 0.000028362403, y: 0.011243688, z: -2.727141e-10}
+      rotation: {x: -0.00000033175712, y: 0.000007320439, z: -0.002608299, w: 0.9999966}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightHandPinky4
+      parentName: conductor:RightHandPinky3
+      position: {x: -0.000026435477, y: 0.009537026, z: -4.385896e-11}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightHandIndex1
+      parentName: conductor:RightHand
+      position: {x: -0.018638246, y: 0.06397025, z: 0.0015112376}
+      rotation: {x: -0.004312519, y: 0.0013988373, z: 0.03369123, w: 0.999422}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightHandIndex2
+      parentName: conductor:RightHandIndex1
+      position: {x: -0.0000117352065, y: 0.018927561, z: -9.22312e-10}
+      rotation: {x: -0.00000018662709, y: -0.000002429729, z: 0.00045689938, w: 0.9999999}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightHandIndex3
+      parentName: conductor:RightHandIndex2
+      position: {x: 0.000005173769, y: 0.01786269, z: 7.368513e-10}
+      rotation: {x: -0.00000024801503, y: 0.00000065559703, z: 0.00008204578, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightHandIndex4
+      parentName: conductor:RightHandIndex3
+      position: {x: 0.000006561675, y: 0.015764372, z: -0.0000000014956326}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightHandMiddle1
+      parentName: conductor:RightHand
+      position: {x: -0.0046897708, y: 0.06882148, z: -0.0005883836}
+      rotation: {x: -0.0042753923, y: 0.0003235882, z: 0.034264244, w: 0.99940366}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightHandMiddle2
+      parentName: conductor:RightHandMiddle1
+      position: {x: 0.000008928645, y: 0.017858518, z: 5.960498e-10}
+      rotation: {x: -0.00000024455997, y: 0.00000025350047, z: -0.00052189827, w: 0.9999999}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightHandMiddle3
+      parentName: conductor:RightHandMiddle2
+      position: {x: -0.000009092892, y: 0.016673582, z: 8.8830115e-10}
+      rotation: {x: -0.00000019999578, y: -0.0000020878379, z: 0.00026994947, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightHandMiddle4
+      parentName: conductor:RightHandMiddle3
+      position: {x: 0.0000001638457, y: 0.014884805, z: -0.0000000010905934}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightHandRing1
+      parentName: conductor:RightHand
+      position: {x: 0.005892227, y: 0.07028911, z: -0.00003077359}
+      rotation: {x: -0.004340947, y: 0.0022290703, z: 0.033611756, w: 0.999423}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightHandRing2
+      parentName: conductor:RightHandRing1
+      position: {x: -0.000011682994, y: 0.015279754, z: -5.9743765e-10}
+      rotation: {x: -0.00000015866902, y: -0.000004593241, z: 0.00039285424, w: 0.99999994}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightHandRing3
+      parentName: conductor:RightHandRing2
+      position: {x: -0.000000115730515, y: 0.014409759, z: -7.438315e-10}
+      rotation: {x: 0.000000018504963, y: 0.0000062764207, z: 0.00045222044, w: 0.99999994}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightHandRing4
+      parentName: conductor:RightHandRing3
+      position: {x: 0.000011798618, y: 0.01326548, z: 2.772694e-11}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightHandThumb1
+      parentName: conductor:RightHand
+      position: {x: -0.014928258, y: 0.019703086, z: 0.010810658}
+      rotation: {x: 0.06451314, y: 0.00043490145, z: 0.35992977, w: 0.93074614}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightHandThumb2
+      parentName: conductor:RightHandThumb1
+      position: {x: -0.00095704896, y: 0.021562986, z: 1.6917553e-10}
+      rotation: {x: 0.000042989694, y: -0.0011701057, z: 0.0073107616, w: 0.9999726}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightHandThumb3
+      parentName: conductor:RightHandThumb2
+      position: {x: -0.00057091453, y: 0.019199733, z: 2.867057e-10}
+      rotation: {x: -0.000057912708, y: -0.0020237337, z: 0.05812075, w: 0.9983075}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:RightHandThumb4
+      parentName: conductor:RightHandThumb3
+      position: {x: 0.0015279619, y: 0.017605048, z: 3.2044908e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftShoulder
+      parentName: conductor:Spine2
+      position: {x: -0.034440804, y: 0.071461014, z: -0.00097642996}
+      rotation: {x: 0.5467595, y: -0.44469675, z: 0.5570332, w: 0.4393325}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftArm
+      parentName: conductor:LeftShoulder
+      position: {x: -8.112869e-11, y: 0.07093415, z: 0.0000000010459493}
+      rotation: {x: -0.11012343, y: -0.047660403, z: -0.0028125327, w: 0.99277055}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftForeArm
+      parentName: conductor:LeftArm
+      position: {x: -2.862608e-12, y: 0.13116263, z: -4.1270418e-10}
+      rotation: {x: -0.00000016995203, y: 0.0016687169, z: 0.0000003124915, w: 0.9999986}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftHand
+      parentName: conductor:LeftForeArm
+      position: {x: 4.7173963e-11, y: 0.15227732, z: 4.5060403e-10}
+      rotation: {x: 0.002008959, y: 0.007948798, z: 0.032234244, w: 0.99944675}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftHandThumb1
+      parentName: conductor:LeftHand
+      position: {x: 0.013811638, y: 0.01873466, z: 0.008896904}
+      rotation: {x: 0.07298281, y: -0.0006359548, z: -0.35359895, w: 0.9325454}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftHandThumb2
+      parentName: conductor:LeftHandThumb1
+      position: {x: 0.0010302226, y: 0.019907694, z: -1.5121349e-10}
+      rotation: {x: 0.00044245325, y: 0.0059329625, z: 0.022789516, w: 0.9997226}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftHandThumb3
+      parentName: conductor:LeftHandThumb2
+      position: {x: 0.001983253, y: 0.02032058, z: 7.374559e-11}
+      rotation: {x: -0.000094709, y: 0.003040441, z: -0.12812133, w: 0.9917539}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftHandThumb4
+      parentName: conductor:LeftHandThumb3
+      position: {x: -0.0030134772, y: 0.018708918, z: -3.7754885e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftHandRing1
+      parentName: conductor:LeftHand
+      position: {x: -0.006157919, y: 0.07573557, z: -0.001532508}
+      rotation: {x: -0.0016755462, y: 0.0024270294, z: -0.03278067, w: 0.99945825}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftHandRing2
+      parentName: conductor:LeftHandRing1
+      position: {x: -0.000014531852, y: 0.01420935, z: -9.206587e-10}
+      rotation: {x: -0.00000022346168, y: 0.0000078523235, z: 0.0009373725, w: 0.9999996}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftHandRing3
+      parentName: conductor:LeftHandRing2
+      position: {x: 0.000011028132, y: 0.013427029, z: 6.0063926e-10}
+      rotation: {x: 0.00000030337122, y: 0.00000953552, z: -0.00024139885, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftHandRing4
+      parentName: conductor:LeftHandRing3
+      position: {x: 0.0000035036858, y: 0.011897996, z: 7.2684825e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftHandPinky1
+      parentName: conductor:LeftHand
+      position: {x: -0.015911551, y: 0.07242726, z: 0.0005946205}
+      rotation: {x: -0.001604758, y: 0.0049405666, z: -0.034604006, w: 0.9993876}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftHandPinky2
+      parentName: conductor:LeftHandPinky1
+      position: {x: -0.00003328852, y: 0.0070276717, z: -7.297683e-11}
+      rotation: {x: -0.00000033576637, y: 0.000016860695, z: 0.0032768873, w: 0.99999464}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftHandPinky3
+      parentName: conductor:LeftHandPinky2
+      position: {x: 0.000011803205, y: 0.0064574257, z: 3.6621323e-10}
+      rotation: {x: 0.00000073732616, y: 0.00014162945, z: 0.0012525081, w: 0.9999992}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftHandPinky4
+      parentName: conductor:LeftHandPinky3
+      position: {x: 0.000021485288, y: 0.0048125396, z: 8.278867e-11}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftHandIndex1
+      parentName: conductor:LeftHand
+      position: {x: 0.01726606, y: 0.07062756, z: 0.00039125598}
+      rotation: {x: -0.0017505657, y: 0.000050651022, z: -0.03218559, w: 0.99948037}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftHandIndex2
+      parentName: conductor:LeftHandIndex1
+      position: {x: 0.0000017872628, y: 0.015761225, z: -2.2989682e-10}
+      rotation: {x: -0.00000018428555, y: -0.000005706094, z: 0.00017301741, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftHandIndex3
+      parentName: conductor:LeftHandIndex2
+      position: {x: 0.000007098291, y: 0.014811052, z: 4.6065723e-10}
+      rotation: {x: 0.0000002701362, y: -0.0000035759317, z: -0.00057289004, w: 0.9999998}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftHandIndex4
+      parentName: conductor:LeftHandIndex3
+      position: {x: -0.000008885865, y: 0.013372949, z: -2.3364097e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftHandMiddle1
+      parentName: conductor:LeftHand
+      position: {x: 0.0048034126, y: 0.074351445, z: -0.00026056802}
+      rotation: {x: -0.0017502066, y: 0.000059125003, z: -0.031999093, w: 0.9994864}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftHandMiddle2
+      parentName: conductor:LeftHandMiddle1
+      position: {x: 0.000008246043, y: 0.015975868, z: -9.54165e-10}
+      rotation: {x: 0.00000033422245, y: 0.0000026227533, z: 0.00004607439, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftHandMiddle3
+      parentName: conductor:LeftHandMiddle2
+      position: {x: 0.000009070683, y: 0.015177401, z: 5.1539745e-10}
+      rotation: {x: -0.000000039646032, y: -0.000030098605, z: -0.0009550006, w: 0.9999996}
+      scale: {x: 1, y: 1, z: 1}
+    - name: conductor:LeftHandMiddle4
+      parentName: conductor:LeftHandMiddle3
+      position: {x: -0.000017316508, y: 0.012908634, z: 1.8625587e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
