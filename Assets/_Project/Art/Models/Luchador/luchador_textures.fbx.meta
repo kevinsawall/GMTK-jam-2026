@@ -1,0 +1,911 @@
+fileFormatVersion: 2
+guid: 72da14901f725447884d723a3fbf661e
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: body_luchador
+    second: {fileID: 2100000, guid: f17244bac2c82472390bd0bbc4fad76f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: clothes_luchador
+    second: {fileID: 2100000, guid: 41fc232bbd0dd4dd28ded48d8915343f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: luchador_material_1
+    second: {fileID: 2100000, guid: bd96b1462ad29479f95efbd715a9ba4c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shoes_luchador
+    second: {fileID: 2100000, guid: 9cd1816266d4144b99ab7a05ea51e117, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: luchador:Hips
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:RightUpLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:LeftLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:RightLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:LeftFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:RightFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:Spine1
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:LeftShoulder
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:RightShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:LeftArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:LeftForeArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:LeftHand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:RightHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:LeftToeBase
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:RightToeBase
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:LeftHandThumb1
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:LeftHandThumb2
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:LeftHandThumb3
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:LeftHandIndex1
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:LeftHandIndex2
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:LeftHandIndex3
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:LeftHandMiddle1
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:LeftHandMiddle2
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:LeftHandMiddle3
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:LeftHandRing1
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:LeftHandRing2
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:LeftHandRing3
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:LeftHandPinky1
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:LeftHandPinky2
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:LeftHandPinky3
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:RightHandThumb1
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:RightHandThumb2
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:RightHandThumb3
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:RightHandIndex1
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:RightHandIndex2
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:RightHandIndex3
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:RightHandMiddle1
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:RightHandMiddle2
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:RightHandMiddle3
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:RightHandRing1
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:RightHandRing2
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:RightHandRing3
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:RightHandPinky1
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:RightHandPinky2
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:RightHandPinky3
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: luchador:Spine2
+      humanName: UpperChest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: luchador_textures(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:SHOESsuitoffice_worker
+      parentName: luchador_textures(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:suitoffice_workerCLOTHES
+      parentName: luchador_textures(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:office_workerFACEbody
+      parentName: luchador_textures(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:office_workerbodyL_arm
+      parentName: luchador_textures(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:mask
+      parentName: luchador_textures(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:office_workerbodyR_arm
+      parentName: luchador_textures(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:suitoffice_workerCLOTHES_01
+      parentName: luchador_textures(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:Hips
+      parentName: luchador_textures(Clone)
+      position: {x: -0.000003062447, y: 0.50223595, z: -0.006760345}
+      rotation: {x: -0.00000058507584, y: -0.0000018000248, z: 0.00005880636, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightUpLeg
+      parentName: luchador:Hips
+      position: {x: 0.039349668, y: -0.0306118, z: 0.0067644273}
+      rotation: {x: -0.00021192145, y: -0.0032152522, z: 0.99987024, w: -0.015785223}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightLeg
+      parentName: luchador:RightUpLeg
+      position: {x: -1.1390703e-10, y: 0.23275432, z: -7.948198e-11}
+      rotation: {x: -0.026051207, y: 0.000760492, z: -0.03396015, w: 0.99908334}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightFoot
+      parentName: luchador:RightLeg
+      position: {x: -7.660603e-11, y: 0.20370199, z: 1.7399006e-11}
+      rotation: {x: 0.5751124, y: -0.0040681926, z: 0.017685367, w: 0.8178731}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightToeBase
+      parentName: luchador:RightFoot
+      position: {x: 5.7464075e-11, y: 0.09096878, z: 9.336539e-10}
+      rotation: {x: 0.22831994, y: 0.06266637, z: -0.014728378, w: 0.97145563}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightToe_End
+      parentName: luchador:RightToeBase
+      position: {x: 1.8945342e-11, y: 0.03919345, z: -9.358832e-11}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:Spine
+      parentName: luchador:Hips
+      position: {x: -0, y: 0.055150755, z: -0.004617299}
+      rotation: {x: -0.041750632, y: 0.0000042536635, z: -0.000058679936, w: 0.99912804}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:Spine1
+      parentName: luchador:Spine
+      position: {x: -0, y: 0.064567596, z: -1.0571937e-10}
+      rotation: {x: 4.9716235e-18, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:Spine2
+      parentName: luchador:Spine1
+      position: {x: -0, y: 0.07379157, z: -7.8823906e-11}
+      rotation: {x: -3.3136036e-25, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftShoulder
+      parentName: luchador:Spine2
+      position: {x: -0.03486782, y: 0.06976786, z: -0.0010655514}
+      rotation: {x: 0.5446909, y: -0.44691747, z: 0.55594593, w: 0.44102234}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftArm
+      parentName: luchador:LeftShoulder
+      position: {x: -8.919579e-11, y: 0.07098471, z: 0.0000000010632102}
+      rotation: {x: -0.10660706, y: -0.042352427, z: -0.004324795, w: 0.9933894}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftForeArm
+      parentName: luchador:LeftArm
+      position: {x: -6.362044e-12, y: 0.13265294, z: 7.087314e-10}
+      rotation: {x: 0.000000089403464, y: 0.0016789266, z: -0.0000000665356, w: 0.9999986}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftHand
+      parentName: luchador:LeftForeArm
+      position: {x: -1.6935013e-10, y: 0.15033549, z: 0.0000000028000522}
+      rotation: {x: 0.00006166946, y: 0.0008121152, z: 0.034534547, w: 0.9994032}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftHandThumb1
+      parentName: luchador:LeftHand
+      position: {x: 0.012543099, y: 0.018187858, z: 0.0076822224}
+      rotation: {x: 0.07081937, y: -0.006314067, z: -0.398535, w: 0.91439307}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftHandThumb2
+      parentName: luchador:LeftHandThumb1
+      position: {x: -0.00073758786, y: 0.018698331, z: 1.0155915e-10}
+      rotation: {x: 0.0002218762, y: 0.0053385417, z: 0.0809026, w: 0.9967077}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftHandThumb3
+      parentName: luchador:LeftHandThumb2
+      position: {x: 0.00250785, y: 0.020365374, z: 3.3801761e-10}
+      rotation: {x: -0.000042371044, y: -0.002171184, z: -0.10289663, w: 0.9946897}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftHandThumb4
+      parentName: luchador:LeftHandThumb3
+      position: {x: -0.0017702609, y: 0.02111733, z: -9.2161606e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftHandPinky1
+      parentName: luchador:LeftHand
+      position: {x: -0.016125213, y: 0.07256312, z: 0.0009019698}
+      rotation: {x: -0.000015599135, y: 0.0005446687, z: -0.03585957, w: 0.9993567}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftHandPinky2
+      parentName: luchador:LeftHandPinky1
+      position: {x: -0.000017871529, y: 0.0067895995, z: 2.1211703e-10}
+      rotation: {x: 0.00000024502245, y: -0.00001391625, z: 0.0020051603, w: 0.99999803}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftHandPinky3
+      parentName: luchador:LeftHandPinky2
+      position: {x: 0.000009244977, y: 0.0066214106, z: 1.4465384e-10}
+      rotation: {x: 0.0000007024025, y: 0.00026004203, z: 0.0002134744, w: 0.99999994}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftHandPinky4
+      parentName: luchador:LeftHandPinky3
+      position: {x: 0.000008626482, y: 0.0050385958, z: -9.624125e-11}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftHandIndex1
+      parentName: luchador:LeftHand
+      position: {x: 0.017971838, y: 0.07127891, z: 0.00059064105}
+      rotation: {x: -0.000034757366, y: -0.000015727723, z: -0.03459989, w: 0.9994013}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftHandIndex2
+      parentName: luchador:LeftHandIndex1
+      position: {x: -0.0000020950704, y: 0.015325314, z: 5.667384e-10}
+      rotation: {x: 0.000000027381814, y: -0.000003055071, z: -0.00020496544, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftHandIndex3
+      parentName: luchador:LeftHandIndex2
+      position: {x: -0.000007967951, y: 0.01481086, z: 0.000000001071807}
+      rotation: {x: -0.00000029253954, y: -0.0000034564555, z: 0.00064826006, w: 0.9999998}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftHandIndex4
+      parentName: luchador:LeftHandIndex3
+      position: {x: 0.000010062824, y: 0.013219231, z: 6.8150235e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftHandMiddle1
+      parentName: luchador:LeftHand
+      position: {x: 0.005079615, y: 0.07341686, z: -0.0000051752954}
+      rotation: {x: -0.000028249806, y: 0.00017297038, z: -0.034149487, w: 0.9994167}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftHandMiddle2
+      parentName: luchador:LeftHandMiddle1
+      position: {x: 0.000011695677, y: 0.015546639, z: -7.412433e-10}
+      rotation: {x: 0.00000044542296, y: 0.0000070779142, z: -0.0003536492, w: 0.99999994}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftHandMiddle3
+      parentName: luchador:LeftHandMiddle2
+      position: {x: 0.00000061812455, y: 0.015521712, z: 6.943389e-10}
+      rotation: {x: -0.00000043555664, y: -0.000010146911, z: -0.00047567487, w: 0.9999999}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftHandMiddle4
+      parentName: luchador:LeftHandMiddle3
+      position: {x: -0.000012313509, y: 0.013531227, z: 6.177745e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftHandRing1
+      parentName: luchador:LeftHand
+      position: {x: -0.0069262413, y: 0.07853048, z: -0.0013945737}
+      rotation: {x: -0.00004857238, y: -0.00043955172, z: -0.035094824, w: 0.9993839}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftHandRing2
+      parentName: luchador:LeftHandRing1
+      position: {x: -0.000015403859, y: 0.013396623, z: -6.3388894e-10}
+      rotation: {x: 0.00000018178979, y: -0.00005092558, z: 0.0017779175, w: 0.99999845}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftHandRing3
+      parentName: luchador:LeftHandRing2
+      position: {x: 0.000029697287, y: 0.012312732, z: -3.4372685e-10}
+      rotation: {x: 0.00000021273708, y: 0.00005234282, z: -0.0019587728, w: 0.9999981}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftHandRing4
+      parentName: luchador:LeftHandRing3
+      position: {x: -0.000014293791, y: 0.00945015, z: -2.3350103e-11}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:Neck
+      parentName: luchador:Spine2
+      position: {x: -0, y: 0.08301548, z: -0.0000000049578612}
+      rotation: {x: 0.0033606668, y: 1.7662755e-29, z: 3.5527141e-12, w: 0.9999944}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:Head
+      parentName: luchador:Neck
+      position: {x: -0, y: 0.028309477, z: 0.018243477}
+      rotation: {x: -0.000000020569594, y: -4.7433845e-20, z: -9.75695e-28, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:HeadTop_End
+      parentName: luchador:Head
+      position: {x: -0, y: 0.11447052, z: 0.07376822}
+      rotation: {x: -1.3877788e-17, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightShoulder
+      parentName: luchador:Spine2
+      position: {x: 0.03486782, y: 0.069775105, z: -0.0011520712}
+      rotation: {x: -0.54384714, y: -0.44744268, z: 0.5566793, w: -0.44060582}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightArm
+      parentName: luchador:RightShoulder
+      position: {x: 9.6960745e-11, y: 0.07098471, z: 0.0000000010625173}
+      rotation: {x: -0.106578805, y: 0.04862023, z: 0.004948972, w: 0.9931025}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightForeArm
+      parentName: luchador:RightArm
+      position: {x: 2.1813155e-11, y: 0.13265425, z: -0.0000000013722743}
+      rotation: {x: 0.0000002203113, y: -0.0017486397, z: -0.00000017253572, w: 0.9999985}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightHand
+      parentName: luchador:RightForeArm
+      position: {x: -8.56306e-10, y: 0.14986552, z: 6.588169e-10}
+      rotation: {x: 0.002266237, y: 0.0024074924, z: -0.033491142, w: 0.9994336}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightHandPinky1
+      parentName: luchador:RightHand
+      position: {x: 0.017482832, y: 0.063343525, z: 0.0019240796}
+      rotation: {x: -0.0024436084, y: 0.0028324577, z: 0.03284075, w: 0.9994536}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightHandPinky2
+      parentName: luchador:RightHandPinky1
+      position: {x: -0.00001746122, y: 0.013312324, z: 3.673159e-10}
+      rotation: {x: -0.00000025179736, y: -0.0000066810762, z: 0.0009531379, w: 0.9999996}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightHandPinky3
+      parentName: luchador:RightHandPinky2
+      position: {x: 0.000006515805, y: 0.011127365, z: 1.8457981e-10}
+      rotation: {x: 0.000000290713, y: 0.000004785789, z: 0.00023958087, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightHandPinky4
+      parentName: luchador:RightHandPinky3
+      position: {x: 0.000010945485, y: 0.009924642, z: 3.0436267e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightHandRing1
+      parentName: luchador:RightHand
+      position: {x: 0.0056997114, y: 0.070806704, z: -0.00017876634}
+      rotation: {x: -0.0024341121, y: 0.0025227363, z: 0.032697946, w: 0.99945915}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightHandRing2
+      parentName: luchador:RightHandRing1
+      position: {x: -0.000022938088, y: 0.014703701, z: -5.2426596e-10}
+      rotation: {x: -0.00000026509528, y: 0.000006865062, z: -0.0002835997, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightHandRing3
+      parentName: luchador:RightHandRing2
+      position: {x: -0.00002991416, y: 0.014074961, z: 6.3319916e-10}
+      rotation: {x: -0.00000020463668, y: 0.000064718224, z: 0.0030447552, w: 0.99999535}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightHandRing4
+      parentName: luchador:RightHandRing3
+      position: {x: 0.000052852447, y: 0.013390066, z: 1.3883891e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightHandMiddle1
+      parentName: luchador:RightHand
+      position: {x: -0.004651071, y: 0.069330044, z: -0.00032647306}
+      rotation: {x: -0.002373641, y: 0.0007935179, z: 0.033253364, w: 0.9994438}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightHandMiddle2
+      parentName: luchador:RightHandMiddle1
+      position: {x: -0.000007849164, y: 0.017315647, z: 3.4062708e-10}
+      rotation: {x: -0.00000021527818, y: 0.0000016112053, z: -0.00009647018, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightHandMiddle3
+      parentName: luchador:RightHandMiddle2
+      position: {x: -0.000011096477, y: 0.01680405, z: 6.1105027e-10}
+      rotation: {x: 0.00000015070027, y: 0.0000069766456, z: 0.0009925067, w: 0.9999995}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightHandMiddle4
+      parentName: luchador:RightHandMiddle3
+      position: {x: 0.00001894574, y: 0.014282851, z: -3.1509387e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightHandIndex1
+      parentName: luchador:RightHand
+      position: {x: -0.018531468, y: 0.06334427, z: 0.0015082886}
+      rotation: {x: -0.0023939621, y: 0.0013934972, z: 0.0334824, w: 0.9994355}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightHandIndex2
+      parentName: luchador:RightHandIndex1
+      position: {x: -0.00000030239897, y: 0.019231701, z: 5.9014355e-10}
+      rotation: {x: -0.00000014339261, y: 0.000013166795, z: 0.00078120857, w: 0.9999997}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightHandIndex3
+      parentName: luchador:RightHandIndex2
+      position: {x: 0.000027940705, y: 0.017919177, z: -9.2761765e-10}
+      rotation: {x: -0.00000039676135, y: 0.000002116584, z: -0.0016227065, w: 0.9999987}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightHandIndex4
+      parentName: luchador:RightHandIndex3
+      position: {x: -0.000027638054, y: 0.016637001, z: 8.043102e-11}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightHandThumb1
+      parentName: luchador:RightHand
+      position: {x: -0.015733425, y: 0.020160846, z: 0.011650737}
+      rotation: {x: 0.06545597, y: 0.0018778606, z: 0.3554839, w: 0.9323858}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightHandThumb2
+      parentName: luchador:RightHandThumb1
+      position: {x: -0.0011942644, y: 0.022450084, z: 3.6630282e-10}
+      rotation: {x: 0.000002059607, y: -0.00014954628, z: 0.039772544, w: 0.99920875}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightHandThumb3
+      parentName: luchador:RightHandThumb2
+      position: {x: 0.00050635374, y: 0.019139059, z: 4.6282762e-11}
+      rotation: {x: -0.000049886345, y: -0.0014239335, z: 0.00844508, w: 0.99996334}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:RightHandThumb4
+      parentName: luchador:RightHandThumb3
+      position: {x: 0.00068791036, y: 0.015871493, z: -1.4849633e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftUpLeg
+      parentName: luchador:Hips
+      position: {x: -0.039349668, y: -0.0306118, z: 0.005980811}
+      rotation: {x: 0.0005425568, y: -0.010601381, z: 0.9998174, w: 0.015891712}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftLeg
+      parentName: luchador:LeftUpLeg
+      position: {x: -2.456957e-10, y: 0.23284252, z: 3.3273403e-10}
+      rotation: {x: -0.008322931, y: -0.000112497626, z: 0.033959936, w: 0.9993886}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftFoot
+      parentName: luchador:LeftLeg
+      position: {x: 7.8637256e-11, y: 0.20344667, z: 1.0129686e-10}
+      rotation: {x: 0.56383556, y: 0.004438815, z: -0.017531175, w: 0.8256891}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftToeBase
+      parentName: luchador:LeftFoot
+      position: {x: -3.859448e-11, y: 0.089536026, z: 0.0000000013177925}
+      rotation: {x: 0.23158777, y: -0.06267489, z: 0.014953191, w: 0.9706778}
+      scale: {x: 1, y: 1, z: 1}
+    - name: luchador:LeftToe_End
+      parentName: luchador:LeftToeBase
+      position: {x: -4.723404e-12, y: 0.039274238, z: -1.00588364e-10}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

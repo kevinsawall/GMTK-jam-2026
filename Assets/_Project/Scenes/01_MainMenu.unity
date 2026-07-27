@@ -176,7 +176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a297a05ee9b9e4c69aad3dab7ca058fc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 57b824b8754854e73a3a1c3401be57cc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -375,13 +375,13 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 1
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -1009,7 +1009,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ee708e6a2ad40b9b90c29feb4903cd7, type: 3}
-  m_Name:
+  m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameTitleTrainSway
   movementRange: {x: 12, y: 8}
   rotationRange: 1.25
@@ -1218,6 +1218,7 @@ GameObject:
   - component: {fileID: 1489018893}
   - component: {fileID: 1489018895}
   - component: {fileID: 1489018894}
+  - component: {fileID: 2147000300}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -1688,9 +1689,9 @@ Canvas:
   m_GameObject: {fileID: 1942404120}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_RenderMode: 1
+  m_Camera: {fileID: 519420031}
+  m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -1908,6 +1909,69 @@ MonoBehaviour:
   masterVolume: 0.8
   musicVolume: 0.7
   sfxVolume: 0.4
+--- !u!1 &2147000100
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2147000101}
+  - component: {fileID: 2147000102}
+  m_Layer: 0
+  m_Name: Global Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2147000101
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2147000100}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2147000102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2147000100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 3d46a78712050ac4cb356194b0867f3b, type: 2}
+--- !u!114 &2147000300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489018892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c1f3ca21e0a4c33af1ee61e42d83b76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SubtleCanvasFade
+  minimumAlpha: 0.92
+  halfCycleDuration: 1.5
 --- !u!224 &296360394898655017
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2139,6 +2203,54 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 609349064046066946, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_fontStyle
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 804086557138291823, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_text
+      value: Dana Gonzalez
+      objectReference: {fileID: 0}
+    - target: {fileID: 804086557138291823, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_fontStyle
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 897933037107602139, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 359
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110900689214784956, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -610.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1110900689214784956, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -109.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887756279161438474, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_text
+      value: "Tomas\u030Cevi\u0107"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887756279161438474, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_fontStyle
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887756279161438474, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.67058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887756279161438474, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.67058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887756279161438474, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.67058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887756279161438474, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4289440683
+      objectReference: {fileID: 0}
     - target: {fileID: 5556420827146845511, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2147,6 +2259,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1942404125}
+    - target: {fileID: 5899018049966263317, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_text
+      value: "Milo\u0161 Andri\u0107"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5899018049966263317, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_fontStyle
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 6056226082610949791, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
       propertyPath: m_Name
       value: CreditsPanel
@@ -2154,6 +2274,18 @@ PrefabInstance:
     - target: {fileID: 6056226082610949791, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7885722092726940986, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_text
+      value: Kevin Sawall & Ann Gry
+      objectReference: {fileID: 0}
+    - target: {fileID: 7885722092726940986, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_fontStyle
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 8746037208836670749, guid: 339b445ae8afb4952b41cb589bb3a421, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2233,7 +2365,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9141745364810204383}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1942404125}
+        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &916110968050030505
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4532,3 +4676,4 @@ SceneRoots:
   - {fileID: 1749235545}
   - {fileID: 2080000001}
   - {fileID: 2090000001}
+  - {fileID: 2147000101}

@@ -11,7 +11,7 @@ public sealed class SittingAnimationController : MonoBehaviour
     {
         if (GetComponent<CharacterManager>()?.Type == CharacterManager.CharacterType.Player) return;
 
-        Animator animator = GetComponentInChildren<Animator>(true);
+        Animator animator = FindCharacterAnimator();
         if (animator == null || sittingController == null) return;
 
         if (sittingClip == null)
@@ -34,5 +34,20 @@ public sealed class SittingAnimationController : MonoBehaviour
 
         overrideController.ApplyOverrides(clips);
         animator.runtimeAnimatorController = overrideController;
+    }
+
+    private Animator FindCharacterAnimator()
+    {
+        Animator[] animators = GetComponentsInChildren<Animator>(true);
+
+        foreach (Animator animator in animators)
+        {
+            if (animator.gameObject.activeInHierarchy)
+            {
+                return animator;
+            }
+        }
+
+        return animators.Length > 0 ? animators[0] : null;
     }
 }

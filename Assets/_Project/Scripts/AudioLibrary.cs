@@ -19,7 +19,8 @@ public enum SfxId
     Resume,
     TrainOnTheRun,
     TrainDestruction,
-    TrainDestructionShort
+    TrainDestructionShort,
+    SingersSong
 }
 
 [Serializable]

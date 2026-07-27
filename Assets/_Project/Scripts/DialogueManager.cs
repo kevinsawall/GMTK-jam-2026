@@ -214,12 +214,17 @@ public sealed class DialogueManager : MonoBehaviour
 
     private void HandleFlagSet(string flag)
     {
-        if (flag != StartSingingFlag || GetNpcState(ConductorNpcId) != DialogueState.FirstTalk)
+        if (flag != StartSingingFlag)
         {
             return;
         }
 
-        SetNpcState(ConductorNpcId, DialogueState.WaitingForItem);
+        AudioManager.Instance?.PlaySfxWithMusicDuck(SfxId.SingersSong, 0.5f);
+
+        if (GetNpcState(ConductorNpcId) == DialogueState.FirstTalk)
+        {
+            SetNpcState(ConductorNpcId, DialogueState.WaitingForItem);
+        }
     }
 
     public bool HasClue(string clueId) => !string.IsNullOrWhiteSpace(clueId) && clues.Contains(clueId);

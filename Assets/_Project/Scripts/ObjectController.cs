@@ -4,6 +4,8 @@ public sealed class ObjectController : MonoBehaviour, IInteractable
 {
     [SerializeField] private InteractObject interactObject;
     [SerializeField, Min(1)] private int interactionDistance = 1;
+    [Header("Interaction Collider")]
+    [SerializeField] private bool fitBoxColliderToVisualBounds;
     [Header("Flag Trigger")]
     [SerializeField] private string deactivateOnFlag;
     [Header("Linked Interaction")]
@@ -26,7 +28,42 @@ public sealed class ObjectController : MonoBehaviour, IInteractable
 
     private void Awake()
     {
+        FitBoxColliderToVisualBounds();
         CacheOutlineRenderers();
+    }
+
+    private void FitBoxColliderToVisualBounds()
+    {
+        if (!fitBoxColliderToVisualBounds || !TryGetComponent(out BoxCollider boxCollider)) return;
+
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        if (renderers.Length == 0) return;
+
+        Bounds worldBounds = renderers[0].bounds;
+        for (int i = 1; i < renderers.Length; i++)
+        {
+            worldBounds.Encapsulate(renderers[i].bounds);
+        }
+
+        Vector3 min = new(float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity);
+        Vector3 max = new(float.NegativeInfinity, float.NegativeInfinity, float.NegativeInfinity);
+        Vector3 worldMin = worldBounds.min;
+        Vector3 worldMax = worldBounds.max;
+
+        for (int x = 0; x <= 1; x++)
+        for (int y = 0; y <= 1; y++)
+        for (int z = 0; z <= 1; z++)
+        {
+            Vector3 localPoint = transform.InverseTransformPoint(new Vector3(
+                x == 0 ? worldMin.x : worldMax.x,
+                y == 0 ? worldMin.y : worldMax.y,
+                z == 0 ? worldMin.z : worldMax.z));
+            min = Vector3.Min(min, localPoint);
+            max = Vector3.Max(max, localPoint);
+        }
+
+        boxCollider.center = (min + max) * 0.5f;
+        boxCollider.size = max - min;
     }
 
     private void OnEnable()

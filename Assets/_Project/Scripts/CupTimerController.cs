@@ -14,7 +14,7 @@ public sealed class CupTimerController : MonoBehaviour
 {
     private const string TimerObjectName = "Cup timer";
     private const string CutsceneObjectName = "CutsceneObject";
-    private const float CutsceneDurationSeconds = 6f;
+    private const float CutsceneDurationSeconds = 7f;
     private const float PlayerResetTimeSeconds = 2f;
     private const float CutsceneFadeOutSeconds = 1f;
 
