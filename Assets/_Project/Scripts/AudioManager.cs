@@ -98,7 +98,7 @@ public sealed class AudioManager : MonoBehaviour
             return;
         }
 
-        float volume = entry.volume * masterVolume * sfxVolume * Mathf.Max(0f, volumeMultiplier);
+        float volume = entry.volume * sfxVolume * Mathf.Max(0f, volumeMultiplier);
         sfxSource.PlayOneShot(entry.clip, volume);
     }
 
@@ -182,7 +182,9 @@ public sealed class AudioManager : MonoBehaviour
     public void SetMasterVolume(float value)
     {
         masterVolume = Mathf.Clamp01(value);
-        SetMixerVolume(MasterVolumeParameter, masterVolume);
+        // A global master volume must include music and any future AudioSources, not
+        // only sources routed through a particular mixer group.
+        AudioListener.volume = masterVolume;
         ApplyMusicVolume();
         ApplyLoopingSfxVolume();
         PlayerPrefs.SetFloat(MasterVolumePreferenceKey, masterVolume);
@@ -214,14 +216,14 @@ public sealed class AudioManager : MonoBehaviour
     {
         if (musicSource == null) return;
 
-        musicSource.volume = musicClipVolume * masterVolume * musicVolume * musicDuckMultiplier;
+        musicSource.volume = musicClipVolume * musicVolume * musicDuckMultiplier;
     }
 
     private void ApplyLoopingSfxVolume()
     {
         if (loopingSfxSource == null) return;
 
-        loopingSfxSource.volume = loopingSfxClipVolume * masterVolume * sfxVolume;
+        loopingSfxSource.volume = loopingSfxClipVolume * sfxVolume;
     }
 
     private IEnumerator DuckMusicForClip(float duration, float duckMultiplier)
@@ -243,14 +245,14 @@ public sealed class AudioManager : MonoBehaviour
         loopingSfxResumeRoutine = null;
     }
 
-    private void SetMixerVolume(string parameterName, float value)
+    private bool SetMixerVolume(string parameterName, float value)
     {
         if (audioMixer == null)
         {
-            return;
+            return false;
         }
 
         float decibels = value <= 0.0001f ? -80f : Mathf.Log10(value) * 20f;
-        audioMixer.SetFloat(parameterName, decibels);
+        return audioMixer.SetFloat(parameterName, decibels);
     }
 }

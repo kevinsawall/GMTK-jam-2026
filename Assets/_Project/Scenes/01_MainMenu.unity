@@ -1903,9 +1903,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   audioLibrary: {fileID: 11400000, guid: 83be1f96cde04af3b2c751e4d86f3a20, type: 2}
-  audioMixer: {fileID: 0}
+  audioMixer: {fileID: 24100000, guid: 34c27c4a26f7246799f547f266c982d7, type: 2}
   musicMixerGroup: {fileID: 0}
-  sfxMixerGroup: {fileID: 0}
+  sfxMixerGroup: {fileID: 24300002, guid: 34c27c4a26f7246799f547f266c982d7, type: 2}
   masterVolume: 0.8
   musicVolume: 0.7
   sfxVolume: 0.4
