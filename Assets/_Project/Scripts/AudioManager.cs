@@ -87,14 +87,33 @@ public sealed class AudioManager : MonoBehaviour
 
     public void PlaySfx(SfxId id)
     {
+        PlaySfx(id, 1f);
+    }
+
+    public void PlaySfx(SfxId id, float volumeMultiplier)
+    {
         if (!audioLibrary.TryGetSfx(id, out SfxEntry entry))
         {
             Debug.LogWarning($"No SFX clip is configured for {id}.", this);
             return;
         }
 
-        float volume = entry.volume * masterVolume * sfxVolume;
+        float volume = entry.volume * masterVolume * sfxVolume * Mathf.Max(0f, volumeMultiplier);
         sfxSource.PlayOneShot(entry.clip, volume);
+    }
+
+    /// <summary>Plays one of two variations with a small volume change to avoid repetition.</summary>
+    public void PlayRandomSfx(
+        SfxId firstVariation,
+        SfxId secondVariation,
+        float minimumVolumeMultiplier = 0.88f,
+        float maximumVolumeMultiplier = 1.12f)
+    {
+        SfxId selectedVariation = Random.value < 0.5f ? firstVariation : secondVariation;
+        float volumeMultiplier = Random.Range(
+            Mathf.Min(minimumVolumeMultiplier, maximumVolumeMultiplier),
+            Mathf.Max(minimumVolumeMultiplier, maximumVolumeMultiplier));
+        PlaySfx(selectedVariation, volumeMultiplier);
     }
 
     public void PlayLoopingSfx(SfxId id)

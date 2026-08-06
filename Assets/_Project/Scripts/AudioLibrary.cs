@@ -20,7 +20,9 @@ public enum SfxId
     TrainOnTheRun,
     TrainDestruction,
     TrainDestructionShort,
-    SingersSong
+    SingersSong,
+    Footstep1,
+    Footstep2
 }
 
 [Serializable]

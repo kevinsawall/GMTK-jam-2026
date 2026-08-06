@@ -47,6 +47,10 @@ public sealed class PlayerMovement : MonoBehaviour
             // with Rigidbody.MovePosition between physics steps and cause visible jitter.
             animator.applyRootMotion = false;
             animator.runtimeAnimatorController = animationController;
+            if (animator.GetComponent<FootstepAnimationEvents>() == null)
+            {
+                animator.gameObject.AddComponent<FootstepAnimationEvents>();
+            }
             controlsAnimation = true;
         }
     }
@@ -323,6 +327,12 @@ public sealed class PlayerMovement : MonoBehaviour
         {
             animator.SetBool(IsWalking, isWalking);
         }
+    }
+
+    /// <summary>Called by the Walking clip's animation events when a foot contacts the ground.</summary>
+    public void PlayFootstep()
+    {
+        AudioManager.Instance?.PlayRandomSfx(SfxId.Footstep1, SfxId.Footstep2);
     }
 
     private static bool IsMovementBlocked()
