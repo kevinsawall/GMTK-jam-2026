@@ -1,0 +1,899 @@
+fileFormatVersion: 2
+guid: 8c98ee237605e4344ac8342640a73839
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Walk
+      takeName: mixamo.com
+      internalID: -203655887218126122
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.17
+        functionName: PlayFootstep
+        data: ''
+        objectReferenceParameter: {fileID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.67
+        functionName: PlayFootstep
+        data: ''
+        objectReferenceParameter: {fileID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: mechanic:Hips
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:RightUpLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:LeftLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:RightLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:LeftFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:RightFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:Spine1
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:LeftShoulder
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:RightShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:LeftArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:LeftForeArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:LeftHand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:RightHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:LeftToeBase
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:RightToeBase
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:LeftHandThumb1
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:LeftHandThumb2
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:LeftHandThumb3
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:LeftHandIndex1
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:LeftHandIndex2
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:LeftHandIndex3
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:LeftHandMiddle1
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:LeftHandMiddle2
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:LeftHandMiddle3
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:LeftHandRing1
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:LeftHandRing2
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:LeftHandRing3
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:LeftHandPinky1
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:LeftHandPinky2
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:LeftHandPinky3
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:RightHandThumb1
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:RightHandThumb2
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:RightHandThumb3
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:RightHandIndex1
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:RightHandIndex2
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:RightHandIndex3
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:RightHandMiddle1
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:RightHandMiddle2
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:RightHandMiddle3
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:RightHandRing1
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:RightHandRing2
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:RightHandRing3
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:RightHandPinky1
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:RightHandPinky2
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:RightHandPinky3
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mechanic:Spine2
+      humanName: UpperChest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: '@Walk(Clone)'
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:Hips
+      parentName: '@Walk(Clone)'
+      position: {x: -0.00059441675, y: 0.48125446, z: -0.003511578}
+      rotation: {x: -0.017892456, y: -0.01916246, z: 0.027775919, w: 0.9992703}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:Spine
+      parentName: mechanic:Hips
+      position: {x: -0, y: 0.061637998, z: -0.004409}
+      rotation: {x: -0.0066530285, y: -0.01562859, z: -0.024862984, w: 0.9995466}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:Spine1
+      parentName: mechanic:Spine
+      position: {x: -0, y: 0.072095, z: 0}
+      rotation: {x: 0.015853409, y: -0.0023343123, z: -0.0013945858, w: 0.99987066}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:Spine2
+      parentName: mechanic:Spine1
+      position: {x: -0, y: 0.082394, z: 0}
+      rotation: {x: 0.015857425, y: -0.0022881806, z: -0.0014538221, w: 0.9998706}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:Neck
+      parentName: mechanic:Spine2
+      position: {x: -0, y: 0.092693, z: 0}
+      rotation: {x: 0.032059107, y: -0.003291786, z: 0.0014604243, w: 0.9994795}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:Head
+      parentName: mechanic:Neck
+      position: {x: -0, y: 0.035311997, z: 0.009664999}
+      rotation: {x: -0.0036462687, y: -0.0032087755, z: 0.0013589512, w: 0.9999873}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:HeadTop_End
+      parentName: mechanic:Head
+      position: {x: -0, y: 0.107438, z: 0.029405998}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftShoulder
+      parentName: mechanic:Spine2
+      position: {x: -0.024907, y: 0.082734, z: -0.001021}
+      rotation: {x: 0.5914784, y: -0.40460998, z: 0.5704507, w: 0.40128553}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftArm
+      parentName: mechanic:LeftShoulder
+      position: {x: -0, y: 0.053154, z: 0}
+      rotation: {x: -0.15739504, y: -0.14773111, z: 0.025690015, w: 0.9760852}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftForeArm
+      parentName: mechanic:LeftArm
+      position: {x: -0, y: 0.080795, z: 0}
+      rotation: {x: -0.0017986295, y: -0.0003224015, z: -0.03557359, w: 0.9993654}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftHand
+      parentName: mechanic:LeftForeArm
+      position: {x: -0, y: 0.11881799, z: 0}
+      rotation: {x: -0.058062293, y: 0.20303436, z: 0.083433546, w: 0.9738813}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftHandThumb1
+      parentName: mechanic:LeftHand
+      position: {x: 0.009570999, y: 0.001895, z: 0.007126}
+      rotation: {x: -0.011457459, y: -0.12661375, z: -0.23335993, w: 0.964044}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftHandThumb2
+      parentName: mechanic:LeftHandThumb1
+      position: {x: 0.003456, y: 0.009027, z: 0}
+      rotation: {x: 0.00967005, y: 0.048738692, z: -0.15964475, w: 0.98592323}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftHandThumb3
+      parentName: mechanic:LeftHandThumb2
+      position: {x: -0.000237, y: 0.012517999, z: 0}
+      rotation: {x: -0.00043971365, y: 0.041327596, z: -0.089415774, w: 0.99513656}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftHandThumb4
+      parentName: mechanic:LeftHandThumb3
+      position: {x: -0.0032199998, y: 0.01159, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftHandIndex1
+      parentName: mechanic:LeftHand
+      position: {x: 0.012324999, y: 0.027100999, z: 0.00083699997}
+      rotation: {x: 0.07413268, y: 0.011701253, z: -0.06721429, w: 0.99491197}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftHandIndex2
+      parentName: mechanic:LeftHandIndex1
+      position: {x: 0.000017999999, y: 0.013669999, z: 0}
+      rotation: {x: 0.033848368, y: 0.0011389285, z: 0.004295286, w: 0.99941707}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftHandIndex3
+      parentName: mechanic:LeftHandIndex2
+      position: {x: -0.000008999999, y: 0.013886999, z: 0}
+      rotation: {x: -0.0346933, y: 0.00007483601, z: -0.005992346, w: 0.99938005}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftHandIndex4
+      parentName: mechanic:LeftHandIndex3
+      position: {x: -0.000008999999, y: 0.012970999, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftHandMiddle1
+      parentName: mechanic:LeftHand
+      position: {x: 0.0045519997, y: 0.031661, z: -0.000346}
+      rotation: {x: 0.067612626, y: 0.0060944706, z: -0.049745984, w: 0.99645215}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftHandMiddle2
+      parentName: mechanic:LeftHandMiddle1
+      position: {x: 0.000008, y: 0.013385, z: 0}
+      rotation: {x: 0.03337265, y: 0.0014863536, z: 0.0046200394, w: 0.99943125}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftHandMiddle3
+      parentName: mechanic:LeftHandMiddle2
+      position: {x: -0.000003, y: 0.013465, z: 0}
+      rotation: {x: -0.026239365, y: -0.00003766939, z: -0.00066962495, w: 0.9996555}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftHandMiddle4
+      parentName: mechanic:LeftHandMiddle3
+      position: {x: -0.0000050000003, y: 0.011438, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftHandRing1
+      parentName: mechanic:LeftHand
+      position: {x: -0.003761, y: 0.038397998, z: -0.00012299999}
+      rotation: {x: 0.062657945, y: 0.002325937, z: -0.04708086, w: 0.9969213}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftHandRing2
+      parentName: mechanic:LeftHandRing1
+      position: {x: 0.000008, y: 0.010281, z: 0}
+      rotation: {x: 0.035168108, y: -0.0011203384, z: 0.004091573, w: 0.9993724}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftHandRing3
+      parentName: mechanic:LeftHandRing2
+      position: {x: -0.000003, y: 0.009509, z: 0}
+      rotation: {x: 0.0173022, y: -0.0005354227, z: 0.0018169953, w: 0.99984854}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftHandRing4
+      parentName: mechanic:LeftHandRing3
+      position: {x: -0.000004, y: 0.009008, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftHandPinky1
+      parentName: mechanic:LeftHand
+      position: {x: -0.013114999, y: 0.033805, z: 0.00031899998}
+      rotation: {x: 0.060676575, y: 0.008874265, z: -0.04542682, w: 0.9970837}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftHandPinky2
+      parentName: mechanic:LeftHandPinky1
+      position: {x: 0.000001, y: 0.008621, z: 0}
+      rotation: {x: 0.035295952, y: 0.0011354173, z: 0.0036666659, w: 0.9993695}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftHandPinky3
+      parentName: mechanic:LeftHandPinky2
+      position: {x: 0.000001, y: 0.007623, z: 0}
+      rotation: {x: -0.009092004, y: 0.000054320644, z: 0.0061715343, w: 0.9999396}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftHandPinky4
+      parentName: mechanic:LeftHandPinky3
+      position: {x: -0.000003, y: 0.0064429995, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightShoulder
+      parentName: mechanic:Spine2
+      position: {x: 0.024907, y: 0.08269, z: -0.00040699998}
+      rotation: {x: 0.58937746, y: 0.41627863, z: -0.54944056, w: 0.42126176}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightArm
+      parentName: mechanic:RightShoulder
+      position: {x: -0, y: 0.053154, z: 0}
+      rotation: {x: -0.1438466, y: 0.113425255, z: -0.049632102, w: 0.98182464}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightForeArm
+      parentName: mechanic:RightArm
+      position: {x: -0, y: 0.080716, z: 0}
+      rotation: {x: -0.005825996, y: 0.00007063895, z: 0.032414462, w: 0.9994576}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightHand
+      parentName: mechanic:RightForeArm
+      position: {x: -0, y: 0.119284, z: 0}
+      rotation: {x: -0.092847385, y: -0.07614054, z: 0.014680284, w: 0.99265623}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightHandThumb1
+      parentName: mechanic:RightHand
+      position: {x: -0.00964, y: 0.003129, z: 0.007214}
+      rotation: {x: -0.04147361, y: 0.055473838, z: 0.2726589, w: 0.9596144}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightHandThumb2
+      parentName: mechanic:RightHandThumb1
+      position: {x: -0.0024529998, y: 0.009645, z: 0}
+      rotation: {x: -0.011321805, y: -0.0071881684, z: 0.118624195, w: 0.9928487}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightHandThumb3
+      parentName: mechanic:RightHandThumb2
+      position: {x: 0.000658, y: 0.011390001, z: 0}
+      rotation: {x: 0.0038998825, y: -0.03997343, z: 0.01966083, w: 0.99899966}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightHandThumb4
+      parentName: mechanic:RightHandThumb3
+      position: {x: 0.0017949999, y: 0.0105449995, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightHandIndex1
+      parentName: mechanic:RightHand
+      position: {x: -0.012356, y: 0.027535997, z: -0.000308}
+      rotation: {x: 0.07484895, y: -0.004476239, z: 0.045999665, w: 0.9961234}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightHandIndex2
+      parentName: mechanic:RightHandIndex1
+      position: {x: -0.000046, y: 0.014843, z: 0}
+      rotation: {x: 0.033983596, y: -0.001116226, z: -0.0028965434, w: 0.99941754}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightHandIndex3
+      parentName: mechanic:RightHandIndex2
+      position: {x: -0.000006, y: 0.014205, z: 0}
+      rotation: {x: 0.03967816, y: -0.0014115206, z: 0.0041721566, w: 0.9992028}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightHandIndex4
+      parentName: mechanic:RightHandIndex3
+      position: {x: 0.000052, y: 0.012734, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightHandMiddle1
+      parentName: mechanic:RightHand
+      position: {x: -0.004072, y: 0.035966, z: -0.000339}
+      rotation: {x: 0.068306185, y: -0.0057008993, z: 0.035821047, w: 0.99700487}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightHandMiddle2
+      parentName: mechanic:RightHandMiddle1
+      position: {x: -0.000035, y: 0.0132, z: 0}
+      rotation: {x: 0.03346404, y: -0.0014972928, z: -0.0023574317, w: 0.9994361}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightHandMiddle3
+      parentName: mechanic:RightHandMiddle2
+      position: {x: 0.000015, y: 0.013084, z: 0}
+      rotation: {x: 0.03908747, y: -0.00016903834, z: -0.0036608423, w: 0.99922913}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightHandMiddle4
+      parentName: mechanic:RightHandMiddle3
+      position: {x: 0.000020000001, y: 0.0109790005, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightHandRing1
+      parentName: mechanic:RightHand
+      position: {x: 0.003664, y: 0.038678996, z: -0.00082699995}
+      rotation: {x: 0.06316959, y: 0.0024666851, z: 0.031958554, w: 0.99748796}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightHandRing2
+      parentName: mechanic:RightHandRing1
+      position: {x: -0.0000050000003, y: 0.011121, z: 0}
+      rotation: {x: 0.03526846, y: 0.0011677935, z: -0.0042404463, w: 0.99936825}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightHandRing3
+      parentName: mechanic:RightHandRing2
+      position: {x: -0.000017, y: 0.010650001, z: 0}
+      rotation: {x: 0.03915139, y: -0.0008683452, z: 0.006006026, w: 0.9992149}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightHandRing4
+      parentName: mechanic:RightHandRing3
+      position: {x: 0.000023, y: 0.010304, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightHandPinky1
+      parentName: mechanic:RightHand
+      position: {x: 0.012765, y: 0.036383, z: -0.000052999996}
+      rotation: {x: 0.058959834, y: -0.002622514, z: 0.023971142, w: 0.99796915}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightHandPinky2
+      parentName: mechanic:RightHandPinky1
+      position: {x: -0.000023, y: 0.009272999, z: 0}
+      rotation: {x: 0.03536939, y: -0.0010515904, z: -0.0030423596, w: 0.9993692}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightHandPinky3
+      parentName: mechanic:RightHandPinky2
+      position: {x: -0.000023, y: 0.008199, z: 0}
+      rotation: {x: 0.03897284, y: -0.0036456066, z: 0.009533837, w: 0.9991881}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightHandPinky4
+      parentName: mechanic:RightHandPinky3
+      position: {x: 0.000044999997, y: 0.0072109997, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftUpLeg
+      parentName: mechanic:Hips
+      position: {x: -0.051048998, y: -0.034768, z: 0.002592}
+      rotation: {x: -0.007069772, y: 0.11914323, z: 0.9923239, w: 0.03237806}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftLeg
+      parentName: mechanic:LeftUpLeg
+      position: {x: -0, y: 0.210569, z: 0}
+      rotation: {x: -0.34019953, y: 0.06573983, z: -0.029008187, w: 0.93760395}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftFoot
+      parentName: mechanic:LeftLeg
+      position: {x: -0, y: 0.159255, z: 0}
+      rotation: {x: 0.39776254, y: -0.12400492, z: -0.056307465, w: 0.90732425}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftToeBase
+      parentName: mechanic:LeftFoot
+      position: {x: -0, y: 0.105707, z: 0}
+      rotation: {x: 0.52633077, y: 0.128321, z: -0.031178858, w: 0.8399628}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:LeftToe_End
+      parentName: mechanic:LeftToeBase
+      position: {x: -0, y: 0.043617, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightUpLeg
+      parentName: mechanic:Hips
+      position: {x: 0.051048998, y: -0.034768, z: 0.001805}
+      rotation: {x: 0.055750005, y: 0.08149763, z: 0.9936849, w: 0.05329607}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightLeg
+      parentName: mechanic:RightUpLeg
+      position: {x: -0, y: 0.210383, z: 0}
+      rotation: {x: -0.23885112, y: 0.057364553, z: -0.021941625, w: 0.969112}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightFoot
+      parentName: mechanic:RightLeg
+      position: {x: -0, y: 0.159262, z: 0}
+      rotation: {x: 0.5532584, y: 0.104311086, z: 0.08857274, w: 0.8216929}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightToeBase
+      parentName: mechanic:RightFoot
+      position: {x: -0, y: 0.105684996, z: 0}
+      rotation: {x: 0.37754464, y: -0.0628494, z: 0.0279167, w: 0.92343414}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mechanic:RightToe_End
+      parentName: mechanic:RightToeBase
+      position: {x: -0, y: 0.044203, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 14bc03d9eddff46f1aa3fd83f7b9846c, type: 3}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 2
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
