@@ -1,9 +1,11 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public sealed class AudioManager : MonoBehaviour
 {
+    private const string GameplaySceneName = "02_Gameplay";
     private const string MasterVolumeParameter = "MasterVolume";
     private const string MusicVolumeParameter = "MusicVolume";
     private const string SfxVolumeParameter = "SfxVolume";
@@ -47,6 +49,7 @@ public sealed class AudioManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        SceneManager.activeSceneChanged += HandleActiveSceneChanged;
 
         musicSource = CreateSource("MusicSource", musicMixerGroup);
         sfxSource = CreateSource("SfxSource", sfxMixerGroup);
@@ -57,6 +60,12 @@ public sealed class AudioManager : MonoBehaviour
         SetMasterVolume(masterVolume);
         SetMusicVolume(musicVolume);
         SetSfxVolume(sfxVolume);
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.activeSceneChanged -= HandleActiveSceneChanged;
+        if (Instance == this) Instance = null;
     }
 
     public void PlayMusic(MusicId id)
@@ -83,6 +92,14 @@ public sealed class AudioManager : MonoBehaviour
     {
         musicSource.Stop();
         musicSource.clip = null;
+    }
+
+    private void HandleActiveSceneChanged(Scene previousScene, Scene activeScene)
+    {
+        if (activeScene.name != GameplaySceneName)
+        {
+            StopMusic();
+        }
     }
 
     public void PlaySfx(SfxId id)
