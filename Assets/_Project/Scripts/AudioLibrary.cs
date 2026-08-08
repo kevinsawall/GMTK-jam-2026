@@ -22,7 +22,10 @@ public enum SfxId
     TrainDestructionShort,
     SingersSong,
     Footstep1,
-    Footstep2
+    Footstep2,
+    HoverOverButton,
+    ClickOnContinueAndMenuButtons,
+    ClickOnCharacter
 }
 
 [Serializable]

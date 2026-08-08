@@ -125,6 +125,12 @@ public sealed class PlayerMovement : MonoBehaviour
         IInteractable interactable = GetInteractable(hit.collider);
         if (interactable != null)
         {
+            CharacterManager character = hit.collider.GetComponentInParent<CharacterManager>();
+            if (character != null && character.Type == CharacterManager.CharacterType.Npc)
+            {
+                AudioManager.Instance?.PlaySfx(SfxId.ClickOnCharacter);
+            }
+
             if (SetReachableDestination(hit.point, interactable.InteractionDistance))
             {
                 pendingInteraction = interactable;
