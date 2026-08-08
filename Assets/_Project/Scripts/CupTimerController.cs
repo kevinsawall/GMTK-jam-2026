@@ -14,8 +14,9 @@ public sealed class CupTimerController : MonoBehaviour
 {
     private const string TimerObjectName = "Cup timer";
     private const string CutsceneObjectName = "CutsceneObject";
-    private const float CutsceneDurationSeconds = 7f;
-    private const float PlayerResetTimeSeconds = 2f;
+    private const float CutsceneDurationSeconds = 10f;
+    private const float LoopResetSoundDurationSeconds = 3.2f;
+    private const float PlayerResetTimeSeconds = 5f;
     private const float CutsceneFadeOutSeconds = 1f;
 
     [SerializeField] private CupTimerMode timerMode = CupTimerMode.Sec;
@@ -98,6 +99,7 @@ public sealed class CupTimerController : MonoBehaviour
         if (stageCount <= 0) return;
 
         remainingSeconds = Mathf.Max(0f, remainingSeconds - 1f);
+        PlayCountdownTick();
         naturalCountAnimation = StartCoroutine(AnimateNaturalCountDown(stageCount));
     }
 
@@ -105,12 +107,23 @@ public sealed class CupTimerController : MonoBehaviour
     {
         if (hasExpired || GameManager.IsEndGameSequencePlaying) return;
 
+        int previousDisplayedSeconds = Mathf.CeilToInt(remainingSeconds);
         remainingSeconds = Mathf.Max(0f, remainingSeconds - amount);
+        if (Mathf.CeilToInt(remainingSeconds) < previousDisplayedSeconds)
+        {
+            PlayCountdownTick();
+        }
+
         UpdateTimerDisplay();
         if (remainingSeconds > 0f) return;
 
         hasExpired = true;
         timeoutSequence = StartCoroutine(RunTimeoutSequence());
+    }
+
+    private static void PlayCountdownTick()
+    {
+        AudioManager.Instance?.PlaySfx(SfxId.CountdownTick);
     }
 
     /// <summary>Stops the cup-timer timeout flow so a higher-priority ending can take over.</summary>
@@ -211,7 +224,11 @@ public sealed class CupTimerController : MonoBehaviour
             cutsceneCanvasGroup.alpha = 1f;
         }
 
-        yield return new WaitForSecondsRealtime(PlayerResetTimeSeconds);
+        AudioManager.Instance?.PlaySfx(SfxId.LoopResetSound);
+        yield return new WaitForSecondsRealtime(LoopResetSoundDurationSeconds);
+        AudioManager.Instance?.PlaySfxWithMusicDuck(SfxId.TrainDestructionShort, 0.5f);
+
+        yield return new WaitForSecondsRealtime(PlayerResetTimeSeconds - LoopResetSoundDurationSeconds);
         ResetPlayerToStartPosition();
         StopCameraShake();
 
@@ -254,7 +271,6 @@ public sealed class CupTimerController : MonoBehaviour
                 yield return null;
             }
 
-            AudioManager.Instance?.PlaySfxWithMusicDuck(SfxId.TrainDestructionShort, 0.5f);
         }
 
         yield return PlayCutsceneAndRestart();

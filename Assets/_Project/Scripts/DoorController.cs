@@ -21,6 +21,7 @@ public sealed class DoorController : MonoBehaviour
     private Vector3 closedLocalEulerAngles;
     private bool isOpen;
     private Transform rotationPivot;
+    private static int lastOpenSoundFrame = -1;
 
     private void Awake()
     {
@@ -50,9 +51,20 @@ public sealed class DoorController : MonoBehaviour
         if (isOpen || rotationPivot == null) return;
 
         isOpen = true;
+        PlayOpenSound();
         LeanTween.cancel(rotationPivot.gameObject);
         LeanTween.rotateLocal(rotationPivot.gameObject, closedLocalEulerAngles + openRotationOffset, openDuration)
             .setEase(easeType);
+    }
+
+    private static void PlayOpenSound()
+    {
+        // Several controllers can open the leaves of one door from the same story flag.
+        // Keep their motion in sync but play one shared door sound.
+        if (lastOpenSoundFrame == Time.frameCount) return;
+
+        lastOpenSoundFrame = Time.frameCount;
+        AudioManager.Instance?.PlaySfx(SfxId.DoorOpen);
     }
 
     private void OpenImmediately()

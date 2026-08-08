@@ -47,6 +47,10 @@ public sealed class PlayerMovement : MonoBehaviour
             // with Rigidbody.MovePosition between physics steps and cause visible jitter.
             animator.applyRootMotion = false;
             animator.runtimeAnimatorController = animationController;
+            if (animator.GetComponent<FootstepAnimationEvents>() == null)
+            {
+                animator.gameObject.AddComponent<FootstepAnimationEvents>();
+            }
             controlsAnimation = true;
         }
     }
@@ -121,6 +125,12 @@ public sealed class PlayerMovement : MonoBehaviour
         IInteractable interactable = GetInteractable(hit.collider);
         if (interactable != null)
         {
+            CharacterManager character = hit.collider.GetComponentInParent<CharacterManager>();
+            if (character != null && character.Type == CharacterManager.CharacterType.Npc)
+            {
+                AudioManager.Instance?.PlaySfx(SfxId.ClickOnCharacter);
+            }
+
             if (SetReachableDestination(hit.point, interactable.InteractionDistance))
             {
                 pendingInteraction = interactable;
@@ -296,7 +306,25 @@ public sealed class PlayerMovement : MonoBehaviour
         body.angularVelocity = Vector3.zero;
         if (interaction == null) return;
 
-        if (itemToDeliver != null) interaction.TryReceiveItem(itemToDeliver);
+        if (itemToDeliver != null)
+        {
+            bool isCorrectItem = interaction switch
+            {
+                ObjectController objectController => objectController.IsCorrectDroppedItem(itemToDeliver),
+                CharacterManager characterManager => characterManager.IsCorrectDroppedItem(itemToDeliver),
+                _ => false
+            };
+
+            bool wasItemReceived = interaction.TryReceiveItem(itemToDeliver);
+            if (isCorrectItem && wasItemReceived)
+            {
+                AudioManager.Instance?.PlaySfx(SfxId.ItemUseGiveItem);
+            }
+            else if (!isCorrectItem)
+            {
+                AudioManager.Instance?.PlaySfx(SfxId.WrongItemSound);
+            }
+        }
         else interaction.Interact();
     }
 
@@ -323,6 +351,12 @@ public sealed class PlayerMovement : MonoBehaviour
         {
             animator.SetBool(IsWalking, isWalking);
         }
+    }
+
+    /// <summary>Called by the Walking clip's animation events when a foot contacts the ground.</summary>
+    public void PlayFootstep()
+    {
+        AudioManager.Instance?.PlayRandomSfx(SfxId.Footstep1, SfxId.Footstep2);
     }
 
     private static bool IsMovementBlocked()

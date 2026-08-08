@@ -1,9 +1,11 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public sealed class AudioManager : MonoBehaviour
 {
+    private const string GameplaySceneName = "02_Gameplay";
     private const string MasterVolumeParameter = "MasterVolume";
     private const string MusicVolumeParameter = "MusicVolume";
     private const string SfxVolumeParameter = "SfxVolume";
@@ -47,6 +49,7 @@ public sealed class AudioManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        SceneManager.activeSceneChanged += HandleActiveSceneChanged;
 
         musicSource = CreateSource("MusicSource", musicMixerGroup);
         sfxSource = CreateSource("SfxSource", sfxMixerGroup);
@@ -57,6 +60,12 @@ public sealed class AudioManager : MonoBehaviour
         SetMasterVolume(masterVolume);
         SetMusicVolume(musicVolume);
         SetSfxVolume(sfxVolume);
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.activeSceneChanged -= HandleActiveSceneChanged;
+        if (Instance == this) Instance = null;
     }
 
     public void PlayMusic(MusicId id)
@@ -85,7 +94,20 @@ public sealed class AudioManager : MonoBehaviour
         musicSource.clip = null;
     }
 
+    private void HandleActiveSceneChanged(Scene previousScene, Scene activeScene)
+    {
+        if (activeScene.name != GameplaySceneName)
+        {
+            StopMusic();
+        }
+    }
+
     public void PlaySfx(SfxId id)
+    {
+        PlaySfx(id, 1f);
+    }
+
+    public void PlaySfx(SfxId id, float volumeMultiplier)
     {
         if (!audioLibrary.TryGetSfx(id, out SfxEntry entry))
         {
@@ -93,8 +115,22 @@ public sealed class AudioManager : MonoBehaviour
             return;
         }
 
-        float volume = entry.volume * masterVolume * sfxVolume;
+        float volume = entry.volume * sfxVolume * Mathf.Max(0f, volumeMultiplier);
         sfxSource.PlayOneShot(entry.clip, volume);
+    }
+
+    /// <summary>Plays one of two variations with a small volume change to avoid repetition.</summary>
+    public void PlayRandomSfx(
+        SfxId firstVariation,
+        SfxId secondVariation,
+        float minimumVolumeMultiplier = 0.88f,
+        float maximumVolumeMultiplier = 1.12f)
+    {
+        SfxId selectedVariation = Random.value < 0.5f ? firstVariation : secondVariation;
+        float volumeMultiplier = Random.Range(
+            Mathf.Min(minimumVolumeMultiplier, maximumVolumeMultiplier),
+            Mathf.Max(minimumVolumeMultiplier, maximumVolumeMultiplier));
+        PlaySfx(selectedVariation, volumeMultiplier);
     }
 
     public void PlayLoopingSfx(SfxId id)
@@ -163,7 +199,9 @@ public sealed class AudioManager : MonoBehaviour
     public void SetMasterVolume(float value)
     {
         masterVolume = Mathf.Clamp01(value);
-        SetMixerVolume(MasterVolumeParameter, masterVolume);
+        // A global master volume must include music and any future AudioSources, not
+        // only sources routed through a particular mixer group.
+        AudioListener.volume = masterVolume;
         ApplyMusicVolume();
         ApplyLoopingSfxVolume();
         PlayerPrefs.SetFloat(MasterVolumePreferenceKey, masterVolume);
@@ -195,14 +233,14 @@ public sealed class AudioManager : MonoBehaviour
     {
         if (musicSource == null) return;
 
-        musicSource.volume = musicClipVolume * masterVolume * musicVolume * musicDuckMultiplier;
+        musicSource.volume = musicClipVolume * musicVolume * musicDuckMultiplier;
     }
 
     private void ApplyLoopingSfxVolume()
     {
         if (loopingSfxSource == null) return;
 
-        loopingSfxSource.volume = loopingSfxClipVolume * masterVolume * sfxVolume;
+        loopingSfxSource.volume = loopingSfxClipVolume * sfxVolume;
     }
 
     private IEnumerator DuckMusicForClip(float duration, float duckMultiplier)
@@ -224,14 +262,14 @@ public sealed class AudioManager : MonoBehaviour
         loopingSfxResumeRoutine = null;
     }
 
-    private void SetMixerVolume(string parameterName, float value)
+    private bool SetMixerVolume(string parameterName, float value)
     {
         if (audioMixer == null)
         {
-            return;
+            return false;
         }
 
         float decibels = value <= 0.0001f ? -80f : Mathf.Log10(value) * 20f;
-        audioMixer.SetFloat(parameterName, decibels);
+        return audioMixer.SetFloat(parameterName, decibels);
     }
 }

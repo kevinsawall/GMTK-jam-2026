@@ -48,17 +48,20 @@ public sealed class CharacterManager : MonoBehaviour, IInteractable
     private void OnMouseEnter()
     {
         isHovered = true;
+        DefaultCursorController.SetHoveredNpc(this);
         RefreshHoverOutline();
     }
 
     private void OnMouseExit()
     {
         isHovered = false;
+        DefaultCursorController.ClearHoveredNpc(this);
         RefreshHoverOutline();
     }
 
     private void OnDisable()
     {
+        DefaultCursorController.ClearHoveredNpc(this);
         if (outlineRenderers == null) return;
 
         DialogueManager.DialogueStarted -= RefreshHoverOutline;
@@ -149,6 +152,12 @@ public sealed class CharacterManager : MonoBehaviour, IInteractable
     {
         return interactObject is TalkInteractObject talkInteraction &&
                talkInteraction.TryReceiveItem(item);
+    }
+
+    public bool IsCorrectDroppedItem(ItemData item)
+    {
+        return interactObject is TalkInteractObject talkInteraction &&
+               talkInteraction.IsCorrectDroppedItem(item);
     }
 
     /// <summary>Resets this character only when it is the scene player.</summary>

@@ -2653,6 +2653,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30f2a7c1d45e4b98a6c3f0d1e2b57964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioSettingsController
-  masterVolumeSlider: {fileID: 188324016343583695}
+  masterVolumeSlider: {fileID: 3527851043222112936}
   musicVolumeSlider: {fileID: 414215883505134837}
-  sfxVolumeSlider: {fileID: 3527851043222112936}
+  sfxVolumeSlider: {fileID: 188324016343583695}

@@ -38,4 +38,9 @@ public sealed class TalkInteractObject : InteractObject
             Object.FindFirstObjectByType<DialogueManager>(FindObjectsInactive.Include);
         return manager != null && manager.StartItemDropDialogue(dialogue, item);
     }
+
+    public override bool IsCorrectDroppedItem(ItemData item)
+    {
+        return dialogue != null && item != null && item == dialogue.expectedDroppedItem;
+    }
 }

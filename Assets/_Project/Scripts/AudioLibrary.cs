@@ -20,7 +20,18 @@ public enum SfxId
     TrainOnTheRun,
     TrainDestruction,
     TrainDestructionShort,
-    SingersSong
+    SingersSong,
+    Footstep1,
+    Footstep2,
+    HoverOverButton,
+    ClickOnContinueAndMenuButtons,
+    ClickOnCharacter,
+    DoorOpen,
+    WrongItemSound,
+    CountdownTick,
+    EngineRepairSound,
+    ItemUseGiveItem,
+    LoopResetSound
 }
 
 [Serializable]

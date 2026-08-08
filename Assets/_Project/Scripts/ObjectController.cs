@@ -94,17 +94,20 @@ public sealed class ObjectController : MonoBehaviour, IInteractable
     private void OnMouseEnter()
     {
         isHovered = true;
+        DefaultCursorController.SetHoveredObject(this);
         RefreshHoverOutline();
     }
 
     private void OnMouseExit()
     {
         isHovered = false;
+        DefaultCursorController.ClearHoveredObject(this);
         RefreshHoverOutline();
     }
 
     private void OnDisable()
     {
+        DefaultCursorController.ClearHoveredObject(this);
         DialogueManager.FlagSet -= HandleFlagSet;
         if (outlineRenderers == null) return;
 
@@ -205,6 +208,11 @@ public sealed class ObjectController : MonoBehaviour, IInteractable
     public bool TryReceiveItem(ItemData item)
     {
         return !isInteractionDisabled && interactObject != null && interactObject.TryReceiveItem(item, this);
+    }
+
+    public bool IsCorrectDroppedItem(ItemData item)
+    {
+        return !isInteractionDisabled && interactObject != null && interactObject.IsCorrectDroppedItem(item);
     }
 
     /// <summary>Stops this object and its linked partner from receiving any further interactions.</summary>

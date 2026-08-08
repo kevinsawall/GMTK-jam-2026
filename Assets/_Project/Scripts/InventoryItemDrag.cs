@@ -4,12 +4,18 @@ using UnityEngine.UI;
 
 public sealed class InventoryItemDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    private static int activeDragCount;
+
+    public static bool IsDragging => activeDragCount > 0;
+    public static event System.Action<bool> DragStateChanged;
+
     private RectTransform sourceRect;
     private Canvas rootCanvas;
     private Image sourceImage;
     private RawImage sourceRawImage;
     private RectTransform dragVisual;
     private ItemData item;
+    private bool isDragging;
 
     public void Initialize(ItemData itemData)
     {
@@ -57,6 +63,7 @@ public sealed class InventoryItemDrag : MonoBehaviour, IBeginDragHandler, IDragH
 
         visual.GetComponent<CanvasGroup>().blocksRaycasts = false;
 
+        SetDragging(true);
         UpdateDragPosition(eventData);
     }
 
@@ -74,6 +81,19 @@ public sealed class InventoryItemDrag : MonoBehaviour, IBeginDragHandler, IDragH
             Destroy(dragVisual.gameObject);
             dragVisual = null;
         }
+
+        SetDragging(false);
+    }
+
+    private void OnDisable()
+    {
+        if (dragVisual != null)
+        {
+            Destroy(dragVisual.gameObject);
+            dragVisual = null;
+        }
+
+        SetDragging(false);
     }
 
     private void TryDropOnInteractable(PointerEventData eventData)
@@ -131,5 +151,16 @@ public sealed class InventoryItemDrag : MonoBehaviour, IBeginDragHandler, IDragH
         {
             dragVisual.anchoredPosition = localPosition;
         }
+    }
+
+    private void SetDragging(bool shouldDrag)
+    {
+        if (isDragging == shouldDrag) return;
+
+        isDragging = shouldDrag;
+        bool wasDragging = IsDragging;
+        activeDragCount += shouldDrag ? 1 : -1;
+        if (activeDragCount < 0) activeDragCount = 0;
+        if (wasDragging != IsDragging) DragStateChanged?.Invoke(IsDragging);
     }
 }
