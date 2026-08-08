@@ -14,8 +14,9 @@ public sealed class CupTimerController : MonoBehaviour
 {
     private const string TimerObjectName = "Cup timer";
     private const string CutsceneObjectName = "CutsceneObject";
-    private const float CutsceneDurationSeconds = 7f;
-    private const float PlayerResetTimeSeconds = 2f;
+    private const float CutsceneDurationSeconds = 10f;
+    private const float LoopResetSoundDurationSeconds = 3.2f;
+    private const float PlayerResetTimeSeconds = 5f;
     private const float CutsceneFadeOutSeconds = 1f;
 
     [SerializeField] private CupTimerMode timerMode = CupTimerMode.Sec;
@@ -223,7 +224,11 @@ public sealed class CupTimerController : MonoBehaviour
             cutsceneCanvasGroup.alpha = 1f;
         }
 
-        yield return new WaitForSecondsRealtime(PlayerResetTimeSeconds);
+        AudioManager.Instance?.PlaySfx(SfxId.LoopResetSound);
+        yield return new WaitForSecondsRealtime(LoopResetSoundDurationSeconds);
+        AudioManager.Instance?.PlaySfxWithMusicDuck(SfxId.TrainDestructionShort, 0.5f);
+
+        yield return new WaitForSecondsRealtime(PlayerResetTimeSeconds - LoopResetSoundDurationSeconds);
         ResetPlayerToStartPosition();
         StopCameraShake();
 
@@ -266,7 +271,6 @@ public sealed class CupTimerController : MonoBehaviour
                 yield return null;
             }
 
-            AudioManager.Instance?.PlaySfxWithMusicDuck(SfxId.TrainDestructionShort, 0.5f);
         }
 
         yield return PlayCutsceneAndRestart();

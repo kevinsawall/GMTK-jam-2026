@@ -30,7 +30,8 @@ public enum SfxId
     WrongItemSound,
     CountdownTick,
     EngineRepairSound,
-    ItemUseGiveItem
+    ItemUseGiveItem,
+    LoopResetSound
 }
 
 [Serializable]
