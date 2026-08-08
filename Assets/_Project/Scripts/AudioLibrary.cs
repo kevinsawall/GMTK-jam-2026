@@ -25,7 +25,12 @@ public enum SfxId
     Footstep2,
     HoverOverButton,
     ClickOnContinueAndMenuButtons,
-    ClickOnCharacter
+    ClickOnCharacter,
+    DoorOpen,
+    WrongItemSound,
+    CountdownTick,
+    EngineRepairSound,
+    ItemUseGiveItem
 }
 
 [Serializable]

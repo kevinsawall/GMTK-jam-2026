@@ -81,6 +81,10 @@ public sealed class CutsceneController : MonoBehaviour
             isStartGamePlaying = true;
             StartGameStateChanged?.Invoke(true);
         }
+        else if (cutsceneType == CutsceneType.EndGame)
+        {
+            AudioManager.Instance?.PlaySfx(SfxId.EngineRepairSound);
+        }
 
         SetBackgroundAlpha(1f);
         if (titleCanvasGroup != null) titleCanvasGroup.alpha = 0f;

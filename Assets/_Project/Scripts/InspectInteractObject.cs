@@ -48,6 +48,11 @@ public sealed class InspectInteractObject : InteractObject
         return true;
     }
 
+    public override bool IsCorrectDroppedItem(ItemData item)
+    {
+        return expectedDroppedItem != null && item == expectedDroppedItem;
+    }
+
     private bool ShowNextPlayerPhrase(ObjectController controller)
     {
         DialogueManager manager = DialogueManager.Instance ??

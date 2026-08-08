@@ -21,4 +21,7 @@ public abstract class InteractObject : ScriptableObject
     /// Handles a drag-and-drop inventory item when this interaction supports it.
     /// </summary>
     public virtual bool TryReceiveItem(ItemData item, ObjectController controller) => false;
+
+    /// <summary>Whether this interaction accepts the supplied inventory item.</summary>
+    public virtual bool IsCorrectDroppedItem(ItemData item) => false;
 }

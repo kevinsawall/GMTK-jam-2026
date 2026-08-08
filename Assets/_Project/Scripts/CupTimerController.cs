@@ -98,6 +98,7 @@ public sealed class CupTimerController : MonoBehaviour
         if (stageCount <= 0) return;
 
         remainingSeconds = Mathf.Max(0f, remainingSeconds - 1f);
+        PlayCountdownTick();
         naturalCountAnimation = StartCoroutine(AnimateNaturalCountDown(stageCount));
     }
 
@@ -105,12 +106,23 @@ public sealed class CupTimerController : MonoBehaviour
     {
         if (hasExpired || GameManager.IsEndGameSequencePlaying) return;
 
+        int previousDisplayedSeconds = Mathf.CeilToInt(remainingSeconds);
         remainingSeconds = Mathf.Max(0f, remainingSeconds - amount);
+        if (Mathf.CeilToInt(remainingSeconds) < previousDisplayedSeconds)
+        {
+            PlayCountdownTick();
+        }
+
         UpdateTimerDisplay();
         if (remainingSeconds > 0f) return;
 
         hasExpired = true;
         timeoutSequence = StartCoroutine(RunTimeoutSequence());
+    }
+
+    private static void PlayCountdownTick()
+    {
+        AudioManager.Instance?.PlaySfx(SfxId.CountdownTick);
     }
 
     /// <summary>Stops the cup-timer timeout flow so a higher-priority ending can take over.</summary>

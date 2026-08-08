@@ -48,3 +48,18 @@ MonoBehaviour:
   - id: 13
     clip: {fileID: 8300000, guid: e1da960c3a9de4da88a8811369a77caa, type: 3}
     volume: 1
+  - id: 14
+    clip: {fileID: 8300000, guid: fc2958ccce261408c87e2921639f2542, type: 3}
+    volume: 1
+  - id: 15
+    clip: {fileID: 8300000, guid: f20bb5c5fae7c47c9b54061d917243e8, type: 3}
+    volume: 1
+  - id: 16
+    clip: {fileID: 8300000, guid: 89d89c55ff36043349c1233eb6f32350, type: 3}
+    volume: 1
+  - id: 17
+    clip: {fileID: 8300000, guid: e453a31d5af3e4ee1ab44c8e42228b1c, type: 3}
+    volume: 1
+  - id: 18
+    clip: {fileID: 8300000, guid: 0a7986a775b164ef1b6b89545da0207d, type: 3}
+    volume: 1

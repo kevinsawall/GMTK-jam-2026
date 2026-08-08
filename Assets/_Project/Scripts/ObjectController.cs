@@ -210,6 +210,11 @@ public sealed class ObjectController : MonoBehaviour, IInteractable
         return !isInteractionDisabled && interactObject != null && interactObject.TryReceiveItem(item, this);
     }
 
+    public bool IsCorrectDroppedItem(ItemData item)
+    {
+        return !isInteractionDisabled && interactObject != null && interactObject.IsCorrectDroppedItem(item);
+    }
+
     /// <summary>Stops this object and its linked partner from receiving any further interactions.</summary>
     public void DisableInteraction()
     {

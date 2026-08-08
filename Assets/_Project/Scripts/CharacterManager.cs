@@ -154,6 +154,12 @@ public sealed class CharacterManager : MonoBehaviour, IInteractable
                talkInteraction.TryReceiveItem(item);
     }
 
+    public bool IsCorrectDroppedItem(ItemData item)
+    {
+        return interactObject is TalkInteractObject talkInteraction &&
+               talkInteraction.IsCorrectDroppedItem(item);
+    }
+
     /// <summary>Resets this character only when it is the scene player.</summary>
     public void ResetToStartPosition()
     {

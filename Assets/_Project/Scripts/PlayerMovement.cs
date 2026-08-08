@@ -306,7 +306,25 @@ public sealed class PlayerMovement : MonoBehaviour
         body.angularVelocity = Vector3.zero;
         if (interaction == null) return;
 
-        if (itemToDeliver != null) interaction.TryReceiveItem(itemToDeliver);
+        if (itemToDeliver != null)
+        {
+            bool isCorrectItem = interaction switch
+            {
+                ObjectController objectController => objectController.IsCorrectDroppedItem(itemToDeliver),
+                CharacterManager characterManager => characterManager.IsCorrectDroppedItem(itemToDeliver),
+                _ => false
+            };
+
+            bool wasItemReceived = interaction.TryReceiveItem(itemToDeliver);
+            if (isCorrectItem && wasItemReceived)
+            {
+                AudioManager.Instance?.PlaySfx(SfxId.ItemUseGiveItem);
+            }
+            else if (!isCorrectItem)
+            {
+                AudioManager.Instance?.PlaySfx(SfxId.WrongItemSound);
+            }
+        }
         else interaction.Interact();
     }
 
