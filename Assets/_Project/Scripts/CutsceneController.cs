@@ -28,6 +28,7 @@ public sealed class CutsceneController : MonoBehaviour
     [SerializeField, Min(0f)] private float titleFadeOutSeconds;
 
     private static bool isStartGamePlaying;
+    private static int activeCutsceneCount;
     private CanvasGroup canvasGroup;
     private CanvasGroup titleCanvasGroup;
     private Image backgroundImage;
@@ -36,8 +37,10 @@ public sealed class CutsceneController : MonoBehaviour
     private bool hasFinished;
 
     public static bool IsStartGamePlaying => isStartGamePlaying;
+    public static bool IsAnyCutscenePlaying => activeCutsceneCount > 0;
     public static event Action StartGameFinished;
     public static event Action<bool> StartGameStateChanged;
+    public static event Action<bool> CutsceneStateChanged;
     public event Action<CutsceneController> Finished;
     public bool IsPlaying => isPlaying;
     public CutsceneType Type => cutsceneType;
@@ -70,6 +73,9 @@ public sealed class CutsceneController : MonoBehaviour
     {
         hasFinished = false;
         isPlaying = true;
+        bool wasAnyCutscenePlaying = IsAnyCutscenePlaying;
+        activeCutsceneCount++;
+        if (!wasAnyCutscenePlaying) CutsceneStateChanged?.Invoke(true);
         if (cutsceneType == CutsceneType.StartGame)
         {
             isStartGamePlaying = true;
@@ -86,6 +92,12 @@ public sealed class CutsceneController : MonoBehaviour
 
     private void OnDisable()
     {
+        if (activeCutsceneCount > 0)
+        {
+            activeCutsceneCount--;
+            if (!IsAnyCutscenePlaying) CutsceneStateChanged?.Invoke(false);
+        }
+
         isPlaying = false;
         if (!hasFinished && cutsceneType == CutsceneType.StartGame)
         {

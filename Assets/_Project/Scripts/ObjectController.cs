@@ -94,17 +94,20 @@ public sealed class ObjectController : MonoBehaviour, IInteractable
     private void OnMouseEnter()
     {
         isHovered = true;
+        DefaultCursorController.SetHoveredObject(this);
         RefreshHoverOutline();
     }
 
     private void OnMouseExit()
     {
         isHovered = false;
+        DefaultCursorController.ClearHoveredObject(this);
         RefreshHoverOutline();
     }
 
     private void OnDisable()
     {
+        DefaultCursorController.ClearHoveredObject(this);
         DialogueManager.FlagSet -= HandleFlagSet;
         if (outlineRenderers == null) return;
 

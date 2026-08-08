@@ -48,17 +48,20 @@ public sealed class CharacterManager : MonoBehaviour, IInteractable
     private void OnMouseEnter()
     {
         isHovered = true;
+        DefaultCursorController.SetHoveredNpc(this);
         RefreshHoverOutline();
     }
 
     private void OnMouseExit()
     {
         isHovered = false;
+        DefaultCursorController.ClearHoveredNpc(this);
         RefreshHoverOutline();
     }
 
     private void OnDisable()
     {
+        DefaultCursorController.ClearHoveredNpc(this);
         if (outlineRenderers == null) return;
 
         DialogueManager.DialogueStarted -= RefreshHoverOutline;
